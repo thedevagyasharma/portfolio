@@ -1,4 +1,7 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque&family=Space+Mono&display=swap');
+
+@import url('tokens/Type.tokens.css');
+
 
 :root {
   --background: #ffffff;
@@ -8,19 +11,70 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font_face-sans);
+  margin: 0;
+}
+
+h1 {
+  font-size: var(--font_size-heading-1);
+}
+
+h2 {
+  font-size: var(--font_size-heading-2);
+}
+
+section {
+  width: 100%;
+  align-items: center;
+}
+
+.container {
+  margin: auto;
+}
+
+@media (1920px <=width) {
+  .container {
+    max-width: 1920px;
+    padding-inline: 4rem;
+  }
+}
+
+@media(1440px <=width < 1920px) {
+  .container {
+    max-width: 1440px;
+    padding-inline: 4rem;
+  }
+}
+
+@media(1024px <=width < 1440px) {
+  .container {
+    max-width: 1024px;
+    padding-inline: 4rem;
+  }
+}
+
+@media(768px <=width < 1024px) {
+  .container {
+    max-width: 1024px;
+    padding-inline: 3rem;
+  }
+}
+
+@media(480px <=width < 768px) {
+  .container {
+    max-width: 1024px;
+    padding-inline: 2rem;
+  }
+}
+
+@media(width < 480px) {
+  .container {
+    max-width: 1024px;
+    padding-inline: 1rem;
+  }
 }

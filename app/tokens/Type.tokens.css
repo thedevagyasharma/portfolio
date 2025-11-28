@@ -1,0 +1,13 @@
+:root {
+    --font_face-sans: "Bricolage Grotesque", Helvetica, sans-serif;
+    --font_face-mono: "Space Mono", monospace;
+
+    --font_size-display-1: 64px;
+    --font_size-display-2: 56px;
+    --font_size-display-3: 42px;
+
+    --font_size-heading-1: 36px;
+    --font_size-heading-2: 28px;
+    --font_size-heading-3: 24px;
+    --font_size-heading-4: 20px;
+}

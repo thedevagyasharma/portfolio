@@ -1,0 +1,17 @@
+.hero {
+    background: #f1f1f1;
+    height: 100lvh;
+    position: relative;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.content {
+    padding-top: 74px;
+}
+
+.react-p5 {
+    position: absolute;
+    right: 0;
+    top: 100px;
+}
