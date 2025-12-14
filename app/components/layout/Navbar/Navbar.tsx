@@ -1,3 +1,4 @@
+import { HomeIcon } from 'lucide-react';
 import './Navbar.styles.css';
 
 export default function Navbar() {
@@ -20,7 +21,7 @@ export default function Navbar() {
                             <a
                                 href={link.href}
                             >
-                                {link.name}
+                                {link.name === "Home" ? <HomeIcon size={16}/> : link.name}
                             </a>
                         </li>
                     ))}

@@ -1,0 +1,48 @@
+:root {}
+
+@media(width < 360px) {
+
+    /* 2xs */
+    :root {}
+
+}
+
+@media(360px <=width < 550px) {
+
+    /* xs */
+    :root {}
+
+}
+
+@media(550px <=width < 768px) {
+
+    /* sm */
+    :root {}
+
+}
+
+@media(768px <=width < 992px) {
+
+    /* md */
+    :root {}
+
+}
+
+@media(992px <=width < 1200px) {
+
+    /* lg */
+    :root {}
+
+}
+
+@media(1200px <=width < 1440px) {
+
+    /* xl */
+    :root {}
+}
+
+@media(1440px <=width) {
+
+    /* 2xl */
+    :root {}
+}

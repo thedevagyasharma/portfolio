@@ -53,9 +53,10 @@ const HeroBackground = () => {
   const smoothMouseRef = useRef({ x: 600, y: 400 }); // Lagged mouse position for effects
   const mouseVelocityRef = useRef({ vx: 0, vy: 0 }); // Track mouse velocity for direction
   const lastTileRef = useRef({ col: 0, row: 0 }); // Track which tile we were in
+  const scrollRef = useRef({ velocity: 0, lastScrollY: 0, lastTime: Date.now() });
   const tilesRef = useRef([]);
   const dotsRef = useRef([]);
-  const dimensionsRef = useRef({ width: 0, height: 0, size: 50 });
+  const dimensionsRef = useRef({ width: 0, height: 0, size: 48 });
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -67,7 +68,7 @@ const HeroBackground = () => {
     });
     
     // Grid configuration - tiles stay as 40x40 squares
-    const size = 50;
+    const size = 48;
     
     const initializeCanvas = () => {
       // Get full viewport dimensions
@@ -130,11 +131,15 @@ const HeroBackground = () => {
     initializeCanvas();
     
     // Physics constants
-    const attractStrength = 0.08;
+    const attractStrength = 0.03;
     const attractRadius = 160;
-    const returnStrength = 0.008;
+    const returnStrength = 0.001;
     const maxPullDistance = 8;
     const mouseLagFactor = 0.12; // How quickly the effect follows the cursor (0.1 = slow, 0.5 = fast)
+    
+    // Scroll physics constants
+    const scrollInfluence = 0.010; // How much scroll velocity affects dots
+    const scrollDecay = 0.9; // How quickly scroll velocity decays
     
     // Mouse tracking - use window mouse position
     const handleMouseMove = (e) => {
@@ -144,7 +149,22 @@ const HeroBackground = () => {
       };
     };
     
+    // Scroll tracking
+    const handleScroll = () => {
+      const now = Date.now();
+      const currentScrollY = window.scrollY;
+      const dt = Math.max(1, now - scrollRef.current.lastTime);
+      
+      // Calculate scroll velocity (pixels per ms, then scale up)
+      const rawVelocity = (currentScrollY - scrollRef.current.lastScrollY) / dt;
+      scrollRef.current.velocity = rawVelocity * 16; // Scale to roughly per-frame
+      
+      scrollRef.current.lastScrollY = currentScrollY;
+      scrollRef.current.lastTime = now;
+    };
+    
     window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     
     // Animation loop
     const animate = () => {
@@ -351,6 +371,7 @@ const HeroBackground = () => {
     
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleResize);
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
@@ -359,7 +380,7 @@ const HeroBackground = () => {
   }, []);
 
   return (
-    <div className="fixed inset-0 -z-10 overflow-hidden">
+    <div className="background fixed inset-0 -z-10 overflow-hidden">
       <canvas
         ref={canvasRef}
         className="w-full h-full"
