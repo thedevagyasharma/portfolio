@@ -1,0 +1,72 @@
+@import url('../Breakpoint.tokens.css');
+
+:root {
+    --layout_section--padding--xxs: 2rem;
+    --layout_section--padding--xs: 2rem;
+    --layout_section--padding--sm: 3rem;
+    --layout_section--padding--md: 3rem;
+    --layout_section--padding--lg: 4rem;
+    --layout_section--padding--xl: 4rem;
+    --layout_section--padding--xxl: 4rem;
+}
+
+@media(width < 360px) {
+
+    /* xxs */
+    :root {
+        --layout_section--padding: var(--layout_section--padding--xxs);
+    }
+
+}
+
+@media(360px <=width < 550px) {
+
+    /* xs */
+    :root {
+        --layout_section--padding: var(--layout_section--padding--xs);
+    }
+
+}
+
+@media(550px <=width < 768px) {
+
+    /* sm */
+    :root {
+        --layout_section--padding: var(--layout_section--padding--sm);
+    }
+
+}
+
+@media(768px <=width < 992px) {
+
+    /* md */
+    :root {
+        --layout_section--padding: var(--layout_section--padding--md);
+    }
+
+}
+
+@media(992px <=width < 1200px) {
+
+    /* lg */
+    :root {
+        --layout_section--padding: var(--layout_section--padding--lg);
+    }
+
+}
+
+@media(1200px <=width < 1440px) {
+
+    /* xl */
+    :root {
+        --layout_section--padding: var(--layout_section--padding--xl);
+    }
+}
+
+@media(1440px <=width) {
+
+    /* xxl */
+    :root {
+        --layout_section--padding: var(--layout_section--padding--xxl);
+    }
+}

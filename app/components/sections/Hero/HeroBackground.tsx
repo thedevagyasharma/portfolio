@@ -40,9 +40,10 @@ const HeroBackground = () => {
   const canvasRef = useRef(null);
   const animationRef = useRef(null);
   const mouseRef = useRef({ x: 600, y: 400 });
+  const scrollRef = useRef({ velocity: 0, lastScrollY: 0, lastTime: Date.now() });
   const tilesRef = useRef([]);
   const dotsRef = useRef([]);
-  const dimensionsRef = useRef({ width: 0, height: 0, size: 50 });
+  const dimensionsRef = useRef({ width: 0, height: 0, size: 48 });
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -54,7 +55,7 @@ const HeroBackground = () => {
     });
     
     // Grid configuration - tiles stay as 40x40 squares
-    const size = 50;
+    const size = 48;
     
     const initializeCanvas = () => {
       // Get full viewport dimensions
@@ -115,10 +116,14 @@ const HeroBackground = () => {
     initializeCanvas();
     
     // Physics constants
-    const attractStrength = 0.1;
+    const attractStrength = 0.03;
     const attractRadius = 160;
-    const returnStrength = 0.005;
+    const returnStrength = 0.001;
     const maxPullDistance = 8;
+    
+    // Scroll physics constants
+    const scrollInfluence = 0.010; // How much scroll velocity affects dots
+    const scrollDecay = 0.9; // How quickly scroll velocity decays
     
     // Mouse tracking - use window mouse position
     const handleMouseMove = (e) => {
@@ -128,12 +133,31 @@ const HeroBackground = () => {
       };
     };
     
+    // Scroll tracking
+    const handleScroll = () => {
+      const now = Date.now();
+      const currentScrollY = window.scrollY;
+      const dt = Math.max(1, now - scrollRef.current.lastTime);
+      
+      // Calculate scroll velocity (pixels per ms, then scale up)
+      const rawVelocity = (currentScrollY - scrollRef.current.lastScrollY) / dt;
+      scrollRef.current.velocity = rawVelocity * 16; // Scale to roughly per-frame
+      
+      scrollRef.current.lastScrollY = currentScrollY;
+      scrollRef.current.lastTime = now;
+    };
+    
     window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     
     // Animation loop
     const animate = () => {
       const { x: mouseX, y: mouseY } = mouseRef.current;
       const { width, height, size } = dimensionsRef.current;
+      
+      // Decay scroll velocity each frame
+      scrollRef.current.velocity *= scrollDecay;
+      const scrollVel = scrollRef.current.velocity;
       
       // Clear canvas
       ctx.fillStyle = COLORS.background;
@@ -222,35 +246,67 @@ const HeroBackground = () => {
         const dy = mouseY - dot.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
         
+        // Calculate mouse attraction force
+        let attractX = 0;
+        let attractY = 0;
+        
         if (dist < attractRadius && dist > 0) {
           const nx = dx / dist;
           const ny = dy / dist;
           const force = attractStrength * (1 - dist / attractRadius);
-          
-          dot.vx += nx * force;
-          dot.vy += ny * force;
+          attractX = nx * force;
+          attractY = ny * force;
         } else {
-          const hx = dot.homeX - dot.x;
-          const hy = dot.homeY - dot.y;
-          
-          dot.vx += hx * returnStrength;
-          dot.vy += hy * returnStrength;
+          // Return to home when outside attract radius
+          attractX = (dot.homeX - dot.x) * returnStrength;
+          attractY = (dot.homeY - dot.y) * returnStrength;
         }
+        
+        // Calculate how much to negate mouse force based on scroll intensity
+        const scrollIntensity = Math.min(1, Math.abs(scrollVel) / 2);
+        
+        // Apply mouse attraction (negated proportionally by scroll)
+        dot.vx += attractX * (1 - scrollIntensity);
+        dot.vy += attractY * (1 - scrollIntensity);
+        
+        // When scrolling, also add return-to-home force to center dots
+        if (scrollIntensity > 0.1) {
+          dot.vx += (dot.homeX - dot.x) * 0.02 * scrollIntensity;
+          dot.vy += (dot.homeY - dot.y) * 0.02 * scrollIntensity;
+        }
+        
+        // Apply scroll force
+        dot.vy -= scrollVel * scrollInfluence;
         
         dot.x += dot.vx;
         dot.y += dot.vy;
+        dot.vx *= 0.92;
+        dot.vy *= 0.92;
         
-        dot.vx *= 0.85;
-        dot.vy *= 0.85;
-        
-        // Limit distance from home
+        // Wrap vertically within tile (only when scrolling)
         const offX = dot.x - dot.homeX;
         const offY = dot.y - dot.homeY;
-        const distFromHome = Math.sqrt(offX * offX + offY * offY);
-        if (distFromHome > maxPullDistance) {
-          const ratio = maxPullDistance / distFromHome;
-          dot.x = dot.homeX + offX * ratio;
-          dot.y = dot.homeY + offY * ratio;
+        const halfSize = size / 2;
+        
+        if (scrollIntensity > 0.1) {
+          // Scrolling - wrap vertically
+          if (offY > halfSize) {
+            dot.y = dot.homeY - halfSize;
+          } else if (offY < -halfSize) {
+            dot.y = dot.homeY + halfSize;
+          }
+          // Clamp horizontal
+          if (Math.abs(offX) > maxPullDistance) {
+            dot.x = dot.homeX + Math.sign(offX) * maxPullDistance;
+          }
+        } else {
+          // Not scrolling - clamp to max distance
+          const distFromHome = Math.sqrt(offX * offX + offY * offY);
+          if (distFromHome > maxPullDistance) {
+            const ratio = maxPullDistance / distFromHome;
+            dot.x = dot.homeX + offX * ratio;
+            dot.y = dot.homeY + offY * ratio;
+          }
         }
         
         // Color based on distance
@@ -279,6 +335,7 @@ const HeroBackground = () => {
     
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleResize);
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
@@ -287,7 +344,7 @@ const HeroBackground = () => {
   }, []);
 
   return (
-    <div className="fixed inset-0 -z-10 overflow-hidden">
+    <div className="background fixed inset-0 -z-10 overflow-hidden">
       <canvas
         ref={canvasRef}
         className="w-full h-full"
