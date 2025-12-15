@@ -1,12 +1,12 @@
 :root {
-    /* Grid-aligned column gaps (48px system) */
-    --layout_column-gap--xxs: 12px;  /* 0.25 grid units */
-    --layout_column-gap--xs: 12px;
-    --layout_column-gap--sm: 24px;   /* 0.5 grid units */
-    --layout_column-gap--md: 24px;
-    --layout_column-gap--lg: 24px;
-    --layout_column-gap--xl: 24px;
-    --layout_column-gap--xxl: 24px;
+    /* Dynamic grid-aligned column gaps - uses --grid-size from canvas */
+    --layout_column-gap--xxs: calc(var(--grid-size) * 0.25);  /* 0.25 tiles */
+    --layout_column-gap--xs: calc(var(--grid-size) * 0.25);
+    --layout_column-gap--sm: calc(var(--grid-size) * 0.5);    /* 0.5 tiles */
+    --layout_column-gap--md: calc(var(--grid-size) * 0.5);
+    --layout_column-gap--lg: calc(var(--grid-size) * 0.5);
+    --layout_column-gap--xl: calc(var(--grid-size) * 0.5);
+    --layout_column-gap--xxl: calc(var(--grid-size) * 0.5);
 }
 
 [class*="col-"] {

@@ -72,25 +72,22 @@ const HeroBackground = () => {
       const width = window.innerWidth;
       const height = window.innerHeight;
 
-      // Fixed 48px grid system (aligned to 8px base unit)
-      const size = 48;
-      const cols = Math.floor(width / size);
-      const rows = Math.floor(height / size);
+      // Dynamic grid system - tiles fill viewport perfectly
+      // Target ~48px tiles (multiple of 8), but calculate exact size to fit viewport
+      const targetTileSize = 48;
+      const cols = Math.round(width / targetTileSize);
+      const rows = Math.round(height / targetTileSize);
 
-      // Calculate centering offset for perfect grid alignment
-      const gridWidth = cols * size;
-      const gridHeight = rows * size;
-      const offsetX = (width - gridWidth) / 2;
-      const offsetY = (height - gridHeight) / 2;
+      // Calculate exact tile size that fills viewport perfectly
+      // Width-based calculation ensures no horizontal cutoff
+      const size = width / cols;
 
       dimensionsRef.current = { width, height, size };
 
-      // Expose grid system as CSS variables for layout components
+      // Expose dynamic grid system as CSS variables for all components
       document.documentElement.style.setProperty('--grid-size', `${size}px`);
       document.documentElement.style.setProperty('--grid-cols', `${cols}`);
       document.documentElement.style.setProperty('--grid-rows', `${rows}`);
-      document.documentElement.style.setProperty('--grid-offset-x', `${offsetX}px`);
-      document.documentElement.style.setProperty('--grid-offset-y', `${offsetY}px`);
 
       // Set proper DPI scaling - use 2 for retina displays
       const dpr = Math.min(window.devicePixelRatio || 1, 2);

@@ -1,13 +1,13 @@
 :root {
-    /* Grid-aligned padding values (48px system) */
-    --layout_container--padding--xxs: 24px;  /* 0.5 grid units */
-    --layout_container--padding--xs: 24px;
-    --layout_container--padding--sm: 24px;
-    --layout_container--padding--md: 48px;   /* 1 grid unit */
-    --layout_container--padding--lg: 48px;
-    --layout_container--padding--xl: 48px;
-    --layout_container--padding--xxl: 96px;  /* 2 grid units */
-    --layout_container--max-width--xxl: calc(1440px + 96px);
+    /* Dynamic grid-aligned padding - uses --grid-size from canvas */
+    --layout_container--padding--xxs: calc(var(--grid-size) * 0.5);  /* 0.5 tiles */
+    --layout_container--padding--xs: calc(var(--grid-size) * 0.5);
+    --layout_container--padding--sm: calc(var(--grid-size) * 0.5);
+    --layout_container--padding--md: var(--grid-size);                /* 1 tile */
+    --layout_container--padding--lg: var(--grid-size);
+    --layout_container--padding--xl: var(--grid-size);
+    --layout_container--padding--xxl: calc(var(--grid-size) * 2);    /* 2 tiles */
+    --layout_container--max-width--xxl: calc(1440px + var(--grid-size) * 2);
 
 }
 

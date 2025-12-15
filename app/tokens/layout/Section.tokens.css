@@ -1,14 +1,14 @@
 @import url('../Breakpoint.tokens.css');
 
 :root {
-    /* Grid-aligned section padding (48px system) */
-    --layout_section--padding--xxs: 48px;   /* 1 grid unit */
-    --layout_section--padding--xs: 48px;
-    --layout_section--padding--sm: 48px;
-    --layout_section--padding--md: 96px;    /* 2 grid units */
-    --layout_section--padding--lg: 96px;
-    --layout_section--padding--xl: 144px;   /* 3 grid units */
-    --layout_section--padding--xxl: 144px;
+    /* Dynamic grid-aligned section padding - uses --grid-size from canvas */
+    --layout_section--padding--xxs: var(--grid-size);                /* 1 tile */
+    --layout_section--padding--xs: var(--grid-size);
+    --layout_section--padding--sm: var(--grid-size);
+    --layout_section--padding--md: calc(var(--grid-size) * 2);      /* 2 tiles */
+    --layout_section--padding--lg: calc(var(--grid-size) * 2);
+    --layout_section--padding--xl: calc(var(--grid-size) * 3);      /* 3 tiles */
+    --layout_section--padding--xxl: calc(var(--grid-size) * 3);
 }
 
 @media(width < 360px) {

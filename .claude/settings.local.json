@@ -1,7 +1,11 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npm run build:*)"
+      "Bash(npm run build:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nCalculate dynamic tile size for perfect viewport fit\n\nModified the grid system to calculate tile size dynamically based on viewport width, ensuring tiles fit perfectly without being cut off. The system now:\n- Calculates optimal number of columns/rows based on ~50px target\n- Computes exact tile size (width/cols) for perfect fit\n- Adapts to any screen size while maintaining square tiles\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git push:*)",
+      "Bash(git commit:*)"
     ],
     "deny": [],
     "ask": []
