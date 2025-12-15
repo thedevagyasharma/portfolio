@@ -79,7 +79,7 @@ const HeroBackground = () => {
 
       // Use Math.ceil to ensure full coverage (no gaps), tiles scale slightly smaller
       const cols = Math.ceil(width / targetTileSize);
-      const rows = Math.ceil(height / targetTileSize);
+      const rows = Math.ceil(height / targetTileSize) + 1;
 
       // Calculate exact tile size that fills viewport perfectly
       // Dividing viewport by ceil() ensures perfect fit with no cropping or gaps

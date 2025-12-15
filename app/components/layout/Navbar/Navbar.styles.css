@@ -2,7 +2,12 @@
     color: #222;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
+    position: absolute;
+    z-index: 10;
+    right: calc(var(--grid-size));
+    top: calc(var(--grid-size));
+    background-color: #b0b0b0;
 }
 
 .navbar .links {
@@ -13,60 +18,40 @@
 }
 
 /* Grid-based tape recorder style buttons */
-.navbar .link>a {
+.navbar .link {
     color: black;
     display: flex;
     align-items: center;
     justify-content: center;
     text-decoration: none;
-
-    /* Dynamic grid-aligned sizing - 1 tile (updates with viewport) */
-    width: var(--grid-size);
+    width: calc(2 * var(--grid-size));
     height: var(--grid-size);
+    background: white;
 
-    /* Tape recorder button style - raised/3D effect */
-    background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
-    border: 1px solid #d0d0d0;
-
-    /* 3D cuboidal effect - raised state */
-    box-shadow:
-        0 1px 0 0 #fff inset,
-        0 -1px 0 0 rgba(0,0,0,0.05) inset,
-        0 2px 3px rgba(0,0,0,0.15),
-        0 4px 6px rgba(0,0,0,0.1);
+    border: 1px solid #dcdcdc;
 
     transition: all 0.15s ease;
     cursor: pointer;
     position: relative;
 
     /* Typography */
-    font-size: 11px;
-    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.3px;
+    transform: translateY(calc(-1*var(--grid-size)/8));
 
     &:hover {
-        background: linear-gradient(135deg, #fafafa 0%, #f0f0f0 100%);
-        border-color: #c0c0c0;
-        transform: translateY(-1px);
-        box-shadow:
-            0 1px 0 0 #fff inset,
-            0 -1px 0 0 rgba(0,0,0,0.05) inset,
-            0 3px 4px rgba(0,0,0,0.18),
-            0 5px 8px rgba(0,0,0,0.12);
+        background: #dedede;
     }
 
-    /* Active/Pressed state - like a pressed tape recorder button */
     &:active,
-    &.active {
-        background: linear-gradient(135deg, #e8e8e8 0%, #f0f0f0 100%);
-        border-color: #b0b0b0;
-        transform: translateY(2px);
-        box-shadow:
-            0 1px 2px rgba(0,0,0,0.2) inset,
-            0 -1px 0 0 rgba(255,255,255,0.5) inset,
-            0 1px 2px rgba(0,0,0,0.1);
+    &.link.active {
+        border-color: #dcdcdc;
+        transform: translateY(0);
     }
+}
+
+.navbar .link > a{
+    text-decoration: none;
+    color: black;
 }
 
 .navbar .link>a svg {

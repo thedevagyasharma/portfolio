@@ -7,6 +7,7 @@ export interface GridElementProps {
   row: number;           // Grid row position (0-indexed)
   width?: number;        // Width in grid units (default 1)
   height?: number;       // Height in grid units (default 1)
+  zindex?: number;
   children: ReactNode;
   className?: string;
   style?: CSSProperties;
@@ -25,6 +26,7 @@ export const GridElement: React.FC<GridElementProps> = ({
   row,
   width = 1,
   height = 1,
+  zindex = 0,
   children,
   className = '',
   style = {},
@@ -35,6 +37,7 @@ export const GridElement: React.FC<GridElementProps> = ({
     top: `calc(${row} * var(--grid-size) + var(--grid-offset-y))`,
     width: `calc(${width} * var(--grid-size))`,
     height: `calc(${height} * var(--grid-size))`,
+    zIndex: `${zindex}`,
     ...style,
   };
 
