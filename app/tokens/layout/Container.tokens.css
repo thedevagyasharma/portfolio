@@ -1,12 +1,13 @@
 :root {
-    --layout_container--padding--xxs: 1rem;
-    --layout_container--padding--xs: 1rem;
-    --layout_container--padding--sm: 1.5rem;
-    --layout_container--padding--md: 2rem;
-    --layout_container--padding--lg: 3rem;
-    --layout_container--padding--xl: 3rem;
-    --layout_container--padding--xxl: 4rem;
-    --layout_container--max-width--xxl: calc(1440px + 8rem);
+    /* Grid-aligned padding values (48px system) */
+    --layout_container--padding--xxs: 24px;  /* 0.5 grid units */
+    --layout_container--padding--xs: 24px;
+    --layout_container--padding--sm: 24px;
+    --layout_container--padding--md: 48px;   /* 1 grid unit */
+    --layout_container--padding--lg: 48px;
+    --layout_container--padding--xl: 48px;
+    --layout_container--padding--xxl: 96px;  /* 2 grid units */
+    --layout_container--max-width--xxl: calc(1440px + 96px);
 
 }
 

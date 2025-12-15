@@ -1,11 +1,12 @@
 :root {
-    --layout_column-gap--xxs: 0.5rem;
-    --layout_column-gap--xs: 0.75rem;
-    --layout_column-gap--sm: 1rem;
-    --layout_column-gap--md: 1rem;
-    --layout_column-gap--lg: 1rem;
-    --layout_column-gap--xl: 1.25rem;
-    --layout_column-gap--xxl: 1.5rem;
+    /* Grid-aligned column gaps (48px system) */
+    --layout_column-gap--xxs: 12px;  /* 0.25 grid units */
+    --layout_column-gap--xs: 12px;
+    --layout_column-gap--sm: 24px;   /* 0.5 grid units */
+    --layout_column-gap--md: 24px;
+    --layout_column-gap--lg: 24px;
+    --layout_column-gap--xl: 24px;
+    --layout_column-gap--xxl: 24px;
 }
 
 [class*="col-"] {

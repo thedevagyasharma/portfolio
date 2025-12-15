@@ -22,11 +22,13 @@
 }
 
 .content {
-    padding-top: 8rem;
+    /* Grid-aligned spacing - 3 grid units (144px) from top */
+    padding-top: var(--grid-spacing-3, 144px);
     z-index: 1;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    /* Grid-aligned gap - 1 grid unit (48px) */
+    gap: var(--grid-spacing-1, 48px);
     text-align: center;
 }
 
@@ -56,11 +58,11 @@
 }
 
 .hero-featured h2{
-    margin-top: 2rem;
-    margin-bottom: 2rem;;
+    /* Grid-aligned margins - 1 grid unit (48px) */
+    margin-top: var(--grid-spacing-1, 48px);
+    margin-bottom: var(--grid-spacing-1, 48px);
     font-family: var(--font_face-mono);
     font-size: 1.25rem;
-    /* font-weight: 500; */
     text-transform: uppercase;
 }
 
@@ -68,11 +70,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 4rem;
+    /* Grid-aligned gap - 2 grid units (96px) */
+    gap: var(--grid-spacing-2, 96px);
 }
 
 .featured-logos img {
     width: auto;
-    height: 4rem;
-    /* margin-inline: auto; */
+    /* Grid-aligned height - 8px sub-grid (64px = 8 * 8px) */
+    height: var(--spacing-8, 64px);
 }

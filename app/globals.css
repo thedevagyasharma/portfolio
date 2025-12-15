@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque&family=Space+Mono&display=swap');
 
+@import url('tokens/Grid.tokens.css');
 @import url('tokens/Type.tokens.css');
 @import url('tokens/layout/Container.tokens.css');
 @import url('tokens/layout/Section.tokens.css');

@@ -1,0 +1,71 @@
+:root {
+  /* Core grid unit - 48px (6 × 8px base unit) */
+  --grid-unit: 48px;
+
+  /* Grid spacing scale - multiples of 48px */
+  --grid-spacing-1: calc(var(--grid-unit) * 1);   /* 48px */
+  --grid-spacing-2: calc(var(--grid-unit) * 2);   /* 96px */
+  --grid-spacing-3: calc(var(--grid-unit) * 3);   /* 144px */
+  --grid-spacing-4: calc(var(--grid-unit) * 4);   /* 192px */
+  --grid-spacing-5: calc(var(--grid-unit) * 5);   /* 240px */
+  --grid-spacing-6: calc(var(--grid-unit) * 6);   /* 288px */
+
+  /* Fractional grid spacing */
+  --grid-spacing-half: calc(var(--grid-unit) * 0.5);     /* 24px */
+  --grid-spacing-quarter: calc(var(--grid-unit) * 0.25); /* 12px */
+
+  /* 8px sub-grid for micro-spacing (typography, padding) */
+  --spacing-1: 8px;
+  --spacing-2: 16px;
+  --spacing-3: 24px;
+  --spacing-4: 32px;
+  --spacing-5: 40px;
+  --spacing-6: 48px;
+  --spacing-8: 64px;
+  --spacing-10: 80px;
+  --spacing-12: 96px;
+
+  /* Grid positioning - dynamically set by HeroBackground canvas */
+  /* These are fallbacks, actual values come from canvas */
+  --grid-size: 48px;
+  --grid-cols: 40;
+  --grid-rows: 20;
+  --grid-offset-x: 0px;
+  --grid-offset-y: 0px;
+}
+
+/* Utility: Grid snap positioning */
+.grid-snap {
+  position: absolute;
+  left: calc(var(--grid-col, 0) * var(--grid-size) + var(--grid-offset-x));
+  top: calc(var(--grid-row, 0) * var(--grid-size) + var(--grid-offset-y));
+}
+
+/* Utility: Grid width classes */
+.grid-width-1  { width: calc(var(--grid-size) * 1); }
+.grid-width-2  { width: calc(var(--grid-size) * 2); }
+.grid-width-3  { width: calc(var(--grid-size) * 3); }
+.grid-width-4  { width: calc(var(--grid-size) * 4); }
+.grid-width-5  { width: calc(var(--grid-size) * 5); }
+.grid-width-6  { width: calc(var(--grid-size) * 6); }
+.grid-width-8  { width: calc(var(--grid-size) * 8); }
+.grid-width-10 { width: calc(var(--grid-size) * 10); }
+.grid-width-12 { width: calc(var(--grid-size) * 12); }
+
+/* Utility: Grid height classes */
+.grid-height-1  { height: calc(var(--grid-size) * 1); }
+.grid-height-2  { height: calc(var(--grid-size) * 2); }
+.grid-height-3  { height: calc(var(--grid-size) * 3); }
+.grid-height-4  { height: calc(var(--grid-size) * 4); }
+.grid-height-5  { height: calc(var(--grid-size) * 5); }
+.grid-height-6  { height: calc(var(--grid-size) * 6); }
+.grid-height-8  { height: calc(var(--grid-size) * 8); }
+.grid-height-10 { height: calc(var(--grid-size) * 10); }
+.grid-height-12 { height: calc(var(--grid-size) * 12); }
+
+/* Utility: Grid gap spacing */
+.grid-gap-1 { gap: var(--grid-spacing-1); }
+.grid-gap-2 { gap: var(--grid-spacing-2); }
+.grid-gap-3 { gap: var(--grid-spacing-3); }
+.grid-gap-half { gap: var(--grid-spacing-half); }
+.grid-gap-quarter { gap: var(--grid-spacing-quarter); }
