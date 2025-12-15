@@ -68,9 +68,10 @@ const HeroBackground = () => {
     });
     
     const initializeCanvas = () => {
-      // Get full viewport dimensions
-      const width = window.innerWidth;
-      const height = window.innerHeight;
+      // Get viewport dimensions excluding scrollbar
+      // Use documentElement.clientWidth to exclude scrollbar width
+      const width = document.documentElement.clientWidth;
+      const height = document.documentElement.clientHeight;
 
       // Dynamic grid system - tiles fill viewport perfectly with no gaps
       // Target ~48px tiles (multiple of 8), but calculate exact size to fit viewport
