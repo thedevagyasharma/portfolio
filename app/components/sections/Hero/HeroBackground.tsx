@@ -33,6 +33,7 @@ const COLORS = {
   dotHover: '#646464',        // Dot color when cursor is close
 };
 
+
 // Darkness configuration
 const TILE_DARKNESS = 5; // Percentage darkness for tiles (0-100)
 
@@ -66,16 +67,22 @@ const HeroBackground = () => {
       desynchronized: true 
     });
     
-    // Grid configuration - tiles stay as 40x40 squares
-    const size = 50;
-    
     const initializeCanvas = () => {
       // Get full viewport dimensions
       const width = window.innerWidth;
       const height = window.innerHeight;
-      
+
+      // Calculate tile size to fit perfectly in viewport
+      // Target approximately 50px tiles, but adjust to fit exactly
+      const targetTileSize = 50;
+      const cols = Math.round(width / targetTileSize);
+      const rows = Math.round(height / targetTileSize);
+
+      // Calculate exact tile size that fits perfectly
+      const size = width / cols;
+
       dimensionsRef.current = { width, height, size };
-      
+
       // Set proper DPI scaling - use 2 for retina displays
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       canvas.width = width * dpr;
@@ -84,13 +91,10 @@ const HeroBackground = () => {
       canvas.style.height = height + 'px';
       ctx.setTransform(1, 0, 0, 1, 0, 0); // Reset transform
       ctx.scale(dpr, dpr);
-      
+
       // Enable image smoothing for crisp lines
       ctx.imageSmoothingEnabled = true;
       ctx.imageSmoothingQuality = 'high';
-      
-      const cols = Math.ceil(width / size);
-      const rows = Math.ceil(height / size);
       
       // Initialize tiles and dots
       tilesRef.current = [];
@@ -359,7 +363,7 @@ const HeroBackground = () => {
   }, []);
 
   return (
-    <div className="fixed inset-0 -z-10 overflow-hidden">
+    <div className="background">
       <canvas
         ref={canvasRef}
         className="w-full h-full"
