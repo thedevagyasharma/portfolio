@@ -1,13 +1,78 @@
+/* ===== CSS CUSTOM PROPERTIES ===== */
+:root {
+    /* Button Shadow & Transform */
+    --navbar-button-lift: calc(-1 * var(--grid-size) / 8);
+    --navbar-button-shadow-y: calc(var(--grid-size) / 8);
+    --navbar-button-shadow-color: rgba(181, 181, 181, 1);
+    --navbar-button-shadow-lifted: 0px var(--navbar-button-shadow-y) 0px var(--navbar-button-shadow-color);
+    --navbar-button-shadow-flat: 0px 0px 0px var(--navbar-button-shadow-color);
+
+    /* Colors */
+    --navbar-bg: white;
+    --navbar-border: #dcdcdc;
+    --navbar-hover-bg: #f2f2f2;
+    --navbar-text: black;
+}
+
+/* ===== KEYFRAME ANIMATIONS ===== */
+@keyframes slideIn {
+    0% {
+        transform: translateX(calc((4 - var(--stagger-index)) * 2 * var(--grid-size)));
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOut {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc((4 - var(--stagger-index)) * 2 * var(--grid-size)));
+    }
+}
+
+@keyframes addShadow {
+    0% {
+        transform: translateY(0);
+        box-shadow: var(--navbar-button-shadow-flat);
+    }
+    100% {
+        transform: translateY(var(--navbar-button-lift));
+        box-shadow: var(--navbar-button-shadow-lifted);
+    }
+}
+
+@keyframes removeShadow {
+    0% {
+        transform: translateY(var(--navbar-button-lift));
+        box-shadow: var(--navbar-button-shadow-lifted);
+    }
+    100% {
+        transform: translateY(0);
+        box-shadow: var(--navbar-button-shadow-flat);
+    }
+}
+
+/* ===== BASE LAYOUT ===== */
 .navbar {
     color: #222;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    position: absolute;
+    position: fixed;
     z-index: 10;
-    right: calc(var(--grid-size));
-    top: calc(var(--grid-size));
-    background-color: #b0b0b0;
+    right: var(--grid-spacing-2);
+    top: var(--grid-spacing-1);
+}
+
+.navbar .links-container {
+    display: flex;
+}
+
+.navbar .links-container.animating {
+    overflow: hidden;
 }
 
 .navbar .links {
@@ -17,45 +82,111 @@
     margin-block: 0;
 }
 
-/* Grid-based tape recorder style buttons */
-.navbar .link {
-    color: black;
+/* ===== SHARED BUTTON BASE ===== */
+.navbar-button-base {
+    color: var(--navbar-text);
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 4px;
+
     text-decoration: none;
-    width: calc(2 * var(--grid-size));
     height: var(--grid-size);
-    background: white;
+    background: var(--navbar-bg);
+    border: 1px solid var(--navbar-border);
 
-    border: 1px solid #dcdcdc;
-
-    transition: all 0.15s ease;
+    transition: all 0.3s ease;
     cursor: pointer;
     position: relative;
 
-    /* Typography */
-    text-transform: uppercase;
-    transform: translateY(calc(-1*var(--grid-size)/8));
-
-    &:hover {
-        background: #dedede;
-    }
-
-    &:active,
-    &.link.active {
-        border-color: #dcdcdc;
-        transform: translateY(0);
-    }
+    transform: translateY(var(--navbar-button-lift));
+    box-shadow: var(--navbar-button-shadow-lifted);
 }
 
-.navbar .link > a{
-    text-decoration: none;
-    color: black;
+.navbar-button-base:hover {
+    background: var(--navbar-hover-bg);
 }
 
-.navbar .link>a svg {
+.navbar-button-base:active {
+    border-color: var(--navbar-border);
+    transform: translateY(0);
+    box-shadow: var(--navbar-button-shadow-flat);
+}
+
+.navbar-button-base svg {
     width: 16px;
     height: 16px;
     vertical-align: middle;
+}
+
+/* ===== COMPONENT STYLES ===== */
+
+/* Link Buttons */
+.navbar .link > a {
+    flex-direction: row;
+    width: calc(2 * var(--grid-size));
+    text-transform: uppercase;
+}
+
+.navbar .link > a > .link-label {
+    font-family: var(--font_face-mono);
+    font-size: var(--font_body-large--size);
+    line-height: 1;
+    letter-spacing: var(--font_body--letter-spacing);
+    font-weight: 400;
+}
+
+/* Menu Button */
+.navbar .menu-button {
+    flex-direction: column;
+    width: var(--grid-size);
+    flex-shrink: 0;
+}
+
+/* ===== ANIMATION STATES ===== */
+
+/* Slide-in animation (opening) */
+.navbar .link.slide-in {
+    animation: slideIn 300ms ease-out forwards;
+    animation-delay: calc((3 - var(--stagger-index)) * 100ms);
+    transform: translateX(calc((4 - var(--stagger-index)) * 2 * var(--grid-size)));
+    z-index: calc(var(--stagger-index));
+}
+
+.navbar .link.slide-in > a {
+    transform: translateY(0);
+    box-shadow: var(--navbar-button-shadow-flat);
+}
+
+.navbar .link.slide-in.add-shadow > a {
+    animation: addShadow 50ms ease-in forwards;
+}
+
+/* Slide-out animation (closing) */
+.navbar .link.slide-out {
+    animation: slideOut 300ms ease-in forwards;
+    animation-delay: calc(var(--stagger-index) * 100ms);
+    z-index: calc(var(--stagger-index));
+}
+
+.navbar .link.flatten > a {
+    animation: removeShadow 50ms ease-in forwards;
+}
+
+/* ===== INTERACTIVE STATES ===== */
+
+/* Active link state */
+.link.active > a {
+    border-color: var(--navbar-border);
+    transform: translateY(0);
+    box-shadow: var(--navbar-button-shadow-flat);
+}
+
+/* Keep active state flat during animations */
+.navbar .link.slide-in.active > a,
+.navbar .link.slide-in.add-shadow.active > a,
+.navbar .link.flatten.active > a {
+    transform: translateY(0);
+    box-shadow: var(--navbar-button-shadow-flat);
+    animation: none;
 }

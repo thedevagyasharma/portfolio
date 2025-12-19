@@ -1,0 +1,24 @@
+/* Nav Logo */
+.nav-logo {
+    position: fixed;
+    z-index: 10;
+    left: var(--grid-spacing-2);
+    top: var(--grid-spacing-1);
+    height: var(--grid-spacing-1);
+    width: var(--grid-spacing-4);
+    background-color: white;
+    display: flex;
+    place-items: center;
+    justify-content: center;
+    border: 1px solid #e0e0e0;
+    font-family: var(--font_face-mono);
+    font-size: var(--font_body-large--size);
+    line-height: 1;
+    letter-spacing: var(--font_body--letter-spacing);
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.nav-logo .toHighlight {
+    color: #ff4000;
+}

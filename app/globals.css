@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque&family=Space+Mono&display=swap');
-
 @import url('tokens/Grid.tokens.css');
 @import url('tokens/Type.tokens.css');
 @import url('tokens/layout/Container.tokens.css');
@@ -21,6 +19,8 @@
   box-sizing: border-box;
   scroll-behavior: smooth;
   /* outline: 1px solid lime; */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased
 }
 
 body {
@@ -31,9 +31,9 @@ body {
 }
 
 h1 {
-  font-size: var(--font_heading-1-size);
-  line-height: var(--font_heading-1-line-height);
-  letter-spacing: var(--font_heading-1-letter-spacing);
+  font-size: var(--font_heading-1--size);
+  line-height: var(--font_heading-1--line-height);
+  letter-spacing: var(--font_heading-1--letter-spacing);
 }
 
 h2 {

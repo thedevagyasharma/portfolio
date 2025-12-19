@@ -1,5 +1,6 @@
 import './Hero.styles.css';
 import HeroBackground from './HeroBackground';
+import { PixelArtDisplay } from '@/app/components/PixelArt';
 
 
 export default function Hero() {
@@ -7,19 +8,30 @@ export default function Hero() {
         <section className='hero'>
             <HeroBackground />
             <div className="content container">
-                <div className="hero-avatar"><img src="/assets/general/pixel_face.png" alt="" /></div>
                 <div className="hero-text">
-                    <h1 className="font-display-1"><span className="toHighlight">Design Engineer</span> crafting faster production pipelines with AI.</h1>
+                    <h1 className="font-mono"><span className="toHighlight">Design Engineer</span> crafting faster production pipelines with AI.</h1>
                 </div>
-                <div className="hero-featured">
+                <div className="pixelArt">
+                    <PixelArtDisplay
+                        gridTiles={4}
+                        config={{
+                            gridSize: 24,
+                            displayDuration: 4000,
+                            morphDuration: 100,
+                            morphSteps: 20,
+                        }}
+                        morphStyle="scatter"
+                    />
+                </div>
+            </div>
+            {/* <div className="hero-featured">
                     <h2>Previously Designed For</h2>
                     <div className="featured-logos">
                         <img src="/assets/general/do_logo.webp" alt="" />
                         <img src="/assets/general/mm_logo.png" alt="" />
                         <img src="/assets/general/csa_logo.png" alt="" />
                     </div>
-                </div>
-            </div>
+                </div> */}
             {/* <div className="container">
                 <h1>Designer–engineer specializing in scalable UI and design systems.</h1>
                 <h2>I create accessible, consistent components that teams can trust.</h2>

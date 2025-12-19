@@ -3,8 +3,8 @@
 import React, { useEffect, useRef } from 'react';
 
 // Helper function to darken a hex color by a percentage
-const darkenColor = (color, percent) => {
-  const hex = (c) => {
+const darkenColor = (color: string, percent: number): string => {
+  const hex = (c: string) => {
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(c);
     return result ? {
       r: parseInt(result[1], 16),
@@ -38,8 +38,8 @@ const COLORS = {
 const TILE_DARKNESS = 5; // Percentage darkness for tiles (0-100)
 
 // Pre-calculate darkened colors to avoid repeated calculations
-const darkenedColorCache = {};
-const getCachedDarkenedColor = (color, percent) => {
+const darkenedColorCache: Record<string, string> = {};
+const getCachedDarkenedColor = (color: string, percent: number): string => {
   const key = `${color}_${percent.toFixed(2)}`;
   if (!darkenedColorCache[key]) {
     darkenedColorCache[key] = darkenColor(color, percent);
@@ -47,26 +47,50 @@ const getCachedDarkenedColor = (color, percent) => {
   return darkenedColorCache[key];
 };
 
+type Tile = {
+  x: number;
+  y: number;
+  baseSize: number;
+  renderSize: number;
+  corner: number;
+  fillColor: string;
+  currentDarkness: number;
+  targetDarkness: number;
+  col: number;
+  row: number;
+};
+
+type Dot = {
+  homeX: number;
+  homeY: number;
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  fillColor: string;
+};
+
 const HeroBackground = () => {
-  const canvasRef = useRef(null);
-  const animationRef = useRef(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const animationRef = useRef<number>(0);
   const mouseRef = useRef({ x: 600, y: 400 });
   const smoothMouseRef = useRef({ x: 600, y: 400 }); // Lagged mouse position for effects
   const mouseVelocityRef = useRef({ vx: 0, vy: 0 }); // Track mouse velocity for direction
   const lastTileRef = useRef({ col: 0, row: 0 }); // Track which tile we were in
-  const tilesRef = useRef([]);
-  const dotsRef = useRef([]);
+  const tilesRef = useRef<Tile[]>([]);
+  const dotsRef = useRef<Dot[]>([]);
   const dimensionsRef = useRef({ width: 0, height: 0, size: 50 });
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext('2d', { 
+    const ctx = canvas.getContext('2d', {
       alpha: false,
-      desynchronized: true 
+      desynchronized: true
     });
-    
+    if (!ctx) return;
+
     const initializeCanvas = () => {
       // Get viewport dimensions excluding scrollbar
       // Use documentElement.clientWidth to exclude scrollbar width
@@ -150,7 +174,7 @@ const HeroBackground = () => {
     const mouseLagFactor = 0.12; // How quickly the effect follows the cursor (0.1 = slow, 0.5 = fast)
     
     // Mouse tracking - use window mouse position
-    const handleMouseMove = (e) => {
+    const handleMouseMove = (e: MouseEvent) => {
       mouseRef.current = {
         x: e.clientX,
         y: e.clientY
