@@ -98,8 +98,8 @@ const HeroBackground = () => {
       const height = document.documentElement.clientHeight;
 
       // Dynamic grid system - tiles fill viewport perfectly with no gaps
-      // Target ~48px tiles (multiple of 8), but calculate exact size to fit viewport
-      const targetTileSize = 48;
+      // Responsive target: 32px below 768px, 48px above (multiple of 8)
+      const targetTileSize = width < 768 ? 32 : 48;
 
       // Use Math.ceil to ensure full coverage (no gaps), tiles scale slightly smaller
       const cols = Math.ceil(width / targetTileSize);

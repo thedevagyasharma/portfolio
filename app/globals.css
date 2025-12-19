@@ -23,11 +23,14 @@
   -webkit-font-smoothing: antialiased
 }
 
+html,
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font_face-sans);
   margin: 0;
+  overflow-x: hidden; /* Prevent horizontal scrollbar */
+  width: 100%;
 }
 
 h1 {
@@ -58,14 +61,57 @@ section {
 }
 
 .container {
-  margin: auto;
-  max-width: var(--layout_container--max-width);
+  /* Container adjusts to leave equal whole columns on each side when centered */
+  /* Target: 28 content columns + padding, but adjust width to ensure equal margins */
+
+  /* Get padding in columns (always whole number: 2 or 4) */
+  --padding-cols: calc(var(--layout_container--padding) * 2 / var(--grid-size));
+
+  /* Calculate ideal container width (28 content + padding) */
+  --ideal-container-cols: calc(28 + var(--padding-cols));
+
+  /* Calculate total viewport columns from --grid-cols (set by HeroBackground) */
+  --remaining-cols: calc(var(--grid-cols) - var(--ideal-container-cols));
+
+  /* If remaining is odd, add 1 to container for equal margins */
+  --should-add-col: mod(max(0, var(--remaining-cols)), 2);
+
+  /* Actual container width in columns */
+  --actual-container-cols: calc(var(--ideal-container-cols) + var(--should-add-col));
+
+  /* Clamp to viewport if smaller than ideal */
+  --final-container-cols: min(var(--grid-cols), var(--actual-container-cols));
+
+  /* Set width and center with equal margins */
+  width: calc(var(--final-container-cols) * var(--grid-size));
   padding-inline: var(--layout_container--padding);
+  margin-inline: calc((var(--grid-cols) - var(--final-container-cols)) * var(--grid-size) / 2);
 }
 
 .columns{
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
+  grid-template-columns: repeat(28, 1fr);
   gap: var(--layout_column-gap);
+}
+
+/* Header wrapper - fixed positioning */
+.header-wrapper {
+  position: fixed;
+  top: var(--grid-spacing-1);
+  left: 0;
+  right: 0;
+  z-index: 10;
+  pointer-events: none; /* Allow clicks to pass through */
+}
+
+.header-wrapper .container {
+  pointer-events: auto; /* Re-enable clicks on content */
+}
+
+/* Header content - flexbox layout for logo and nav */
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 

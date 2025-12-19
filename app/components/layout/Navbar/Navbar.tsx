@@ -133,54 +133,50 @@ export default function Navbar() {
     };
 
     return (
-        <>
-            <div className='container'>
-                <nav className="navbar">
-                    <div className={`links-container ${animState.shouldClip ? 'animating' : ''}`}>
-                        <ul className="links">
-                            {!animState.isCollapsed && navLinks.map((link, index) => {
-                                const sectionId = getSectionId(link.href);
-                                const isActive = activeSection === sectionId;
-    
-                                const linkClasses = [
-                                    'link',
-                                    isActive && 'active',
-                                    animState.shouldFlatten && 'flatten',
-                                    animState.direction === 'opening' && 'slide-in',
-                                    animState.direction === 'closing' && 'slide-out',
-                                    animState.shouldAddShadow && 'add-shadow',
-                                ].filter(Boolean).join(' ');
-    
-                                return (
-                                    <li
-                                        key={link.name}
-                                        className={linkClasses}
-                                        style={{
-                                            '--stagger-index': index,
-                                        } as React.CSSProperties}
-                                    >
-                                        <a
-                                            href={link.href}
-                                            onClick={() => handleLinkClick(sectionId)}
-                                            className="navbar-button-base"
-                                        >
-                                            {/* <span className='link-icon'>{link.icon}</span> */}
-                                            <span className='link-label'>{link.name}</span>
-                                        </a>
-                                    </li>
-                                );
-                            })}
-                        </ul>
-                    </div>
-                    <button
-                        onClick={toggleMenu}
-                        className="menu-button navbar-button-base"
-                        aria-label={animState.isCollapsed ? "Open menu" : "Close menu"}
-                    >
-                        <Menu />
-                    </button>
-                </nav>
+        <nav className="navbar">
+            <div className={`links-container ${animState.shouldClip ? 'animating' : ''}`}>
+                <ul className="links">
+                    {!animState.isCollapsed && navLinks.map((link, index) => {
+                        const sectionId = getSectionId(link.href);
+                        const isActive = activeSection === sectionId;
+
+                        const linkClasses = [
+                            'link',
+                            isActive && 'active',
+                            animState.shouldFlatten && 'flatten',
+                            animState.direction === 'opening' && 'slide-in',
+                            animState.direction === 'closing' && 'slide-out',
+                            animState.shouldAddShadow && 'add-shadow',
+                        ].filter(Boolean).join(' ');
+
+                        return (
+                            <li
+                                key={link.name}
+                                className={linkClasses}
+                                style={{
+                                    '--stagger-index': index,
+                                } as React.CSSProperties}
+                            >
+                                <a
+                                    href={link.href}
+                                    onClick={() => handleLinkClick(sectionId)}
+                                    className="navbar-button-base"
+                                >
+                                    {/* <span className='link-icon'>{link.icon}</span> */}
+                                    <span className='link-label'>{link.name}</span>
+                                </a>
+                            </li>
+                        );
+                    })}
+                </ul>
             </div>
-        </>
+            <button
+                onClick={toggleMenu}
+                className="menu-button navbar-button-base"
+                aria-label={animState.isCollapsed ? "Open menu" : "Close menu"}
+            >
+                <Menu />
+            </button>
+        </nav>
     );
 }

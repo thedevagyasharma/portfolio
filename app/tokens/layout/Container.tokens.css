@@ -1,80 +1,22 @@
 :root {
     /* Dynamic grid-aligned padding - uses --grid-size from canvas */
-    --layout_container--padding--xxs: calc(var(--grid-size) * 0.5);  /* 0.5 tiles */
-    --layout_container--padding--xs: calc(var(--grid-size) * 0.5);
-    --layout_container--padding--sm: calc(var(--grid-size) * 0.5);
-    --layout_container--padding--md: var(--grid-size);                /* 1 tile */
-    --layout_container--padding--lg: var(--grid-size);
-    --layout_container--padding--xl: var(--grid-size);
-    --layout_container--padding--xxl: calc(var(--grid-size) * 2);    /* 2 tiles */
-    --layout_container--max-width--xxl: calc(1440px + var(--grid-size) * 2);
+    --layout_container--padding-default: var(--grid-size);              /* 1 tile */
+    --layout_container--padding-large: calc(var(--grid-size) * 2);     /* 2 tiles */
 
+    /* Max container width: 28 grid blocks */
+    --layout_container--max-width: calc(var(--grid-size) * 28);
 }
 
-@media(width < 360px) {
-
-    /* xxs */
+/* Below 1280px: 1 tile padding */
+@media(width < 1280px) {
     :root {
-        --layout_container--padding: var(--layout_container--padding--xxs);
-        --layout_container--max-width: 100%;
-    }
-
-}
-
-@media(360 <=width < 550px) {
-
-    /* xs */
-    :root {
-        --layout_container--padding: var(--layout_container--padding--xs);
-        --layout_container--max-width: 100%;
-    }
-
-}
-
-@media(550 <=width < 768px) {
-
-    /* sm */
-    :root {
-        --layout_container--padding: var(--layout_container--padding--sm);
-        --layout_container--max-width: 100%;
-    }
-
-}
-
-@media(768px <=width < 992px) {
-
-    /* md */
-    :root {
-        --layout_container--padding: var(--layout_container--padding--md);
-        --layout_container--max-width: 100%;
-    }
-
-}
-
-@media(992px <=width < 1200px) {
-
-    /* lg */
-    :root {
-        --layout_container--padding: var(--layout_container--padding--lg);
-        --layout_container--max-width: 100%;
-    }
-
-}
-
-@media(1200px <=width < 1440px) {
-
-    /* xl */
-    :root {
-        --layout_container--padding: var(--layout_container--padding--xl);
-        --layout_container--max-width: 100%;
+        --layout_container--padding: var(--layout_container--padding-default);
     }
 }
 
-@media(1440px <=width) {
-
-    /* xxl */
+/* 1280px and above: 2 tiles padding */
+@media(1280px <= width) {
     :root {
-        --layout_container--padding: var(--layout_container--padding--xxl);
-        --layout_container--max-width: var(--layout_container--max-width--xxl);
+        --layout_container--padding: var(--layout_container--padding-large);
     }
 }

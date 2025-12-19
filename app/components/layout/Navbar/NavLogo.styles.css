@@ -1,11 +1,8 @@
 /* Nav Logo */
 .nav-logo {
-    position: fixed;
-    z-index: 10;
-    left: var(--grid-spacing-2);
-    top: var(--grid-spacing-1);
-    height: var(--grid-spacing-1);
-    width: var(--grid-spacing-4);
+    height: var(--grid-size);
+    width: calc(var(--grid-size) * 4);
+    flex-shrink: 0;
     background-color: white;
     display: flex;
     place-items: center;
