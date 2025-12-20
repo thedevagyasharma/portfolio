@@ -7,7 +7,7 @@
     display: flex;
     place-items: center;
     justify-content: center;
-    border: 1px solid #e0e0e0;
+    border: var(--border-standard-secondary);
     font-family: var(--font_face-mono);
     font-size: var(--font_body-large--size);
     line-height: 1;

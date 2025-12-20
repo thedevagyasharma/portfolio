@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Bricolage_Grotesque, VT323, Press_Start_2P } from "next/font/google";
 import "./globals.css";
+import Background from "./components/layout/Background/Background";
 
 const bricolageGrotesque = Bricolage_Grotesque({
   subsets: ["latin"],
@@ -38,6 +39,7 @@ export default function RootLayout({
       <body
         className={`antialiased`}
       >
+        <Background />
         {children}
       </body>
     </html>

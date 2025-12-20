@@ -9,7 +9,6 @@
 
     /* Colors */
     --navbar-bg: white;
-    --navbar-border: #dcdcdc;
     --navbar-hover-bg: #f2f2f2;
     --navbar-text: black;
 }
@@ -92,7 +91,7 @@
     text-decoration: none;
     height: var(--grid-size);
     background: var(--navbar-bg);
-    border: 1px solid var(--navbar-border);
+    border: var(--border-standard);
 
     transition: all 0.3s ease;
     cursor: pointer;
@@ -107,7 +106,6 @@
 }
 
 .navbar-button-base:active {
-    border-color: var(--navbar-border);
     transform: translateY(0);
     box-shadow: var(--navbar-button-shadow-flat);
 }
@@ -176,7 +174,6 @@
 
 /* Active link state */
 .link.active > a {
-    border-color: var(--navbar-border);
     transform: translateY(0);
     box-shadow: var(--navbar-button-shadow-flat);
 }

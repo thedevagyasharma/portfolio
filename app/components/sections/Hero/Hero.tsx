@@ -1,12 +1,10 @@
 import './Hero.styles.css';
-import HeroBackground from './HeroBackground';
 import { PixelArtDisplay } from '@/app/components/PixelArt';
 
 
 export default function Hero() {
     return (
         <section className='hero'>
-            <HeroBackground />
             <div className="content container">
                 <div className="hero-text">
                     <h1 className="font-mono"><span className="toHighlight">Design Engineer</span> crafting faster production pipelines with AI.</h1>

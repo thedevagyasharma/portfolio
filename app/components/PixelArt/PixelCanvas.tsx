@@ -83,7 +83,7 @@ export function PixelCanvas({
   }, [frame, gridSize, fillColor, backgroundColor]);
 
   return (
-    <div ref={containerRef} style={{ display: 'inline-block' }}>
+    <div ref={containerRef} style={{ display: 'block', lineHeight: 0 }}>
       <canvas
         ref={canvasRef}
         width={gridSize}

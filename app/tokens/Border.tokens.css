@@ -1,0 +1,30 @@
+:root {
+  /* Border Widths */
+  --border-width-thin: 1px;
+  --border-width-medium: 2px;
+  --border-width-thick: 3px;
+
+  /* Border Colors - Light Theme */
+  --border-color-primary: #dcdcdc;
+  --border-color-secondary: #e0e0e0;
+  --border-color-accent: #ff4000;
+
+
+  /* Composite Border Variables (most commonly used) */
+
+  /* 1px solid #dcdcdc */
+  --border-standard: var(--border-width-thin) solid var(--border-color-primary);
+
+  /* 1px solid #e0e0e0 */
+  --border-standard-secondary: var(--border-width-thin) solid var(--border-color-secondary);
+
+  /* 1px solid #ff4000 */
+  --border-standard-accent: var(--border-width-thin) solid var(--border-color-accent);
+
+
+  /* Medium borders */
+  --border-medium: var(--border-width-medium) solid var(--border-color-primary);
+
+  /* Thick borders */
+  --border-thick: var(--border-width-thick) solid var(--border-color-primary);
+}

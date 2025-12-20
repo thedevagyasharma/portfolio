@@ -70,7 +70,7 @@ type Dot = {
   fillColor: string;
 };
 
-const HeroBackground = () => {
+const Background = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animationRef = useRef<number>(0);
   const mouseRef = useRef({ x: 600, y: 400 });
@@ -410,4 +410,4 @@ const HeroBackground = () => {
   );
 };
 
-export default HeroBackground;
+export default Background;
