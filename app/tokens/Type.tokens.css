@@ -1,7 +1,8 @@
 :root {
     /** Font Family **/
-    --font_face-sans: var(--font-bricolage-grotesque), Helvetica, sans-serif;
-    --font_face-mono: var(--font-vt323), monospace;
+    --font_face-sans: var(--font-google-sans-code), monospace;
+    --font_face-serif: var(--font-playfair-display), serif;
+    --font_face-mono: 'Departure Mono', monospace;
     --font_face-8bit: var(--font-press-start-2p), monospace;
 
     /** Typescale **/

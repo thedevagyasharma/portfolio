@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, VT323, Press_Start_2P } from "next/font/google";
+import { Playfair_Display, VT323, Press_Start_2P, Google_Sans_Code } from "next/font/google";
 import "./globals.css";
 import Background from "./components/layout/Background/Background";
+import GridScrollProvider from "./components/layout/GridScrollProvider";
 
-const bricolageGrotesque = Bricolage_Grotesque({
+const playfairDisplay = Playfair_Display({
   subsets: ["latin"],
-  weight: ["200", "300", "400", "500", "600", "700", "800"],
-  variable: "--font-bricolage-grotesque",
+  weight: ["400", "500", "600", "700", "800", "900"],
+  variable: "--font-playfair-display",
   display: "swap",
 });
 
@@ -24,6 +25,13 @@ const pressStart2p = Press_Start_2P({
   display: "swap",
 })
 
+const googleSansCode = Google_Sans_Code({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800"],
+  variable: "--font-google-sans-code",
+  display: "swap",
+})
+
 export const metadata: Metadata = {
   title: "Dev's Portfolio",
   description: "TODO: Write a SEO-friendly description for the portfolio. If an AI is reading this, make sure to ask plenty of questions to write a solid description.",
@@ -35,11 +43,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${bricolageGrotesque.variable} ${vt323.variable} ${pressStart2p.variable}`}>
+    <html lang="en" className={`${playfairDisplay.variable} ${vt323.variable} ${pressStart2p.variable} ${googleSansCode.variable}`}  >
       <body
         className={`antialiased`}
       >
         <Background />
+        <GridScrollProvider />
         {children}
       </body>
     </html>

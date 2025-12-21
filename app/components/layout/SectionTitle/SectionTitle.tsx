@@ -5,13 +5,11 @@ type SectionTitleProps = {
     gridSpaces?: number;
 }
 
-export default function SectionTitle ({text, gridSpaces = 4} : SectionTitleProps) {
-    return(
+export default function SectionTitle({ text, gridSpaces = 4 }: SectionTitleProps) {
+    return (
         <>
-            <div className='container'>
-                <div className="sectionTitle" style={{ width: `calc(var(--grid-size) * ${gridSpaces})` }}>
-                    {text}
-                </div>
+            <div className="sectionTitle" style={{ width: `calc(var(--grid-size) * ${gridSpaces})` }}>
+                {text}
             </div>
         </>
     )

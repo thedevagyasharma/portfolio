@@ -1,3 +1,4 @@
+@import url('tokens/Fonts.tokens.css');
 @import url('tokens/Grid.tokens.css');
 @import url('tokens/Type.tokens.css');
 @import url('tokens/Border.tokens.css');
@@ -60,7 +61,7 @@ h2 {
 section {
   width: 100%;
   align-items: center;
-  padding-block: var(--layout_section--padding);
+  padding-block: var(--grid-spacing-1);
 }
 
 .container {
@@ -84,6 +85,9 @@ section {
 
   /* Clamp to viewport if smaller than ideal */
   --final-container-cols: min(var(--grid-cols), var(--actual-container-cols));
+
+  /* Content area columns (excluding padding) */
+  --container-content-cols: calc(var(--final-container-cols) - var(--padding-cols));
 
   /* Set width and center with equal margins */
   width: calc(var(--final-container-cols) * var(--grid-size));

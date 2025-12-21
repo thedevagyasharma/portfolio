@@ -1,0 +1,77 @@
+.work-grid {
+    display: flex;
+    flex-direction: row;
+    /* Dynamic gap: 1 grid space if --grid-cols is odd, 2 grid spaces if even */
+    --gap-multiplier: calc(2 - mod(var(--grid-cols), 2));
+    gap: calc(var(--grid-size) * var(--gap-multiplier));
+}
+
+.project-tile {
+    /* 2C + G = container-content-cols, solve for C: C = (container-content-cols - G) / 2 */
+    /* G = gap-multiplier grid spaces */
+    width: calc((var(--container-content-cols) - var(--gap-multiplier)) * var(--grid-size) / 2);
+    /* Height must exactly match width for perfect square */
+    height: calc((var(--container-content-cols) - var(--gap-multiplier)) * var(--grid-size) / 2);
+
+    /* Styling */
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    text-decoration: none;
+    border: var(--border-standard);
+    background-color: white;
+    padding: var(--grid-spacing-1);
+
+    /* Bottom right beveled corner */
+    border-bottom-right-radius: var(--grid-size);
+    corner-shape: round round bevel;
+
+    /* Interaction */
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.project-tile:hover {
+    background-color: #f2f2f2;
+}
+
+.project-tile-content {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--grid-spacing-1) / 4);
+}
+
+.project-number {
+    font-family: var(--font_face-mono);
+    font-size: var(--font_body-large--size);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.02em;
+}
+
+.project-title {
+    font-family: var(--font_face-8bit);
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+.project-description {
+    font-family: var(--font_face-serif);
+    font-size: var(--font_body--size);
+    line-height: var(--font_body--line-height);
+    font-weight: 400;
+    color: #333;
+}
+
+.project-image {
+    width: 100%;
+    margin-top: calc(var(--grid-spacing-1) / 2);
+}
+
+.project-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: var(--border-standard);
+}

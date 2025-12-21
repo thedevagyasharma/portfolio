@@ -1,14 +1,14 @@
 .sectionTitle {
     display: flex;
     align-items: center;
-    justify-content: center;
     padding-inline: var(--grid-size);
     z-index: 0;
     position: relative;
     height: calc(var(--grid-size) * 1);
     background-color: white;
     font-family: var(--font_face-mono);
-    font-size: 2rem;
-    text-align: center;
+    font-size: 1.75rem;
+    text-align: left;
     border: var(--border-standard);
+    margin-bottom: var(--grid-spacing-1);
 }
