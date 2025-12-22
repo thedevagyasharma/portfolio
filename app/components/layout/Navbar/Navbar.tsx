@@ -35,9 +35,9 @@ export default function Navbar() {
     });
 
     const navLinks = [
-        { name: 'Home', href: "#home", icon: <HomeIcon /> },
+        { name: 'Home', href: "/", icon: <HomeIcon /> },
         { name: 'Work', href: "#work", icon: <Briefcase /> },
-        { name: 'About', href: "#about", icon: <BookUser /> },
+        { name: 'About', href: "/about", icon: <BookUser /> },
         { name: 'Resume', href: "#resume", icon: <FileText /> },
     ];
 

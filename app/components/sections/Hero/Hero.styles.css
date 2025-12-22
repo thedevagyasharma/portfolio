@@ -5,11 +5,6 @@
     padding-top: 0;
 }
 
-.background {
-    position: fixed;
-    z-index: -100;
-}
-
 .hero .content {
     padding-top: var(--grid-spacing-2, 96px);
     z-index: 1;

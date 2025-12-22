@@ -57,7 +57,7 @@
 }
 
 .project-description {
-    font-family: var(--font_face-serif);
+    font-family: var(--font_face-mono);
     font-size: var(--font_body--size);
     line-height: var(--font_body--line-height);
     font-weight: 400;
