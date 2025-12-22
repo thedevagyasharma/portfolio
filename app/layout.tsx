@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Playfair_Display, VT323, Press_Start_2P, Google_Sans_Code } from "next/font/google";
 import "./globals.css";
 import Background from "./components/layout/Background/Background";
-import GridScrollProvider from "./components/layout/GridScrollProvider";
+import GridSnapPoints from "./components/layout/GridSnapPoints/GridSnapPoints";
 
 const playfairDisplay = Playfair_Display({
   subsets: ["latin"],
@@ -48,7 +48,7 @@ export default function RootLayout({
         className={`antialiased`}
       >
         <Background />
-        <GridScrollProvider />
+        <GridSnapPoints />
         {children}
       </body>
     </html>

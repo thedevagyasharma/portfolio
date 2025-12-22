@@ -19,17 +19,21 @@
 
 * {
   box-sizing: border-box;
-  scroll-behavior: smooth;
   /* outline: 1px solid lime; */
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased
 }
 
-html,
+html {
+  /* Better scroll performance */
+  overflow-x: hidden;
+  overflow-y: scroll;
+  width: 100%;
+}
+
 body {
   font-family: var(--font_face-sans);
   margin: 0;
-  overflow-x: hidden; /* Prevent horizontal scrollbar */
   width: 100%;
 }
 
@@ -120,5 +124,15 @@ section {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+}
+
+/* Background - global fixed background grid */
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -100;
 }
 
