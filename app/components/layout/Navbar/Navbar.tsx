@@ -69,8 +69,12 @@ export default function Navbar() {
         return () => observer.disconnect();
     }, []);
 
-    const handleLinkClick = (sectionId: string) => {
-        setActiveSection(sectionId);
+    const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string, sectionId: string) => {
+        // All navigation is now handled by global PageTransitionProvider
+        // We only need to update active section for hash links
+        if (href.startsWith('#')) {
+            setActiveSection(sectionId);
+        }
     };
 
     const toggleMenu = () => {
@@ -159,7 +163,7 @@ export default function Navbar() {
                             >
                                 <a
                                     href={link.href}
-                                    onClick={() => handleLinkClick(sectionId)}
+                                    onClick={(e) => handleLinkClick(e, link.href, sectionId)}
                                     className="navbar-button-base"
                                 >
                                     {/* <span className='link-icon'>{link.icon}</span> */}

@@ -37,6 +37,31 @@ body {
   width: 100%;
 }
 
+/* Initial page load cover - ensures page is covered before React hydrates */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  z-index: 10000;
+  pointer-events: none;
+  /* Fade out will be controlled by JavaScript - keep visible initially */
+}
+
+body.loaded::before {
+  animation: initialCoverFadeOut 0.01s ease-out forwards;
+}
+
+@keyframes initialCoverFadeOut {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
 main {
   margin-top: var(--grid-spacing-3);
 }

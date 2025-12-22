@@ -1,0 +1,90 @@
+.page-transition {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  display: flex;
+}
+
+.page-transition__bar {
+  flex: 1;
+  background: white;
+  transform: scaleY(0);
+  will-change: transform;
+}
+
+/* Even columns: bottom origin */
+.page-transition__bar[data-direction="bottom"] {
+  transform-origin: bottom;
+}
+
+/* Odd columns: top origin */
+.page-transition__bar[data-direction="top"] {
+  transform-origin: top;
+}
+
+/* Exit phase: bars grow (alternating directions) */
+.page-transition[data-phase="exit"] .page-transition__bar {
+  animation: growBar 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation-delay: calc(var(--column-index) * 0.005s);
+}
+
+/* Covering phase: bars stay at full height while page loads */
+.page-transition[data-phase="covering"] .page-transition__bar {
+  transform: scaleY(1) !important;
+  animation: none !important;
+}
+
+/* Enter phase: bars shrink (alternating directions) */
+.page-transition[data-phase="enter"] .page-transition__bar {
+  transform: scaleY(1);
+  animation: shrinkBar 0.4s cubic-bezier(0.55, 0.06, 0.75, 0.54) forwards;
+  animation-delay: calc(var(--column-index) * 0.005s);
+}
+
+@keyframes growBar {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes shrinkBar {
+  from {
+    transform: scaleY(1);
+  }
+  to {
+    transform: scaleY(0);
+  }
+}
+
+/* Loading progress indicator */
+.page-transition__progress {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  max-width: 80%;
+  z-index: 10001;
+}
+
+.page-transition__progress-bar {
+  height: 4px;
+  background: black;
+  transition: width 0.1s linear;
+  margin-bottom: 1rem;
+}
+
+.page-transition__progress-text {
+  font-family: var(--font-press-start-2p), monospace;
+  font-size: 1.5rem;
+  color: black;
+  text-align: center;
+  line-height: 1;
+}
