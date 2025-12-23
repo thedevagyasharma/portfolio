@@ -10,7 +10,7 @@
 }
 
 .page-transition__bar {
-  flex: 1;
+  width: calc(100% / var(--total-columns));
   background: white;
   transform: scaleY(0);
   will-change: transform;

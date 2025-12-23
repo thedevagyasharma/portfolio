@@ -1,6 +1,7 @@
 import Navbar from "../components/layout/Navbar/Navbar";
 import NavLogo from "../components/layout/Navbar/NavLogo";
 import SectionTitle from "../components/layout/SectionTitle/SectionTitle";
+import ValueCard from "../components/ValueCard/ValueCard";
 import './About.styles.css';
 
 export default function About() {
@@ -41,7 +42,7 @@ export default function About() {
                 {/* Stats / By The Numbers */}
                 <section>
                     <div className="container">
-                        <SectionTitle text="By The Numbers" gridSpaces={10} />
+                        <SectionTitle text="By The Numbers" gridSpaces={8} />
                         <div className="stats-grid">
                             <div className="stat-card">
                                 <div className="stat-number">3</div>
@@ -63,84 +64,51 @@ export default function About() {
                     </div>
                 </section>
 
-                {/* Skills & Expertise */}
+                {/* Core Values */}
                 <section>
                     <div className="container">
-                        <SectionTitle text="Skills & Expertise" gridSpaces={12} />
-                        <div className="skills-grid">
-                            <div className="skill-card">
-                                <h3>Design</h3>
-                                <ul>
-                                    <li>UI/UX Design</li>
-                                    <li>Design Systems</li>
-                                    <li>Prototyping</li>
-                                    <li>Accessibility</li>
-                                </ul>
-                            </div>
-                            <div className="skill-card">
-                                <h3>Code</h3>
-                                <ul>
-                                    <li>React & Next.js</li>
-                                    <li>TypeScript</li>
-                                    <li>CSS/Tailwind</li>
-                                    <li>Component Libraries</li>
-                                </ul>
-                            </div>
-                            <div className="skill-card">
-                                <h3>Tools</h3>
-                                <ul>
-                                    <li>Figma</li>
-                                    <li>Git</li>
-                                    <li>Storybook</li>
-                                    <li>VS Code</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                {/* Things I Value */}
-                <section>
-                    <div className="container">
-                        <SectionTitle text="Things I Value" gridSpaces={10} />
+                        <SectionTitle text="Core Values" gridSpaces={8} />
                         <div className="values-grid">
-                            <div className="value-card">
-                                <h3>Accessibility</h3>
-                                <p>Building for everyone, not just some.</p>
-                            </div>
-                            <div className="value-card">
-                                <h3>Collaboration</h3>
-                                <p>Great products come from great teamwork.</p>
-                            </div>
-                            <div className="value-card">
-                                <h3>Simplicity</h3>
-                                <p>Less is more when done right.</p>
-                            </div>
-                            <div className="value-card">
-                                <h3>Consistency</h3>
-                                <p>Patterns that scale across products.</p>
-                            </div>
+                            <ValueCard
+                                value="honesty"
+                                title="Honesty"
+                                description="Say what you mean, mean what you say"
+                            />
+                            <ValueCard
+                                value="openCommunication"
+                                title="Open Communication"
+                                description="Say what you need, say what you feel"
+                            />
+                            <ValueCard
+                                value="mutualRespect"
+                                title="Mutual Respect"
+                                description="Everyone brings something valuable"
+                            />
+                            <ValueCard
+                                value="havingFun"
+                                title="Having Fun"
+                                description="Life's too short for boring work"
+                            />
+                            <ValueCard
+                                value="growth"
+                                title="Growth"
+                                description="Comfort zones are where skills go to die"
+                            />
+                            <ValueCard
+                                value="sanity"
+                                title="Sanity"
+                                description="Sustainable pace over hero hours"
+                            />
                         </div>
                     </div>
                 </section>
 
-                {/* Things I Like */}
+                {/* My Setup */}
                 <section>
                     <div className="container">
-                        <SectionTitle text="Things I Like" gridSpaces={10} />
-                        <div className="likes-grid">
-                            <div className="like-card">
-                                <h3>Music</h3>
-                                <p>Placeholder for music interests</p>
-                            </div>
-                            <div className="like-card">
-                                <h3>Soccer</h3>
-                                <p>Placeholder for soccer interests</p>
-                            </div>
-                            <div className="like-card">
-                                <h3>Life</h3>
-                                <p>Placeholder for life interests</p>
-                            </div>
+                        <SectionTitle text="My Setup" gridSpaces={10} />
+                        <div className="desk-image-container">
+                            <img src="/assets/profile/8bitdesk.jpg" alt="8-bit desk setup" />
                         </div>
                     </div>
                 </section>

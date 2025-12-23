@@ -32,6 +32,8 @@
     padding: var(--grid-spacing-1);
     display: flex;
     flex-direction: column;
+    gap: var(--grid-spacing-half);
+    justify-content: center;
 }
 
 .about-greeting {
@@ -151,61 +153,19 @@
     gap: var(--grid-spacing-1);
 }
 
-.value-card {
-    background-color: white;
-    border: var(--border-standard);
-    padding: var(--grid-spacing-1);
-}
-
-.value-card h3 {
-    font-family: var(--font_face-mono);
-    font-size: var(--font_heading-3--size);
-    font-weight: 600;
-    line-height: var(--font_heading-3--line-height);
-    letter-spacing: var(--font_heading-3--letter-spacing);
-    margin: 0;
-    margin-bottom: calc(var(--grid-spacing-1) / 2);
-}
-
-.value-card p {
-    font-family: var(--font_face-mono);
-    font-size: var(--font_body--size);
-    line-height: var(--font_body--line-height);
-    font-weight: 400;
-    margin: 0;
-    color: #333;
-}
-
 /* Things I Like Section */
 
-.likes-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--grid-spacing-1);
-}
-
-.like-card {
+.desk-image-container {
+    width: 100%;
     background-color: white;
     border: var(--border-standard);
-    padding: var(--grid-spacing-1);
+    overflow: hidden;
 }
 
-.like-card h3 {
-    font-family: var(--font_face-8bit);
-    font-size: 1.5rem;
-    font-weight: 400;
-    line-height: 1.2;
-    margin: 0;
-    margin-bottom: calc(var(--grid-spacing-1) / 2);
-}
-
-.like-card p {
-    font-family: var(--font_face-mono);
-    font-size: var(--font_body--size);
-    line-height: var(--font_body--line-height);
-    font-weight: 400;
-    margin: 0;
-    color: #333;
+.desk-image-container img {
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
 /* Responsive Design */
@@ -214,8 +174,7 @@
         width: calc(var(--grid-size) * 8);
     }
 
-    .skills-grid,
-    .likes-grid {
+    .skills-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 
@@ -259,7 +218,10 @@
     }
 
     .skills-grid,
-    .values-grid,
+    .values-grid {
+        grid-template-columns: 1fr;
+    }
+
     .likes-grid {
         grid-template-columns: 1fr;
     }

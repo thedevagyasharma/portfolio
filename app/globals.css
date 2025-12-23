@@ -63,7 +63,8 @@ body.loaded::before {
 }
 
 main {
-  margin-top: var(--grid-spacing-3);
+  margin-top: var(--grid-spacing-4);
+  padding-block-end: var(--grid-spacing-3)
 }
 
 h1 {

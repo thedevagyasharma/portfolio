@@ -2,15 +2,13 @@
     position: relative;
     z-index: 0;
     overflow: hidden;
-    padding-top: 0;
 }
 
 .hero .content {
-    padding-top: var(--grid-spacing-2, 96px);
     z-index: 1;
     display: flex;
     flex-direction: row;
-    gap: var(--grid-spacing-1, 48px);
+    gap: var(--grid-spacing-1);
 }
 
 .pixelArt {
@@ -50,8 +48,8 @@
 
 .hero-featured h2{
     /* Grid-aligned margins - 1 grid unit (48px) */
-    margin-top: var(--grid-spacing-1, 48px);
-    margin-bottom: var(--grid-spacing-1, 48px);
+    margin-top: var(--grid-spacing-1);
+    margin-bottom: var(--grid-spacing-1);
     font-family: var(--font_face-mono);
     font-size: 1.25rem;
     text-transform: uppercase;
@@ -62,11 +60,11 @@
     justify-content: center;
     align-items: center;
     /* Grid-aligned gap - 2 grid units (96px) */
-    gap: var(--grid-spacing-2, 96px);
+    gap: var(--grid-spacing-2);
 }
 
 .featured-logos img {
     width: auto;
     /* Grid-aligned height - 8px sub-grid (64px = 8 * 8px) */
-    height: var(--spacing-8, 64px);
+    height: var(--spacing-8);
 }

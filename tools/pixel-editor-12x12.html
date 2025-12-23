@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pixel Art Editor (12×12)</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #1a1a1a;
+      color: #fff;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 30px;
+    }
+
+    .editor-section {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .canvas-container {
+      position: relative;
+      background: #2a2a2a;
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    #editor-canvas {
+      cursor: crosshair;
+      image-rendering: pixelated;
+      border: 1px solid #444;
+    }
+
+    .controls {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: #3b82f6;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #2563eb;
+    }
+
+    .btn-secondary {
+      background: #4b5563;
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      background: #374151;
+    }
+
+    .btn-danger {
+      background: #ef4444;
+      color: white;
+    }
+
+    .btn-danger:hover {
+      background: #dc2626;
+    }
+
+    .btn-success {
+      background: #10b981;
+      color: white;
+    }
+
+    .btn-success:hover {
+      background: #059669;
+    }
+
+    .btn-active {
+      box-shadow: 0 0 0 2px #fff;
+    }
+
+    .sidebar {
+      background: #2a2a2a;
+      padding: 20px;
+      border-radius: 8px;
+      min-width: 300px;
+    }
+
+    .section-title {
+      font-size: 14px;
+      color: #9ca3af;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .shapes-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 20px;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+
+    .frames-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 20px;
+      max-height: 350px;
+      overflow-y: auto;
+    }
+
+    .shape-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px;
+      background: #374151;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .frame-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 6px;
+      background: #374151;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .shape-item:hover, .frame-item:hover {
+      background: #4b5563;
+    }
+
+    .shape-item.active, .frame-item.active {
+      background: #3b82f6;
+    }
+
+    .shape-item canvas {
+      image-rendering: pixelated;
+      border: 1px solid #555;
+    }
+
+    .frame-item canvas {
+      image-rendering: pixelated;
+      border: 1px solid #555;
+      width: 24px;
+      height: 24px;
+    }
+
+    .shape-name {
+      flex: 1;
+      font-size: 14px;
+    }
+
+    .frame-label {
+      flex: 1;
+      font-size: 12px;
+    }
+
+    .shape-name input {
+      background: transparent;
+      border: none;
+      color: inherit;
+      font-size: inherit;
+      width: 100%;
+    }
+
+    .shape-name input:focus {
+      outline: none;
+      background: rgba(255,255,255,0.1);
+      padding: 2px 4px;
+      border-radius: 2px;
+    }
+
+    .delete-btn {
+      background: none;
+      border: none;
+      color: #ef4444;
+      cursor: pointer;
+      padding: 4px;
+      font-size: 16px;
+    }
+
+    .delete-btn:hover {
+      color: #f87171;
+    }
+
+    .preview-section {
+      background: #374151;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    #preview-canvas {
+      image-rendering: pixelated;
+      border: 1px solid #555;
+      margin: 10px 0;
+    }
+
+    .preview-controls {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .input-group {
+      margin-bottom: 15px;
+    }
+
+    .input-group label {
+      display: block;
+      font-size: 12px;
+      color: #9ca3af;
+      margin-bottom: 5px;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #4b5563;
+      border-radius: 4px;
+      background: #374151;
+      color: white;
+      font-size: 14px;
+    }
+
+    .input-group input:focus {
+      outline: none;
+      border-color: #3b82f6;
+    }
+
+    .export-output {
+      margin-top: 20px;
+    }
+
+    #export-code {
+      width: 100%;
+      height: 200px;
+      background: #1f2937;
+      border: 1px solid #4b5563;
+      border-radius: 4px;
+      color: #10b981;
+      font-family: 'Monaco', 'Consolas', monospace;
+      font-size: 11px;
+      padding: 10px;
+      resize: vertical;
+    }
+
+    .tool-indicator {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 4px 8px;
+      background: rgba(0,0,0,0.5);
+      border-radius: 4px;
+      font-size: 12px;
+    }
+
+    .coords {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      padding: 4px 8px;
+      background: rgba(0,0,0,0.5);
+      border-radius: 4px;
+      font-size: 12px;
+      font-family: monospace;
+    }
+
+    .center-dot {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: #ef4444;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 15;
+      transform: translate(-50%, -50%);
+      display: none;
+    }
+
+    .center-dot.visible {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎨 Pixel Art Editor (12×12)</h1>
+
+    <div class="layout">
+      <div class="editor-section">
+        <div class="canvas-container">
+          <canvas id="editor-canvas" width="480" height="480"></canvas>
+          <div class="center-dot" id="center-dot"></div>
+          <div class="tool-indicator" id="tool-indicator">Draw</div>
+          <div class="coords" id="coords">0, 0</div>
+        </div>
+
+        <div class="controls">
+          <button class="btn-primary btn-active" id="btn-draw">✏️ Draw</button>
+          <button class="btn-primary" id="btn-erase">🧹 Erase</button>
+          <button class="btn-secondary" id="btn-fill">🪣 Fill</button>
+          <button class="btn-secondary" id="btn-clear">🗑️ Clear Frame</button>
+          <button class="btn-secondary" id="btn-invert">🔄 Invert</button>
+          <button class="btn-secondary" id="btn-shift-up">⬆️</button>
+          <button class="btn-secondary" id="btn-shift-down">⬇️</button>
+          <button class="btn-secondary" id="btn-shift-left">⬅️</button>
+          <button class="btn-secondary" id="btn-shift-right">➡️</button>
+          <button class="btn-secondary" id="btn-flip-h">⇆ Flip H</button>
+          <button class="btn-secondary" id="btn-flip-v">⇅ Flip V</button>
+        </div>
+        <div class="controls">
+          <label style="display: flex; align-items: center; gap: 6px; font-size: 14px;">
+            <input type="checkbox" id="chk-show-center"> Show Center
+          </label>
+        </div>
+      </div>
+
+      <div class="sidebar">
+        <div class="section-title">Shapes</div>
+        <div class="shapes-list" id="shapes-list"></div>
+        <div class="controls" style="margin-bottom: 20px;">
+          <button class="btn-success" id="btn-add-shape">+ New Shape</button>
+          <button class="btn-danger" id="btn-delete-shape">Delete</button>
+        </div>
+
+        <div class="preview-section">
+          <div class="section-title">Current Preview</div>
+          <canvas id="preview-canvas" width="96" height="96"></canvas>
+        </div>
+
+        <div class="preview-section" style="margin-top: 20px;">
+          <div class="section-title">All Shapes</div>
+          <div id="all-shapes-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 10px; margin-top: 10px;"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="export-section" style="margin-top: 20px;">
+      <div class="section-title">Code Export / Import</div>
+      <div class="controls" style="margin-bottom: 10px;">
+        <button class="btn-success" id="btn-export">📥 Export Code</button>
+        <button class="btn-secondary" id="btn-copy">📋 Copy</button>
+        <button class="btn-primary" id="btn-import">📤 Import</button>
+      </div>
+      <textarea id="export-code" placeholder="Exported code will appear here..." style="width: 100%; height: 200px; background: #1f2937; border: 1px solid #4b5563; border-radius: 4px; color: #10b981; font-family: 'Monaco', 'Consolas', monospace; font-size: 11px; padding: 10px; resize: vertical;"></textarea>
+    </div>
+  </div>
+
+  <script>
+    // Configuration
+    const GRID_SIZE = 12;
+    const CELL_SIZE = 40; // Size in editor (480 / 12 = 40)
+    const PREVIEW_CELL_SIZE = 8; // Size in preview (96 / 12 = 8)
+    const STORAGE_KEY = 'pixel-editor-12x12-state';
+
+    // Load state from localStorage
+    function loadState() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+          const state = JSON.parse(saved);
+          return {
+            shapes: state.shapes || [{
+              name: 'untitled',
+              frames: [createEmptyFrame()],
+              frameDuration: 0
+            }],
+            currentShapeIndex: state.currentShapeIndex || 0
+          };
+        }
+      } catch (e) {
+        console.error('Error loading state:', e);
+      }
+      return {
+        shapes: [{
+          name: 'untitled',
+          frames: [createEmptyFrame()],
+          frameDuration: 0
+        }],
+        currentShapeIndex: 0
+      };
+    }
+
+    // Save state to localStorage
+    function saveState() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({
+          shapes,
+          currentShapeIndex
+        }));
+      } catch (e) {
+        console.error('Error saving state:', e);
+      }
+    }
+
+    // State
+    const initialState = loadState();
+    let shapes = initialState.shapes;
+    let currentShapeIndex = initialState.currentShapeIndex;
+    let tool = 'draw'; // 'draw', 'erase', 'fill'
+    let isDrawing = false;
+    let showCenter = false;
+
+    // Canvas references
+    const editorCanvas = document.getElementById('editor-canvas');
+    const editorCtx = editorCanvas.getContext('2d');
+    const previewCanvas = document.getElementById('preview-canvas');
+    const previewCtx = previewCanvas.getContext('2d');
+    const centerDot = document.getElementById('center-dot');
+
+    // Create an empty frame (12 rows of 0s)
+    function createEmptyFrame() {
+      return new Array(GRID_SIZE).fill(0);
+    }
+
+    // Get current frame
+    function getCurrentFrame() {
+      return shapes[currentShapeIndex]?.frames[0] || createEmptyFrame();
+    }
+
+    // Set pixel in frame
+    function setPixel(frame, row, col, value) {
+      if (row < 0 || row >= GRID_SIZE || col < 0 || col >= GRID_SIZE) return;
+      const bitPos = GRID_SIZE - 1 - col;
+      if (value) {
+        frame[row] |= (1 << bitPos);
+      } else {
+        frame[row] &= ~(1 << bitPos);
+      }
+    }
+
+    // Get pixel from frame
+    function getPixel(frame, row, col) {
+      if (row < 0 || row >= GRID_SIZE || col < 0 || col >= GRID_SIZE) return 0;
+      const bitPos = GRID_SIZE - 1 - col;
+      return (frame[row] >> bitPos) & 1;
+    }
+
+    // Draw frame on canvas
+    function drawFrame(ctx, frame, cellSize, showGrid = true) {
+      const size = cellSize * GRID_SIZE;
+
+      // Clear
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, size, size);
+
+      // Draw filled pixels
+      ctx.fillStyle = '#000000';
+      for (let row = 0; row < GRID_SIZE; row++) {
+        for (let col = 0; col < GRID_SIZE; col++) {
+          if (getPixel(frame, row, col)) {
+            ctx.fillRect(col * cellSize, row * cellSize, cellSize, cellSize);
+          }
+        }
+      }
+
+      // Draw grid
+      if (showGrid) {
+        ctx.strokeStyle = '#e0e0e0';
+        ctx.lineWidth = 1;
+        for (let i = 0; i <= GRID_SIZE; i++) {
+          ctx.beginPath();
+          ctx.moveTo(i * cellSize + 0.5, 0);
+          ctx.lineTo(i * cellSize + 0.5, size);
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.moveTo(0, i * cellSize + 0.5);
+          ctx.lineTo(size, i * cellSize + 0.5);
+          ctx.stroke();
+        }
+      }
+    }
+
+    // Render editor
+    function renderEditor() {
+      drawFrame(editorCtx, getCurrentFrame(), CELL_SIZE, true);
+    }
+
+    // Render preview
+    function renderPreview() {
+      drawFrame(previewCtx, getCurrentFrame(), PREVIEW_CELL_SIZE, false);
+    }
+
+    // Render shapes list
+    function renderShapesList() {
+      const list = document.getElementById('shapes-list');
+      list.innerHTML = '';
+
+      shapes.forEach((shape, index) => {
+        const item = document.createElement('div');
+        item.className = 'shape-item' + (index === currentShapeIndex ? ' active' : '');
+
+        const thumb = document.createElement('canvas');
+        thumb.width = 48;
+        thumb.height = 48;
+        const thumbCtx = thumb.getContext('2d');
+        drawFrame(thumbCtx, shape.frames[0], 4, false);
+
+        const nameInput = document.createElement('input');
+        nameInput.value = shape.name;
+        nameInput.addEventListener('change', (e) => {
+          shape.name = e.target.value;
+          saveState();
+        });
+        nameInput.addEventListener('click', (e) => e.stopPropagation());
+
+        const nameDiv = document.createElement('div');
+        nameDiv.className = 'shape-name';
+        nameDiv.appendChild(nameInput);
+
+        item.appendChild(thumb);
+        item.appendChild(nameDiv);
+        item.addEventListener('click', () => {
+          currentShapeIndex = index;
+          renderAll();
+        });
+
+        list.appendChild(item);
+      });
+    }
+
+    // Render all shapes grid
+    function renderAllShapesGrid() {
+      const grid = document.getElementById('all-shapes-grid');
+      grid.innerHTML = '';
+
+      shapes.forEach((shape, index) => {
+        const canvas = document.createElement('canvas');
+        canvas.width = 96;
+        canvas.height = 96;
+        canvas.style.border = '1px solid #555';
+        canvas.style.imageRendering = 'pixelated';
+        canvas.style.cursor = 'pointer';
+
+        const ctx = canvas.getContext('2d');
+        drawFrame(ctx, shape.frames[0], 8, false);
+
+        canvas.addEventListener('click', () => {
+          currentShapeIndex = index;
+          renderAll();
+        });
+
+        grid.appendChild(canvas);
+      });
+    }
+
+    // Render all
+    function renderAll() {
+      renderEditor();
+      renderPreview();
+      renderShapesList();
+      renderAllShapesGrid();
+      updateCenterDot();
+      saveState();
+    }
+
+    // Flood fill algorithm
+    function floodFill(frame, startRow, startCol, newValue) {
+      const targetValue = getPixel(frame, startRow, startCol);
+      if (targetValue === newValue) return;
+
+      const stack = [[startRow, startCol]];
+      const visited = new Set();
+
+      while (stack.length > 0) {
+        const [row, col] = stack.pop();
+        const key = `${row},${col}`;
+
+        if (visited.has(key)) continue;
+        if (row < 0 || row >= GRID_SIZE || col < 0 || col >= GRID_SIZE) continue;
+        if (getPixel(frame, row, col) !== targetValue) continue;
+
+        visited.add(key);
+        setPixel(frame, row, col, newValue);
+
+        stack.push([row - 1, col]);
+        stack.push([row + 1, col]);
+        stack.push([row, col - 1]);
+        stack.push([row, col + 1]);
+      }
+    }
+
+    // Shift frame
+    function shiftFrame(frame, direction) {
+      const newFrame = createEmptyFrame();
+
+      for (let row = 0; row < GRID_SIZE; row++) {
+        for (let col = 0; col < GRID_SIZE; col++) {
+          let srcRow = row, srcCol = col;
+
+          switch(direction) {
+            case 'up': srcRow = (row + 1) % GRID_SIZE; break;
+            case 'down': srcRow = (row - 1 + GRID_SIZE) % GRID_SIZE; break;
+            case 'left': srcCol = (col + 1) % GRID_SIZE; break;
+            case 'right': srcCol = (col - 1 + GRID_SIZE) % GRID_SIZE; break;
+          }
+
+          if (getPixel(frame, srcRow, srcCol)) {
+            setPixel(newFrame, row, col, 1);
+          }
+        }
+      }
+
+      return newFrame;
+    }
+
+    // Flip frame horizontally
+    function flipFrameH(frame) {
+      const newFrame = createEmptyFrame();
+      for (let row = 0; row < GRID_SIZE; row++) {
+        for (let col = 0; col < GRID_SIZE; col++) {
+          if (getPixel(frame, row, col)) {
+            setPixel(newFrame, row, GRID_SIZE - 1 - col, 1);
+          }
+        }
+      }
+      return newFrame;
+    }
+
+    // Flip frame vertically
+    function flipFrameV(frame) {
+      const newFrame = createEmptyFrame();
+      for (let row = 0; row < GRID_SIZE; row++) {
+        for (let col = 0; col < GRID_SIZE; col++) {
+          if (getPixel(frame, row, col)) {
+            setPixel(newFrame, GRID_SIZE - 1 - row, col, 1);
+          }
+        }
+      }
+      return newFrame;
+    }
+
+    // Update center dot visibility
+    function updateCenterDot() {
+      if (showCenter) {
+        centerDot.classList.add('visible');
+        // Position at center of canvas (20px padding + half of 480px)
+        centerDot.style.left = (20 + 240) + 'px';
+        centerDot.style.top = (20 + 240) + 'px';
+      } else {
+        centerDot.classList.remove('visible');
+      }
+    }
+
+    // Canvas mouse events
+    function getGridPos(e) {
+      const rect = editorCanvas.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      return {
+        col: Math.floor(x / CELL_SIZE),
+        row: Math.floor(y / CELL_SIZE)
+      };
+    }
+
+    editorCanvas.addEventListener('mousedown', (e) => {
+      isDrawing = true;
+      const { row, col } = getGridPos(e);
+      const frame = getCurrentFrame();
+
+      if (tool === 'fill') {
+        floodFill(frame, row, col, 1);
+      } else {
+        setPixel(frame, row, col, tool === 'draw' ? 1 : 0);
+      }
+      renderAll();
+    });
+
+    editorCanvas.addEventListener('mousemove', (e) => {
+      const { row, col } = getGridPos(e);
+      document.getElementById('coords').textContent = `${col}, ${row}`;
+
+      if (isDrawing && tool !== 'fill') {
+        const frame = getCurrentFrame();
+        setPixel(frame, row, col, tool === 'draw' ? 1 : 0);
+        renderAll();
+      }
+    });
+
+    editorCanvas.addEventListener('mouseup', () => isDrawing = false);
+    editorCanvas.addEventListener('mouseleave', () => isDrawing = false);
+
+    // Tool buttons
+    document.getElementById('btn-draw').addEventListener('click', () => {
+      tool = 'draw';
+      updateToolButtons();
+    });
+
+    document.getElementById('btn-erase').addEventListener('click', () => {
+      tool = 'erase';
+      updateToolButtons();
+    });
+
+    document.getElementById('btn-fill').addEventListener('click', () => {
+      tool = 'fill';
+      updateToolButtons();
+    });
+
+    function updateToolButtons() {
+      document.querySelectorAll('.controls button').forEach(btn => btn.classList.remove('btn-active'));
+      document.getElementById(`btn-${tool}`).classList.add('btn-active');
+      document.getElementById('tool-indicator').textContent = tool.charAt(0).toUpperCase() + tool.slice(1);
+    }
+
+    // Frame operations
+    document.getElementById('btn-clear').addEventListener('click', () => {
+      shapes[currentShapeIndex].frames[0] = createEmptyFrame();
+      renderAll();
+    });
+
+    document.getElementById('btn-invert').addEventListener('click', () => {
+      const frame = getCurrentFrame();
+      for (let i = 0; i < GRID_SIZE; i++) {
+        frame[i] = ~frame[i] & ((1 << GRID_SIZE) - 1);
+      }
+      renderAll();
+    });
+
+    document.getElementById('btn-shift-up').addEventListener('click', () => {
+      shapes[currentShapeIndex].frames[0] = shiftFrame(getCurrentFrame(), 'up');
+      renderAll();
+    });
+
+    document.getElementById('btn-shift-down').addEventListener('click', () => {
+      shapes[currentShapeIndex].frames[0] = shiftFrame(getCurrentFrame(), 'down');
+      renderAll();
+    });
+
+    document.getElementById('btn-shift-left').addEventListener('click', () => {
+      shapes[currentShapeIndex].frames[0] = shiftFrame(getCurrentFrame(), 'left');
+      renderAll();
+    });
+
+    document.getElementById('btn-shift-right').addEventListener('click', () => {
+      shapes[currentShapeIndex].frames[0] = shiftFrame(getCurrentFrame(), 'right');
+      renderAll();
+    });
+
+    // Flip buttons
+    document.getElementById('btn-flip-h').addEventListener('click', () => {
+      shapes[currentShapeIndex].frames[0] = flipFrameH(getCurrentFrame());
+      renderAll();
+    });
+
+    document.getElementById('btn-flip-v').addEventListener('click', () => {
+      shapes[currentShapeIndex].frames[0] = flipFrameV(getCurrentFrame());
+      renderAll();
+    });
+
+    // Show center checkbox
+    document.getElementById('chk-show-center').addEventListener('change', (e) => {
+      showCenter = e.target.checked;
+      updateCenterDot();
+    });
+
+    // Shape operations
+    document.getElementById('btn-add-shape').addEventListener('click', () => {
+      shapes.push({
+        name: `shape_${shapes.length + 1}`,
+        frames: [createEmptyFrame()],
+        frameDuration: 0
+      });
+      currentShapeIndex = shapes.length - 1;
+      renderAll();
+      const shapesList = document.getElementById('shapes-list');
+      shapesList.scrollTop = shapesList.scrollHeight;
+    });
+
+    document.getElementById('btn-delete-shape').addEventListener('click', () => {
+      if (shapes.length <= 1) return;
+      shapes.splice(currentShapeIndex, 1);
+      currentShapeIndex = Math.min(currentShapeIndex, shapes.length - 1);
+      renderAll();
+    });
+
+    // Export
+    document.getElementById('btn-export').addEventListener('click', () => {
+      let code = `import { Shape } from './types';\n\n`;
+
+      shapes.forEach(shape => {
+        const varName = shape.name.replace(/[^a-zA-Z0-9]/g, '_');
+        code += `export const ${varName}: Shape = {\n`;
+        code += `  name: '${shape.name}',\n`;
+        code += `  frames: [\n`;
+        code += `    [${shape.frames[0].map(row => '0x' + row.toString(16).padStart(3, '0')).join(', ')}]\n`;
+        code += `  ],\n`;
+        code += `  frameDuration: ${shape.frameDuration}\n`;
+        code += `};\n\n`;
+      });
+
+      code += `export const valueShapes = {\n  ${shapes.map(s => s.name.replace(/[^a-zA-Z0-9]/g, '_')).join(',\n  ')}\n};\n`;
+
+      document.getElementById('export-code').value = code;
+    });
+
+    document.getElementById('btn-copy').addEventListener('click', () => {
+      const textarea = document.getElementById('export-code');
+      textarea.select();
+      document.execCommand('copy');
+    });
+
+    // Import
+    document.getElementById('btn-import').addEventListener('click', () => {
+      const code = document.getElementById('export-code').value;
+
+      try {
+        const newShapes = [];
+        const shapeRegex = /export const (\w+):\s*Shape\s*=\s*\{/g;
+        let shapeMatch;
+
+        while ((shapeMatch = shapeRegex.exec(code)) !== null) {
+          const startIdx = shapeMatch.index;
+          let braceCount = 0;
+          let endIdx = startIdx;
+          let inString = false;
+          let stringChar = '';
+
+          for (let i = startIdx; i < code.length; i++) {
+            const char = code[i];
+
+            if ((char === '"' || char === "'") && (i === 0 || code[i-1] !== '\\')) {
+              if (!inString) {
+                inString = true;
+                stringChar = char;
+              } else if (char === stringChar) {
+                inString = false;
+              }
+            }
+
+            if (!inString) {
+              if (char === '{') braceCount++;
+              if (char === '}') {
+                braceCount--;
+                if (braceCount === 0) {
+                  endIdx = i + 1;
+                  break;
+                }
+              }
+            }
+          }
+
+          const shapeCode = code.substring(startIdx, endIdx);
+          const nameMatch = shapeCode.match(/name:\s*['"]([^'"]+)['"]/);
+          const name = nameMatch ? nameMatch[1] : 'unnamed';
+          const durationMatch = shapeCode.match(/frameDuration:\s*(\d+)/);
+          const frameDuration = durationMatch ? parseInt(durationMatch[1]) : 0;
+
+          const frameMatches = shapeCode.matchAll(/\[\s*(0x[a-f0-9]+(?:\s*,\s*0x[a-f0-9]+)*)\s*\]/gi);
+          const frames = [];
+
+          for (const frameMatch of frameMatches) {
+            const hexValues = frameMatch[1].split(/\s*,\s*/).map(h => parseInt(h.trim(), 16));
+            if (hexValues.length === GRID_SIZE) {
+              frames.push(hexValues);
+            }
+          }
+
+          if (frames.length > 0) {
+            newShapes.push({ name, frames, frameDuration });
+          }
+        }
+
+        if (newShapes.length > 0) {
+          shapes = newShapes;
+          currentShapeIndex = 0;
+          saveState();
+          renderAll();
+          alert(`Imported ${newShapes.length} shape(s)!`);
+        } else {
+          alert('No valid shapes found in the code. Make sure it matches the export format.');
+        }
+      } catch (e) {
+        alert('Error parsing code: ' + e.message);
+      }
+    });
+
+    // Keyboard shortcuts
+    document.addEventListener('keydown', (e) => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+      switch(e.key) {
+        case 'd': tool = 'draw'; updateToolButtons(); break;
+        case 'e': tool = 'erase'; updateToolButtons(); break;
+        case 'f': tool = 'fill'; updateToolButtons(); break;
+      }
+    });
+
+    // Initial render
+    renderAll();
+  </script>
+</body>
+</html>

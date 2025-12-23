@@ -1,0 +1,41 @@
+.value-card {
+  background-color: white;
+  border: var(--border-standard);
+  height: calc(var(--grid-size) * 4);
+  padding: var(--grid-spacing-1);
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  gap: var(--grid-spacing-1);
+  align-items: center;
+}
+
+.value-card-artifact {
+  flex-shrink: 0;
+  line-height: 0;
+}
+
+.value-card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--grid-spacing-quarter);
+}
+
+.value-card h3 {
+  font-family: var(--font_face-8bit);
+  font-size: var(--font_heading-3--size);
+  font-weight: 500;
+  line-height: var(--font_heading-3--line-height);
+  letter-spacing: var(--font_heading-3--letter-spacing);
+  margin: 0;
+}
+
+.value-card p {
+  font-family: var(--font_face-mono);
+  font-size: var(--font_body--size);
+  line-height: var(--font_body--line-height);
+  font-weight: 500;
+  margin: 0;
+  color: #333;
+}
