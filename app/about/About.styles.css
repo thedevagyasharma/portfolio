@@ -45,7 +45,7 @@
 }
 
 .about-greeting .highlight {
-    color: #ff4000;
+    color: var(--color-accent);
 }
 
 .about-description {
@@ -54,7 +54,7 @@
     line-height: var(--font_body-large--line-height);
     font-weight: 400;
     margin: 0;
-    color: #333;
+    color: var(--color-text-secondary);
 }
 
 /* Stats / By The Numbers Section */
@@ -84,7 +84,7 @@
     top: calc(var(--grid-spacing-1) / 2);
     bottom: calc(var(--grid-spacing-1) / 2);
     width: 1px;
-    background-color: #dcdcdc;
+    background-color: var(--color-divider);
 }
 
 .stat-number {
@@ -102,46 +102,6 @@
     font-weight: 500;
     color: #666;
     text-transform: uppercase;
-}
-
-/* Skills & Expertise Section */
-
-.skills-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--grid-spacing-1);
-}
-
-.skill-card {
-    background-color: white;
-    border: var(--border-standard);
-    padding: var(--grid-spacing-1);
-}
-
-.skill-card h3 {
-    font-family: var(--font_face-8bit);
-    font-size: 1.5rem;
-    font-weight: 400;
-    line-height: 1.2;
-    margin: 0;
-    margin-bottom: calc(var(--grid-spacing-1) / 2);
-}
-
-.skill-card ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: calc(var(--grid-spacing-1) / 4);
-}
-
-.skill-card li {
-    font-family: var(--font_face-mono);
-    font-size: var(--font_body--size);
-    line-height: var(--font_body--line-height);
-    font-weight: 400;
-    color: #333;
 }
 
 /* Things I Value Section */
@@ -213,7 +173,7 @@
         left: calc(var(--grid-spacing-1) / 2);
         right: calc(var(--grid-spacing-1) / 2);
         height: 1px;
-        background-color: #dcdcdc;
+        background-color: var(--color-divider);
     }
 }
 
@@ -234,6 +194,6 @@
         left: calc(var(--grid-spacing-1) / 2);
         right: calc(var(--grid-spacing-1) / 2);
         height: 1px;
-        background-color: #dcdcdc;
+        background-color: var(--color-divider);
     }
 }

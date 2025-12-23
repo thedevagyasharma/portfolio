@@ -17,5 +17,5 @@
 }
 
 .nav-logo .toHighlight {
-    color: #ff4000;
+    color: var(--color-accent);
 }

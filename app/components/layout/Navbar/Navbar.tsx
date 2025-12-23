@@ -1,6 +1,6 @@
 'use client';
 
-import { HomeIcon, Briefcase, BookUser, FileText, Menu } from 'lucide-react';
+import { Menu } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import './Navbar.styles.css';
 
@@ -35,10 +35,10 @@ export default function Navbar() {
     });
 
     const navLinks = [
-        { name: 'Home', href: "/", icon: <HomeIcon /> },
-        { name: 'Work', href: "#work", icon: <Briefcase /> },
-        { name: 'About', href: "/about", icon: <BookUser /> },
-        { name: 'Resume', href: "#resume", icon: <FileText /> },
+        { name: 'Home', href: "/" },
+        { name: 'Work', href: "#work" },
+        { name: 'About', href: "/about" },
+        { name: 'Resume', href: "#resume" },
     ];
 
     useEffect(() => {
@@ -166,7 +166,6 @@ export default function Navbar() {
                                     onClick={(e) => handleLinkClick(e, link.href, sectionId)}
                                     className="navbar-button-base"
                                 >
-                                    {/* <span className='link-icon'>{link.icon}</span> */}
                                     <span className='link-label'>{link.name}</span>
                                 </a>
                             </li>

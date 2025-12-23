@@ -9,7 +9,7 @@
 
     /* Colors */
     --navbar-bg: white;
-    --navbar-hover-bg: #f2f2f2;
+    --navbar-hover-bg: var(--color-surface);
     --navbar-text: black;
 }
 

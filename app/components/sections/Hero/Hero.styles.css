@@ -24,7 +24,6 @@
     flex: 1;
     background-color: white;
     border: var(--border-standard);
-    /* height: var(--grid-spacing-4); */ /* Removed - now set by useGridSnap hook */
     display: flex;
     padding: var(--grid-spacing-1);
     align-items: center;
@@ -34,16 +33,10 @@
     margin: 0;
     font-weight: 400;
     font-family: var(--font_face-8bit);
-    /* font-size removed - now handled by global h1 selector with fluid clamp() */
 }
 
 .toHighlight {
-    /* background: linear-gradient(to bottom right, hsl(6 87 54), hsl(282 90 58));
-    background: -webkit-linear-gradient(to bottom right, hsl(6 87 54), hsl(282 90 58));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent; */
-
-    color: #ff4000;
+    color: var(--color-accent);
 }
 
 .hero-featured h2{

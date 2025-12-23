@@ -51,7 +51,7 @@ const elementGroups = new Map<string, Set<HTMLElement>>();
 
 export function useGridSnap<T extends HTMLElement = HTMLDivElement>(
   options: GridSnapOptions = {}
-): React.RefObject<T> {
+) {
   const ref = useRef<T>(null);
   const { direction = 'up', enabled = true, groupId } = options;
 

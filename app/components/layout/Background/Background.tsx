@@ -24,12 +24,18 @@ const darkenColor = (color: string, percent: number): string => {
   return `rgb(${r}, ${g}, ${b})`;
 };
 
-// Color configuration - adjust these to change the appearance
+// Read colors from CSS variables
+const getCSSColor = (varName: string, fallback: string) => {
+  if (typeof window === 'undefined') return fallback;
+  return getComputedStyle(document.documentElement).getPropertyValue(varName).trim() || fallback;
+};
+
+// Color configuration - uses CSS design tokens
 const COLORS = {
   background: '#fff',         // Canvas background color
-  tileDefault: '#f2f2f2',     // Default tile fill (far from cursor)
-  tileOutline: '#dcdcdc',     // Tile border/stroke color
-  dotDefault: '#dcdcdc',      // Default dot color (far from cursor)
+  tileDefault: typeof window !== 'undefined' ? getCSSColor('--color-surface', '#f2f2f2') : '#f2f2f2',     // Default tile fill (far from cursor)
+  tileOutline: typeof window !== 'undefined' ? getCSSColor('--color-divider', '#dcdcdc') : '#dcdcdc',     // Tile border/stroke color
+  dotDefault: typeof window !== 'undefined' ? getCSSColor('--color-divider', '#dcdcdc') : '#dcdcdc',      // Default dot color (far from cursor)
   dotHover: '#646464',        // Dot color when cursor is close
 };
 

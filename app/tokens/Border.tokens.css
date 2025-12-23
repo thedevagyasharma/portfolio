@@ -5,20 +5,15 @@
   --border-width-thick: 3px;
 
   /* Border Colors - Light Theme */
-  --border-color-primary: #dcdcdc;
+  --border-color-primary: var(--color-divider);
   --border-color-secondary: #e0e0e0;
-  --border-color-accent: #ff4000;
+  --border-color-accent: var(--color-accent);
 
 
   /* Composite Border Variables (most commonly used) */
 
-  /* 1px solid #dcdcdc */
   --border-standard: var(--border-width-thin) solid var(--border-color-primary);
-
-  /* 1px solid #e0e0e0 */
   --border-standard-secondary: var(--border-width-thin) solid var(--border-color-secondary);
-
-  /* 1px solid #ff4000 */
   --border-standard-accent: var(--border-width-thin) solid var(--border-color-accent);
 
 
