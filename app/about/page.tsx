@@ -2,8 +2,7 @@
 
 import Navbar from "../components/layout/Navbar/Navbar";
 import NavLogo from "../components/layout/Navbar/NavLogo";
-import SectionTitle from "../components/layout/SectionTitle/SectionTitle";
-import ValueCard from "../components/ValueCard/ValueCard";
+import { SectionTitle, ValueCard } from '@/app/components/common';
 import { useGridSnap } from '@/app/hooks/useGridSnap';
 import './About.styles.css';
 

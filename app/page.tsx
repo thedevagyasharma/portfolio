@@ -1,8 +1,6 @@
 import Navbar from "./components/layout/Navbar/Navbar";
 import NavLogo from "./components/layout/Navbar/NavLogo";
-import Hero from "./components/sections/Hero/Hero";
-import Tools from './components/sections/Tools/Tools'
-import Work from './components/sections/Work/Work'
+import { Hero, Tools, Work } from './sections';
 
 export default function Home() {
   return (

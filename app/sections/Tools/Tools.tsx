@@ -1,6 +1,6 @@
 'use client';
 import './Tools.styles.css';
-import SectionTitle from "../../../components/layout/SectionTitle/SectionTitle";
+import { SectionTitle } from '@/app/components/common';
 import { useGridSnap } from '@/app/hooks/useGridSnap';
 
 export default function Tools() {

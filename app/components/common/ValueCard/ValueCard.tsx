@@ -1,7 +1,6 @@
 'use client';
 
-import { ValuePixelArt } from '../PixelArt';
-import { valueShapes } from '../PixelArt/valueShapes';
+import { ValuePixelArt, valueShapes } from '@/app/components/features';
 import { useGridSnap } from '@/app/hooks/useGridSnap';
 import './ValueCard.styles.css';
 

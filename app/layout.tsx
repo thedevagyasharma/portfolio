@@ -3,7 +3,7 @@ import { Playfair_Display, VT323, Press_Start_2P, Google_Sans_Code } from "next/
 import "./globals.css";
 import Background from "./components/layout/Background/Background";
 import GridSnapPoints from "./components/layout/GridSnapPoints/GridSnapPoints";
-import { PageTransitionProvider } from "./components/transitions/PageTransitionProvider";
+import { PageTransitionProvider } from "@/app/components/providers";
 
 const playfairDisplay = Playfair_Display({
   subsets: ["latin"],

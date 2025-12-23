@@ -1,7 +1,7 @@
 'use client';
 
 import './Hero.styles.css';
-import { PixelArtDisplay } from '@/app/components/PixelArt';
+import { PixelArtDisplay } from '@/app/components/features';
 import { useGridSnap } from '@/app/hooks/useGridSnap';
 
 
