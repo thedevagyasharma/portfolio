@@ -1,10 +1,16 @@
+'use client';
+
 import Navbar from "../components/layout/Navbar/Navbar";
 import NavLogo from "../components/layout/Navbar/NavLogo";
 import SectionTitle from "../components/layout/SectionTitle/SectionTitle";
 import ValueCard from "../components/ValueCard/ValueCard";
+import { useGridSnap } from '@/app/hooks/useGridSnap';
 import './About.styles.css';
 
 export default function About() {
+    const bioRef = useGridSnap();
+    const statsRef = useGridSnap();
+
     return (
         <>
             <header className="header-wrapper">
@@ -26,7 +32,7 @@ export default function About() {
                             </div>
 
                             {/* Bio Text */}
-                            <div className="about-bio-box">
+                            <div ref={bioRef} className="about-bio-box">
                                 <h1 className="about-greeting">Hello! I'm <span className="highlight">Dev</span>agya Sharma.</h1>
                                 <p className="about-description">
                                     I'm a UX Engineer focused on creating scalable, accessible web and mobile experiences.
@@ -43,7 +49,7 @@ export default function About() {
                 <section>
                     <div className="container">
                         <SectionTitle text="By The Numbers" gridSpaces={8} />
-                        <div className="stats-grid">
+                        <div ref={statsRef} className="stats-grid">
                             <div className="stat-card">
                                 <div className="stat-number">3</div>
                                 <div className="stat-label">Years of Experience</div>
@@ -76,7 +82,7 @@ export default function About() {
                             />
                             <ValueCard
                                 value="openCommunication"
-                                title="Open Communication"
+                                title="Candor"
                                 description="Say what you need, say what you feel"
                             />
                             <ValueCard
@@ -97,7 +103,7 @@ export default function About() {
                             <ValueCard
                                 value="sanity"
                                 title="Sanity"
-                                description="Sustainable pace over hero hours"
+                                description="Mental peace enables purposeful work"
                             />
                         </div>
                     </div>

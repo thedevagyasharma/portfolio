@@ -2,6 +2,7 @@
 @import url('tokens/Grid.tokens.css');
 @import url('tokens/Type.tokens.css');
 @import url('tokens/Border.tokens.css');
+@import url('tokens/Color.tokens.css');
 @import url('tokens/layout/Container.tokens.css');
 @import url('tokens/layout/Section.tokens.css');
 @import url('tokens/layout/Columns.tokens.css');
@@ -160,5 +161,49 @@ section {
   width: 100vw;
   height: 100vh;
   z-index: -100;
+}
+
+/* ===========================================
+   GLOBAL FLUID TYPOGRAPHY
+   Applied to all semantic HTML elements
+   =========================================== */
+
+/* Headings - automatically responsive */
+h1 {
+  font-size: var(--font_heading-1--size);
+  line-height: var(--font_heading-1--line-height);
+}
+
+h2 {
+  font-size: var(--font_heading-2--size);
+  line-height: var(--font_heading-2--line-height);
+}
+
+h3 {
+  font-size: var(--font_heading-3--size);
+  line-height: var(--font_heading-3--line-height);
+}
+
+h4 {
+  font-size: var(--font_heading-4--size);
+  line-height: var(--font_heading-4--line-height);
+}
+
+/* Paragraphs - automatically responsive */
+p {
+  font-size: var(--font_body--size);
+  line-height: var(--font_body--line-height);
+}
+
+/* Optional: Large paragraph variant */
+p.large {
+  font-size: var(--font_body-large--size);
+  line-height: var(--font_body-large--line-height);
+}
+
+/* Display text utility (for hero sections) */
+.font-display-1 {
+  font-size: var(--font_display-1--size);
+  line-height: var(--font_display-1--line-height);
 }
 

@@ -1,12 +1,17 @@
+'use client';
+
 import './Hero.styles.css';
 import { PixelArtDisplay } from '@/app/components/PixelArt';
+import { useGridSnap } from '@/app/hooks/useGridSnap';
 
 
 export default function Hero() {
+    const textRef = useGridSnap();
+
     return (
         <section className='hero'>
             <div className="content container">
-                <div className="hero-text">
+                <div ref={textRef} className="hero-text">
                     <h1 className="font-mono"><span className="toHighlight">Design Engineer</span> crafting faster production pipelines with AI.</h1>
                 </div>
                 <div className="pixelArt">
@@ -22,18 +27,6 @@ export default function Hero() {
                     />
                 </div>
             </div>
-            {/* <div className="hero-featured">
-                    <h2>Previously Designed For</h2>
-                    <div className="featured-logos">
-                        <img src="/assets/general/do_logo.webp" alt="" />
-                        <img src="/assets/general/mm_logo.png" alt="" />
-                        <img src="/assets/general/csa_logo.png" alt="" />
-                    </div>
-                </div> */}
-            {/* <div className="container">
-                <h1>Designer–engineer specializing in scalable UI and design systems.</h1>
-                <h2>I create accessible, consistent components that teams can trust.</h2>
-            </div> */}
         </section>
     )
 }

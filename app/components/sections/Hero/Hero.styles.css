@@ -24,9 +24,9 @@
     flex: 1;
     background-color: white;
     border: var(--border-standard);
-    height: var(--grid-spacing-4);
+    /* height: var(--grid-spacing-4); */ /* Removed - now set by useGridSnap hook */
     display: flex;
-    padding-inline: var(--grid-spacing-1);
+    padding: var(--grid-spacing-1);
     align-items: center;
 }
 
@@ -34,7 +34,7 @@
     margin: 0;
     font-weight: 400;
     font-family: var(--font_face-8bit);
-    font-size: 2rem;
+    /* font-size removed - now handled by global h1 selector with fluid clamp() */
 }
 
 .toHighlight {

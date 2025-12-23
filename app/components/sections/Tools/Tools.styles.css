@@ -1,4 +1,4 @@
-.work-grid {
+.tools-grid {
     display: flex;
     flex-direction: row;
     /* Dynamic gap: 1 grid space if --grid-cols is odd, 2 grid spaces if even */
@@ -6,7 +6,7 @@
     gap: calc(var(--grid-size) * var(--gap-multiplier));
 }
 
-.project-tile {
+.tool-tile {
     /* 2C + G = container-content-cols, solve for C: C = (container-content-cols - G) / 2 */
     /* G = gap-multiplier grid spaces */
     width: calc((var(--container-content-cols) - var(--gap-multiplier)) * var(--grid-size) / 2);
@@ -31,17 +31,17 @@
     cursor: pointer;
 }
 
-.project-tile:hover {
+.tool-tile:hover {
     background-color: var(--color-surface);
 }
 
-.project-tile-content {
+.tool-tile-content {
     display: flex;
     flex-direction: column;
     gap: calc(var(--grid-spacing-1) / 4);
 }
 
-.project-number {
+.tool-number {
     font-family: var(--font_face-mono);
     font-size: var(--font_body-large--size);
     font-weight: 700;
@@ -49,29 +49,24 @@
     letter-spacing: -0.02em;
 }
 
-.project-title {
+.tool-title {
     font-family: var(--font_face-8bit);
     font-size: 1.5rem;
     font-weight: 400;
     line-height: 1.2;
 }
 
-.project-description {
+.wip-badge {
+    font-family: var(--font_face-mono);
+    font-size: 0.75rem;
+    font-weight: 400;
+    opacity: 0.7;
+}
+
+.tool-description {
     font-family: var(--font_face-mono);
     font-size: var(--font_body--size);
     line-height: var(--font_body--line-height);
     font-weight: 400;
     color: var(--color-text-secondary);
-}
-
-.project-image {
-    width: 100%;
-    margin-top: calc(var(--grid-spacing-1) / 2);
-}
-
-.project-image img {
-    width: 100%;
-    height: auto;
-    display: block;
-    border: var(--border-standard);
 }

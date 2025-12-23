@@ -33,14 +33,13 @@
     display: flex;
     flex-direction: column;
     gap: var(--grid-spacing-half);
-    justify-content: center;
+    /* justify-content removed - interferes with useGridSnap height calculation */
 }
 
 .about-greeting {
     font-family: var(--font_face-8bit);
-    font-size: 2rem;
+    /* font-size and line-height removed - now handled by global h1 selector */
     font-weight: 400;
-    line-height: 1.5;
     margin: 0;
     color: var(--color-foreground);
 }
@@ -62,7 +61,7 @@
 .stats-grid {
     background-color: white;
     border: var(--border-standard);
-    height: calc(var(--grid-size) * 3);
+    /* Height set by useGridSnap hook */
     display: grid;
     grid-template-columns: repeat(4, 1fr);
 }
@@ -148,9 +147,13 @@
 /* Things I Value Section */
 
 .values-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--grid-spacing-1);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* Dynamic gap: 1 grid space if --grid-cols is odd, 2 grid spaces if even */
+    --gap-multiplier: calc(2 - mod(var(--grid-cols), 2));
+    column-gap: calc(var(--grid-size) * var(--gap-multiplier));
+    row-gap: var(--grid-size); /* Always 1 grid tile vertically */
 }
 
 /* Things I Like Section */
@@ -169,18 +172,26 @@
 }
 
 /* Responsive Design */
-@media (max-width: 1200px) {
-    .about-photo {
-        width: calc(var(--grid-size) * 8);
+
+/* Under 1280px: Stack intro content (bio on top, photo below) */
+@media (max-width: 1280px) {
+    .about-intro-grid {
+        flex-direction: column-reverse; /* Photo below text */
     }
 
-    .skills-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .about-bio-box {
+        /* Remove flex: 1 in stacked layout to allow useGridSnap to control height */
+        flex: 0 0 auto;
+    }
+
+    .about-photo {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1;
     }
 
     .stats-grid {
         grid-template-columns: repeat(2, 1fr);
-        height: auto;
     }
 
     .stat-card {
@@ -206,26 +217,8 @@
     }
 }
 
-@media (max-width: 768px) {
-    .about-intro-grid {
-        flex-direction: column;
-    }
-
-    .about-photo {
-        width: 100%;
-        height: auto;
-        aspect-ratio: 1;
-    }
-
-    .skills-grid,
-    .values-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .likes-grid {
-        grid-template-columns: 1fr;
-    }
-
+/* Below 1024px (minimum supported width) */
+@media (max-width: 1024px) {
     .stats-grid {
         grid-template-columns: 1fr;
     }

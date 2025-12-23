@@ -1,0 +1,10 @@
+:root {
+    /* Primary accent color */
+    --color-accent: #FF4000;
+
+    /* Neutral colors */
+    --color-background: #ffffff;
+    --color-foreground: #0E002D;
+    --color-text-secondary: #333;
+    --color-surface: #f2f2f2;
+}

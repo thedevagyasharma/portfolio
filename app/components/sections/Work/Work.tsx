@@ -1,14 +1,19 @@
+'use client';
 import './Work.styles.css';
 import SectionTitle from "../../../components/layout/SectionTitle/SectionTitle";
+import { useGridSnap } from '@/app/hooks/useGridSnap';
 
 export default function Work() {
+    const tile1Ref = useGridSnap<HTMLAnchorElement>({ groupId: 'work-tiles' });
+    const tile2Ref = useGridSnap<HTMLAnchorElement>({ groupId: 'work-tiles' });
+
     return (
         <>
             <section>
                 <div className="container">
                     <SectionTitle text="Selected Works" gridSpaces={8} />
                     <div className="work-grid">
-                        <a href="/projects/aspire" className="project-tile" style={{ color: '#135bd7' }}>
+                        <a ref={tile1Ref} href="/projects/aspire" className="project-tile">
                             <div className="project-tile-content">
                                 <div className="project-number">01</div>
                                 <div className="project-title">Aspire Platform</div>
@@ -18,7 +23,7 @@ export default function Work() {
                                 </div>
                             </div>
                         </a>
-                        <a href="/projects/project-two" className="project-tile" style={{ color: '#e84855' }}>
+                        <a ref={tile2Ref} href="/projects/project-two" className="project-tile">
                             <div className="project-tile-content">
                                 <div className="project-number">02</div>
                                 <div className="project-title">Project Two</div>

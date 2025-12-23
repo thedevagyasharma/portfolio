@@ -1,13 +1,17 @@
 .value-card {
   background-color: white;
   border: var(--border-standard);
-  height: calc(var(--grid-size) * 4);
+  /* Height removed - now set by useGridSnap hook */
   padding: var(--grid-spacing-1);
   position: relative;
   display: flex;
   flex-direction: row;
   gap: var(--grid-spacing-1);
   align-items: center;
+
+  /* Calculate width: 2 cards per row with dynamic gap */
+  /* 2C + G = container-content-cols, solve for C: C = (container-content-cols - G) / 2 */
+  width: calc((var(--container-content-cols) - var(--gap-multiplier)) * var(--grid-size) / 2);
 }
 
 .value-card-artifact {
@@ -38,4 +42,13 @@
   font-weight: 500;
   margin: 0;
   color: #333;
+}
+
+/* Responsive Design */
+
+/* Below 1024px (minimum supported width): Full-width cards */
+@media (max-width: 1024px) {
+  .value-card {
+    width: 100%;
+  }
 }

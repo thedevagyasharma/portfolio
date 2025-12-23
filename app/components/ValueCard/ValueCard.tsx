@@ -1,5 +1,8 @@
+'use client';
+
 import { ValuePixelArt } from '../PixelArt';
 import { valueShapes } from '../PixelArt/valueShapes';
+import { useGridSnap } from '@/app/hooks/useGridSnap';
 import './ValueCard.styles.css';
 
 type ValueCardProps = {
@@ -9,8 +12,10 @@ type ValueCardProps = {
 };
 
 export default function ValueCard({ value, title, description }: ValueCardProps) {
+  const cardRef = useGridSnap();
+
   return (
-    <div className="value-card">
+    <div ref={cardRef} className="value-card">
       <div className="value-card-artifact">
         <ValuePixelArt value={value} />
       </div>
