@@ -117,10 +117,16 @@ const Background = () => {
 
       dimensionsRef.current = { width, height, size };
 
+      // Calculate how much of the last row is visible
+      // If viewport height is perfectly divisible by tile size, remainder is 0
+      // Otherwise, we get the partial tile height that's visible
+      const lastRowVisibleHeight = height % size;
+
       // Expose dynamic grid system as CSS variables for all components
       document.documentElement.style.setProperty('--grid-size', `${size}px`);
       document.documentElement.style.setProperty('--grid-cols', `${cols}`);
       document.documentElement.style.setProperty('--grid-rows', `${rows}`);
+      document.documentElement.style.setProperty('--grid-offset-y', `${lastRowVisibleHeight}px`);
 
       // Set proper DPI scaling - use 2 for retina displays
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
