@@ -3,10 +3,21 @@
 import './Hero.styles.css';
 import { PixelArtDisplay } from '@/app/components/features';
 import { useGridSnap } from '@/app/hooks/useGridSnap';
+import { usePageTransition } from '@/app/components/providers';
+import { useState, useEffect } from 'react';
 
 
 export default function Hero() {
     const textRef = useGridSnap();
+    const { phase } = usePageTransition();
+    const [isAnimationReady, setIsAnimationReady] = useState(false);
+
+    useEffect(() => {
+        // Start pixel animation only when page transition is complete
+        if (phase === 'idle') {
+            setIsAnimationReady(true);
+        }
+    }, [phase]);
 
     return (
         <section className='hero'>
@@ -24,6 +35,7 @@ export default function Hero() {
                             morphSteps: 20,
                         }}
                         morphStyle="scatter"
+                        paused={!isAnimationReady}
                     />
                 </div>
             </div>

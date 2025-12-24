@@ -15,6 +15,7 @@ type PixelArtDisplayProps = {
   showLabel?: boolean;
   /** Number of grid tiles the canvas should span (uses --grid-size CSS var) */
   gridTiles?: number;
+  paused?: boolean;
 };
 
 export function PixelArtDisplay({
@@ -25,11 +26,13 @@ export function PixelArtDisplay({
   style,
   showLabel = false,
   gridTiles,
+  paused,
 }: PixelArtDisplayProps) {
   const { currentFrame, currentShapeName } = usePixelAnimation({
     shapes,
     config,
     morphStyle,
+    paused,
   });
 
   return (

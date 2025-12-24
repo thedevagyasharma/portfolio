@@ -3,6 +3,8 @@ import { Playfair_Display, VT323, Press_Start_2P, Google_Sans_Code } from "next/
 import "./globals.css";
 import Background from "./components/layout/Background/Background";
 import GridSnapPoints from "./components/layout/GridSnapPoints/GridSnapPoints";
+import Footer from "./components/layout/Footer/Footer";
+import ScrollRestoration from "./components/layout/ScrollRestoration";
 import { PageTransitionProvider } from "@/app/components/providers";
 
 const playfairDisplay = Playfair_Display({
@@ -48,11 +50,13 @@ export default function RootLayout({
       <body
         className={`antialiased`}
       >
+        <ScrollRestoration />
         <Background />
         <GridSnapPoints />
         <PageTransitionProvider>
           {children}
         </PageTransitionProvider>
+        <Footer />
       </body>
     </html>
   );

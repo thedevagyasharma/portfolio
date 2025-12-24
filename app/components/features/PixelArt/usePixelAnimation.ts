@@ -39,6 +39,11 @@ export function usePixelAnimation({
   );
   const [paused, setPaused] = useState(initialPaused);
 
+  // Sync internal paused state with prop
+  useEffect(() => {
+    setPaused(initialPaused);
+  }, [initialPaused]);
+
   // Refs for animation state (avoid re-renders during animation)
   const stateRef = useRef<AnimationState>({
     phase: 'displaying',
@@ -62,13 +67,19 @@ export function usePixelAnimation({
 
   const [currentShapeName, setCurrentShapeName] = useState(getCurrentShapeName());
 
+  // Reset lastTimeRef when paused changes to ensure correct delta calculation
+  useEffect(() => {
+    if (!paused) {
+      lastTimeRef.current = 0;
+    }
+  }, [paused]);
+
   // Animation loop
   useEffect(() => {
     if (shapes.length === 0) return;
 
     const tick = (now: number) => {
       if (paused) {
-        lastTimeRef.current = now;
         rafIdRef.current = requestAnimationFrame(tick);
         return;
       }

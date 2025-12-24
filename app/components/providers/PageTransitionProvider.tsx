@@ -11,6 +11,7 @@ interface PageTransitionContextType {
   navigateWithTransition: (href: string) => void;
   loadingProgress: number;
   showProgress: boolean;
+  phase: TransitionPhase;
 }
 
 const PageTransitionContext = createContext<PageTransitionContextType | null>(null);
@@ -269,7 +270,7 @@ export const PageTransitionProvider: React.FC<{ children: React.ReactNode }> = (
   }, []);
 
   return (
-    <PageTransitionContext.Provider value={{ isTransitioning, navigateWithTransition, loadingProgress, showProgress }}>
+    <PageTransitionContext.Provider value={{ isTransitioning, navigateWithTransition, loadingProgress, showProgress, phase }}>
       <PageTransition
         isTransitioning={isTransitioning}
         phase={phase}
