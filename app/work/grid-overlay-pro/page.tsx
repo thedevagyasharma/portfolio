@@ -42,14 +42,9 @@ export default function GridOverlayPro() {
 
                             {/* Hero */}
                             <div className="aspire-hero">
-                                <div className="aspire-tags">
-                                    <div className="aspire-tag">Dev Tool</div>
-                                    <div className="aspire-tag">Open Source</div>
-                                </div>
-
                                 <h1 className="aspire-title">Grid Overlay Pro <span className="in-progress-badge">[IN PROGRESS]</span></h1>
 
-                                <p className="large">A browser extension for designers and developers to visualize grid layouts directly on any webpage.</p>
+                                <p className="large">An open source browser extension for designers and developers to visualize grid layouts directly on any webpage.</p>
 
                                 <div className="aspire-meta-cards">
                                     <div className="aspire-meta-card">
