@@ -2,6 +2,7 @@
 
 import { Menu } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
 import './Navbar.styles.css';
 
 // Animation timing constants
@@ -21,11 +22,16 @@ type AnimationState = {
     shouldAddShadow: boolean;
 };
 
-// Helper function to extract section ID from href
-const getSectionId = (href: string): string => href.replace('#', '');
+// Helper function to check if route is active
+const isRouteActive = (pathname: string, href: string): boolean => {
+    if (href === '/') {
+        return pathname === '/';
+    }
+    return pathname.startsWith(href);
+};
 
 export default function Navbar() {
-    const [activeSection, setActiveSection] = useState('home');
+    const pathname = usePathname();
     const [animState, setAnimState] = useState<AnimationState>({
         isCollapsed: false,
         direction: null,
@@ -40,42 +46,6 @@ export default function Navbar() {
         { name: 'About', href: "/about", external: false },
         { name: 'Resume', href: "https://drive.google.com/file/d/1vWStQwBMnDTmQ1fTLuEt2Nxsjxbb3Xft/view", external: true },
     ];
-
-    useEffect(() => {
-        const observerOptions = {
-            root: null,
-            rootMargin: '-20% 0px -60% 0px',
-            threshold: 0
-        };
-
-        const observerCallback = (entries: IntersectionObserverEntry[]) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    setActiveSection(entry.target.id);
-                }
-            });
-        };
-
-        const observer = new IntersectionObserver(observerCallback, observerOptions);
-
-        // Observe all sections
-        navLinks.forEach((link) => {
-            const section = document.getElementById(getSectionId(link.href));
-            if (section) {
-                observer.observe(section);
-            }
-        });
-
-        return () => observer.disconnect();
-    }, []);
-
-    const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string, sectionId: string) => {
-        // All navigation is now handled by global PageTransitionProvider
-        // We only need to update active section for hash links
-        if (href.startsWith('#')) {
-            setActiveSection(sectionId);
-        }
-    };
 
     const toggleMenu = () => {
         if (!animState.isCollapsed) {
@@ -141,8 +111,7 @@ export default function Navbar() {
             <div className={`links-container ${animState.shouldClip ? 'animating' : ''}`}>
                 <ul className="links">
                     {!animState.isCollapsed && navLinks.map((link, index) => {
-                        const sectionId = getSectionId(link.href);
-                        const isActive = activeSection === sectionId;
+                        const isActive = !link.external && isRouteActive(pathname, link.href);
 
                         const linkClasses = [
                             'link',
@@ -163,7 +132,6 @@ export default function Navbar() {
                             >
                                 <a
                                     href={link.href}
-                                    onClick={(e) => handleLinkClick(e, link.href, sectionId)}
                                     className="navbar-button-base"
                                     {...(link.external && { target: "_blank", rel: "noopener noreferrer" })}
                                 >

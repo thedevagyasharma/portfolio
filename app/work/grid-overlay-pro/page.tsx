@@ -36,6 +36,9 @@ export default function GridOverlayPro() {
                 <section className="aspire-content-section">
                     <div className="container">
                         <div ref={contentBoxRef} className="aspire-content-box">
+                            <a href="https://github.com/thedevagyasharma/grid-overlay-extension" target="_blank" rel="noopener noreferrer" className="github-repo-button">
+                                GitHub Repo
+                            </a>
 
                             {/* Hero */}
                             <div className="aspire-hero">
@@ -61,10 +64,6 @@ export default function GridOverlayPro() {
                                         </div>
                                     </div>
                                 </div>
-
-                                <a href="https://github.com/thedevagyasharma/grid-overlay-extension" target="_blank" rel="noopener noreferrer" className="github-repo-button">
-                                    GitHub Repo
-                                </a>
                             </div>
 
                             <hr className="aspire-divider" />

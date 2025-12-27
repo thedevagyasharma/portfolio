@@ -36,14 +36,12 @@ export default function Lux() {
                 <section className="aspire-content-section">
                     <div className="container">
                         <div ref={contentBoxRef} className="aspire-content-box">
+                            <a href="https://lux.devagyasharma.com" target="_blank" rel="noopener noreferrer" className="lux-app-button">
+                                Try Lux
+                            </a>
 
                             {/* Hero */}
                             <div className="aspire-hero">
-                                <div className="aspire-tags">
-                                    <div className="aspire-tag">Creative Tool</div>
-                                    <div className="aspire-tag">Web App</div>
-                                </div>
-
                                 <h1 className="aspire-title">Lux</h1>
 
                                 <p className="large">Generate beautiful gradient Lissajous curve cards and download them as PNG.</p>
@@ -61,10 +59,6 @@ export default function Lux() {
                                         </div>
                                     </div>
                                 </div>
-
-                                <a href="https://lux.devagyasharma.com" target="_blank" rel="noopener noreferrer" className="lux-app-button">
-                                    Try Lux
-                                </a>
                             </div>
 
                             <hr className="aspire-divider" />
