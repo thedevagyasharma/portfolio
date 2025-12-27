@@ -12,7 +12,7 @@ export default function MobileWarning() {
           <PixelArtDisplay
             shapes={[face_long, face_long]}
             gridTiles={4}
-            morphStyle="direct"
+            morphStyle="scatter"
             config={{ displayDuration: 6500 }}
           />
         </div>
