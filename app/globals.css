@@ -38,6 +38,13 @@ body {
   width: 100%;
 }
 
+/* Hide desktop content on mobile screens */
+@media (max-width: 767px) {
+  .desktop-content {
+    display: none;
+  }
+}
+
 /* Initial page load cover - ensures page is covered before React hydrates */
 body::before {
   content: '';

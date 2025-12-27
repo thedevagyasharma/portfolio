@@ -131,26 +131,40 @@ export function usePixelAnimation({
         // Morphing phase
         state.elapsed += delta;
 
-        const frameDuration = morphDuration / state.morphFrames.length;
+        // Safety check for morphFrames
+        if (!state.morphFrames || state.morphFrames.length === 0) {
+          // Skip morphing if no frames, go directly to next shape
+          stateRef.current = {
+            phase: 'displaying',
+            shapeIndex: state.toShapeIndex,
+            frameIndex: 0,
+            elapsed: 0,
+            displayElapsed: 0,
+          };
+          setCurrentFrame(shapes[state.toShapeIndex].frames[0]);
+          setCurrentShapeName(shapes[state.toShapeIndex].name);
+        } else {
+          const frameDuration = morphDuration / state.morphFrames.length;
 
-        if (state.elapsed >= frameDuration) {
-          state.elapsed = 0;
-          state.morphFrameIndex++;
+          if (state.elapsed >= frameDuration) {
+            state.elapsed = 0;
+            state.morphFrameIndex++;
 
-          if (state.morphFrameIndex >= state.morphFrames.length) {
-            // Morph complete, switch to displaying next shape
-            stateRef.current = {
-              phase: 'displaying',
-              shapeIndex: state.toShapeIndex,
-              frameIndex: 0,
-              elapsed: 0,
-              displayElapsed: 0,
-            };
+            if (state.morphFrameIndex >= state.morphFrames.length) {
+              // Morph complete, switch to displaying next shape
+              stateRef.current = {
+                phase: 'displaying',
+                shapeIndex: state.toShapeIndex,
+                frameIndex: 0,
+                elapsed: 0,
+                displayElapsed: 0,
+              };
 
-            setCurrentFrame(shapes[state.toShapeIndex].frames[0]);
-            setCurrentShapeName(shapes[state.toShapeIndex].name);
-          } else {
-            setCurrentFrame(state.morphFrames[state.morphFrameIndex]);
+              setCurrentFrame(shapes[state.toShapeIndex].frames[0]);
+              setCurrentShapeName(shapes[state.toShapeIndex].name);
+            } else {
+              setCurrentFrame(state.morphFrames[state.morphFrameIndex]);
+            }
           }
         }
       }

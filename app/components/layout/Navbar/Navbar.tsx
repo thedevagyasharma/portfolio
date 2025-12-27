@@ -35,10 +35,10 @@ export default function Navbar() {
     });
 
     const navLinks = [
-        { name: 'Home', href: "/" },
-        { name: 'Work', href: "#work" },
-        { name: 'About', href: "/about" },
-        { name: 'Resume', href: "#resume" },
+        { name: 'Home', href: "/", external: false },
+        // { name: 'Work', href: "#work", external: false }, // Hidden until work page is ready
+        { name: 'About', href: "/about", external: false },
+        { name: 'Resume', href: "https://drive.google.com/file/d/1vWStQwBMnDTmQ1fTLuEt2Nxsjxbb3Xft/view", external: true },
     ];
 
     useEffect(() => {
@@ -165,6 +165,7 @@ export default function Navbar() {
                                     href={link.href}
                                     onClick={(e) => handleLinkClick(e, link.href, sectionId)}
                                     className="navbar-button-base"
+                                    {...(link.external && { target: "_blank", rel: "noopener noreferrer" })}
                                 >
                                     <span className='link-label'>{link.name}</span>
                                 </a>

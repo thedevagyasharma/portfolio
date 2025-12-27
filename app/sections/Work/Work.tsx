@@ -13,23 +13,23 @@ export default function Work() {
                 <div className="container">
                     <SectionTitle text="Selected Works" gridSpaces={8} />
                     <div className="work-grid">
-                        <a ref={tile1Ref} href="/projects/aspire" className="project-tile">
+                        <a ref={tile1Ref} href="/work/aspire-design-system" className="project-tile">
                             <div className="project-tile-content">
                                 <div className="project-number">01</div>
-                                <div className="project-title">Aspire Platform</div>
-                                <div className="project-description">A comprehensive platform for managing aspirations and goals with intuitive design.</div>
+                                <div className="project-title">Aspire Design System</div>
+                                <div className="project-description">A design system built to address UI inconsistencies, improve workflow efficiency, and ensure accessibility.</div>
                                 <div className="project-image">
-                                    <img src="/assets/projects/aspire/cover.webp" alt="Aspire Platform" />
+                                    <img src="/assets/projects/aspire-design-system/cover.webp" alt="Aspire Design System" />
                                 </div>
                             </div>
                         </a>
-                        <a ref={tile2Ref} href="/projects/project-two" className="project-tile">
+                        <a ref={tile2Ref} href="/work/multisig-transaction-flow" className="project-tile">
                             <div className="project-tile-content">
                                 <div className="project-number">02</div>
-                                <div className="project-title">Project Two</div>
-                                <div className="project-description">Innovative solution combining cutting-edge technology with thoughtful design.</div>
+                                <div className="project-title">Multi-Signature Transaction Flow</div>
+                                <div className="project-description">A scalable transaction flow designed for institutional crypto wallets, handling multi-chain complexity with clarity and precision.</div>
                                 <div className="project-image">
-                                    <img src="/assets/projects/aspire/cover.webp" alt="Project Two" />
+                                    <img src="/assets/projects/multisig-transaction-flow/cover.webp" alt="Multi-Signature Transaction Flow" />
                                 </div>
                             </div>
                         </a>

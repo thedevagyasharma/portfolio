@@ -163,6 +163,9 @@ export const PageTransitionProvider: React.FC<{ children: React.ReactNode }> = (
     setPhase('covering');
     isNavigating.current = true;
 
+    // Reset scroll to top
+    window.scrollTo(0, 0);
+
     // Start loading progress tracking
     startLoadingProgress();
 
@@ -248,6 +251,9 @@ export const PageTransitionProvider: React.FC<{ children: React.ReactNode }> = (
   // Handle browser back/forward
   useEffect(() => {
     const handlePopState = () => {
+      // Reset scroll to top
+      window.scrollTo(0, 0);
+
       // On popstate, pathname will change, triggering enter animation
       setIsTransitioning(true);
       setPhase('enter');

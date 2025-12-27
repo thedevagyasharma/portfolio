@@ -1,20 +1,33 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { usePathname } from 'next/navigation';
 
 /**
  * Implements smooth momentum scrolling with grid snapping
  * Allows continuous scrolling with velocity accumulation
  */
 export default function GridSnapPoints() {
+  const pathname = usePathname();
   const scrollTimeoutRef = useRef<number | null>(null);
   const isSnappingRef = useRef(false);
   const velocityRef = useRef(0);
   const targetScrollRef = useRef(0);
   const animationFrameRef = useRef<number | null>(null);
   const lastWheelTimeRef = useRef(0);
+  const isWheelScrollingRef = useRef(false);
+  const lastScrollPosRef = useRef(0);
+  const isMouseDownRef = useRef(false);
+
+  // Reset scroll position on route change
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    targetScrollRef.current = 0;
+    velocityRef.current = 0;
+  }, [pathname]);
 
   useEffect(() => {
+
     const root = document.documentElement;
     const style = getComputedStyle(root);
     let gridSize = parseFloat(style.getPropertyValue('--grid-size')) || 48;
@@ -38,6 +51,7 @@ export default function GridSnapPoints() {
         // Stop when velocity is negligible
         if (Math.abs(velocityRef.current) < 0.1) {
           velocityRef.current = 0;
+          isWheelScrollingRef.current = false;
           // Trigger snap when scrolling stops
           handleScrollEnd();
         }
@@ -50,13 +64,18 @@ export default function GridSnapPoints() {
 
       if (Math.abs(delta) > 0.1) {
         window.scrollTo(0, currentScroll + delta);
+        animationFrameRef.current = requestAnimationFrame(smoothScroll);
+      } else {
+        // Reached target - stop the loop
+        animationFrameRef.current = null;
       }
-
-      animationFrameRef.current = requestAnimationFrame(smoothScroll);
     };
 
     const handleWheel = (e: WheelEvent) => {
       e.preventDefault();
+
+      // Mark that we're wheel scrolling
+      isWheelScrollingRef.current = true;
 
       // Cancel any ongoing snap animation
       if (isSnappingRef.current) {
@@ -93,7 +112,8 @@ export default function GridSnapPoints() {
     };
 
     const snapToNearestGrid = () => {
-      if (isSnappingRef.current || velocityRef.current !== 0) return;
+      // Don't snap if still scrolling or if mouse is down on scrollbar
+      if (isSnappingRef.current || velocityRef.current !== 0 || isMouseDownRef.current) return;
 
       const currentScroll = window.scrollY;
       const nearestGridLine = Math.round(currentScroll / gridSize) * gridSize;
@@ -154,24 +174,70 @@ export default function GridSnapPoints() {
     };
 
     const handleScroll = () => {
-      // Handle native scroll (touch/trackpad)
-      if (velocityRef.current === 0 && !isSnappingRef.current) {
+      const currentScroll = window.scrollY;
+      const lastScroll = lastScrollPosRef.current;
+      const scrollDelta = Math.abs(currentScroll - lastScroll);
+
+      lastScrollPosRef.current = currentScroll;
+
+      // Detect if scroll came from user dragging scrollbar vs our animation
+      // Our smooth scroll moves in small increments (~3-7px per frame at 0.15 interpolation)
+      // Scrollbar drags typically jump 50-100+ pixels
+      const isManualScroll = scrollDelta > 100;
+
+      if (isManualScroll && isWheelScrollingRef.current) {
+        // User grabbed scrollbar during momentum - kill everything
+        velocityRef.current = 0;
+        isWheelScrollingRef.current = false;
+        targetScrollRef.current = currentScroll;
+
+        // Stop animation loop
+        if (animationFrameRef.current !== null) {
+          cancelAnimationFrame(animationFrameRef.current);
+          animationFrameRef.current = null;
+        }
+
+        handleScrollEnd();
+        return;
+      }
+
+      // Handle normal native scroll events (when not wheel scrolling)
+      if (!isWheelScrollingRef.current && !isSnappingRef.current) {
+        targetScrollRef.current = currentScroll;
         handleScrollEnd();
       }
     };
 
-    // Initialize
-    targetScrollRef.current = window.scrollY;
+    // Track mouse down/up to detect scrollbar dragging
+    const handleMouseDown = () => {
+      isMouseDownRef.current = true;
+    };
+
+    const handleMouseUp = () => {
+      isMouseDownRef.current = false;
+      // Trigger snap after mouse release if not wheel scrolling
+      if (!isWheelScrollingRef.current && !isSnappingRef.current) {
+        handleScrollEnd();
+      }
+    };
+
+    // Initialize - start at top
+    targetScrollRef.current = 0;
+    velocityRef.current = 0;
 
     // Event listeners
     window.addEventListener('resize', updateGridSize);
     window.addEventListener('wheel', handleWheel, { passive: false });
     window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('mousedown', handleMouseDown);
+    window.addEventListener('mouseup', handleMouseUp);
 
     return () => {
       window.removeEventListener('resize', updateGridSize);
       window.removeEventListener('wheel', handleWheel);
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('mousedown', handleMouseDown);
+      window.removeEventListener('mouseup', handleMouseUp);
 
       if (scrollTimeoutRef.current !== null) {
         clearTimeout(scrollTimeoutRef.current);

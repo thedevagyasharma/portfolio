@@ -58,7 +58,7 @@
 .navbar {
     color: #222;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: flex-start;
     /* Total width: 9 grid spaces (4 links × 2 spaces + 1 menu button) */
     width: calc(var(--grid-size) * 9);

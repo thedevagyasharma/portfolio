@@ -7,6 +7,7 @@
   pointer-events: none;
   z-index: 9999;
   display: flex;
+  gap: 0;
 }
 
 .page-transition__bar {
@@ -14,6 +15,8 @@
   background: white;
   transform: scaleY(0);
   will-change: transform;
+  flex-shrink: 0;
+  box-shadow: 1px 0 0 0 white;
 }
 
 /* Even columns: bottom origin */

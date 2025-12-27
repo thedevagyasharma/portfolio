@@ -1,0 +1,367 @@
+/* Main margin for this page */
+main {
+    margin-top: calc(var(--grid-size) * 2);
+}
+
+/* Breadcrumbs */
+.aspire-breadcrumbs {
+    height: var(--grid-size);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2);
+    padding: 0 var(--spacing-4);
+    font-family: var(--font_face-mono);
+    font-size: var(--font_body-small--size);
+    background-color: white;
+    border: var(--border-standard);
+}
+
+.aspire-breadcrumb-link {
+    color: #ff4000;
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+
+.aspire-breadcrumb-link:hover {
+    opacity: 0.7;
+}
+
+.aspire-breadcrumb-separator {
+    color: var(--color-text-secondary);
+}
+
+.aspire-breadcrumb-current {
+    color: var(--color-foreground);
+}
+
+/* Content Section Spacing */
+.aspire-content-section {
+    padding-top: var(--grid-size);
+}
+
+/* Main Content Box - single box for all content */
+.aspire-content-box {
+    background-color: white;
+    border: var(--border-standard);
+    padding: var(--grid-spacing-1);
+}
+
+/* Typography defaults */
+.aspire-content-box h1 {
+    font-family: var(--font_face-mono);
+    font-weight: 400;
+    margin: 0 0 var(--spacing-2) 0; /* Title to description: tight */
+}
+
+.aspire-content-box h2 {
+    font-family: var(--font_face-mono);
+    font-weight: 400;
+    margin: var(--spacing-8) 0 var(--spacing-2) 0; /* Major section break above, tight below */
+}
+
+.aspire-content-box h3 {
+    font-family: var(--font_face-mono);
+    font-weight: 400;
+    margin: var(--spacing-5) 0 var(--spacing-2) 0; /* Subsection break above, tight below */
+}
+
+.aspire-content-box p {
+    font-family: var(--font_face-mono);
+    font-weight: 400;
+    margin: 0 0 var(--spacing-3) 0; /* Paragraph spacing */
+}
+
+
+/* First h2 after hero doesn't need top margin */
+.aspire-hero + h2 {
+    margin-top: 0;
+}
+
+/* When h2 comes after a divider, reduce top margin (divider already provides spacing) */
+.aspire-divider + h2 {
+    margin-top: 0;
+}
+
+/* Card groups - component separation */
+.aspire-card-group {
+    margin-bottom: var(--spacing-4);
+}
+
+/* When card groups are related (back-to-back), reduce spacing */
+.aspire-card-group + .aspire-card-group {
+    margin-top: var(--spacing-4);
+}
+
+/* Two column layouts */
+.aspire-two-col {
+    margin-bottom: var(--spacing-4);
+}
+
+/* Images within content */
+.aspire-image {
+    margin-bottom: var(--spacing-4);
+}
+
+/* Color grid */
+.aspire-color-grid {
+    margin-bottom: var(--spacing-5); /* Slightly more space after visual content */
+}
+
+/* Goal statement - major emphasis element */
+.aspire-goal-statement {
+    margin-bottom: var(--spacing-8); /* Large space after important statement */
+}
+
+.aspire-link {
+    color: var(--color-accent);
+    text-decoration: underline;
+}
+
+.aspire-text-uppercase {
+    text-transform: uppercase;
+}
+
+/* Horizontal Dividers for Major Sections */
+.aspire-divider {
+    width: 100%;
+    height: 1px;
+    background-color: var(--color-divider);
+    margin: var(--spacing-8) 0; /* Large breathing room around dividers */
+    border: none;
+}
+
+/* Hero Section */
+.aspire-hero {
+    display: flex;
+    flex-direction: column;
+}
+
+.aspire-tags {
+    display: flex;
+    flex-direction: row;
+    gap: var(--spacing-2);
+    flex-wrap: wrap;
+    margin-bottom: var(--spacing-2); /* Tight: tags to title */
+}
+
+.aspire-tag {
+    height: var(--grid-size);
+    padding: 0 var(--spacing-3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-accent);
+    color: white;
+    font-family: var(--font_face-mono);
+    font-size: var(--font_body--size);
+    font-weight: 500;
+    border: var(--border-standard);
+}
+
+.aspire-title {
+    font-family: var(--font_face-8bit);
+    /* margin handled by h1 default: 0 0 var(--spacing-2) 0 */
+}
+
+/* Hero description paragraph */
+.aspire-hero > p {
+    margin-bottom: var(--spacing-4); /* Medium: description to meta cards */
+}
+
+.aspire-meta-cards {
+    display: flex;
+    flex-direction: row;
+    gap: var(--spacing-4);
+    flex-wrap: wrap;
+    margin-bottom: var(--spacing-2); /* Tight: meta to footnote */
+}
+
+.aspire-meta-card {
+    flex: 1;
+    min-width: 200px;
+    padding: var(--spacing-4);
+    background-color: var(--color-surface);
+    border: var(--border-standard);
+}
+
+.aspire-meta-card-large {
+    flex: 2;
+}
+
+.aspire-meta-label {
+    font-family: var(--font_face-mono);
+    font-size: var(--font_body-small--size);
+    font-weight: 400;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-2);
+}
+
+.aspire-meta-value {
+    font-family: var(--font_face-mono);
+    font-size: var(--font_body-large--size);
+    font-weight: 400;
+}
+
+.aspire-tools {
+    display: flex;
+    flex-direction: row;
+    gap: var(--spacing-2);
+    flex-wrap: wrap;
+}
+
+.aspire-tool-tag {
+    padding: var(--spacing-1) var(--spacing-2);
+    background-color: var(--color-background);
+    font-family: var(--font_face-mono);
+    font-size: var(--font_body--size);
+    border: var(--border-standard);
+}
+
+.aspire-footnote {
+    font-family: var(--font_face-mono);
+    font-size: var(--font_body-small--size);
+    color: var(--color-text-secondary);
+    font-style: italic;
+    margin: 0;
+}
+
+/* Images */
+.aspire-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Card Groups */
+.aspire-card-group {
+    background-color: var(--color-surface);
+    border: var(--border-standard);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.aspire-card {
+    padding: var(--grid-spacing-1);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2); /* Tight gap between elements - they're related */
+    align-items: flex-start;
+    position: relative;
+}
+
+.aspire-card:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: calc(var(--grid-spacing-1) / 2);
+    bottom: calc(var(--grid-spacing-1) / 2);
+    width: 1px;
+    background-color: var(--color-divider);
+}
+
+.aspire-card-icon {
+    font-size: 3rem;
+    line-height: 1;
+}
+
+.aspire-card h3 {
+    font-family: var(--font_face-mono);
+    margin: 0; /* Reset margin inside cards - gap handles spacing */
+}
+
+.aspire-card-group-with-text .aspire-card p {
+    font-family: var(--font_face-mono);
+    color: var(--color-text-secondary);
+    margin: 0; /* Reset margin inside cards - gap handles spacing */
+}
+
+/* Two Column Layout */
+.aspire-two-col {
+    display: flex;
+    flex-direction: row;
+    --gap-multiplier: calc(2 - mod(var(--grid-cols), 2));
+    gap: calc(var(--grid-size) * var(--gap-multiplier));
+}
+
+.aspire-two-col > * {
+    flex: 1;
+}
+
+/* Sub-boxes for two-column content */
+.aspire-sub-box {
+    background-color: var(--color-surface);
+    border: var(--border-standard);
+    padding: var(--spacing-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3);
+}
+
+.aspire-sub-box h3 {
+    margin: 0;
+    font-family: var(--font_face-mono);
+}
+
+/* Goal Statement */
+.aspire-goal-statement {
+    font-size: var(--font_heading-2--size);
+    line-height: var(--font_heading-2--line-height);
+    font-family: var(--font_face-mono);
+    font-weight: 400;
+}
+
+.aspire-goal-statement strong {
+    color: var(--color-accent);
+}
+
+/* Color Grid */
+.aspire-color-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--spacing-2);
+}
+
+.aspire-color-grid img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .aspire-card-group {
+        grid-template-columns: 1fr;
+    }
+
+    .aspire-card:not(:last-child)::after {
+        display: none;
+    }
+
+    .aspire-card:not(:last-child)::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: calc(var(--grid-spacing-1) / 2);
+        right: calc(var(--grid-spacing-1) / 2);
+        height: 1px;
+        background-color: var(--color-divider);
+    }
+
+    .aspire-two-col {
+        flex-direction: column;
+        gap: var(--grid-spacing-1);
+    }
+
+    .aspire-color-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .aspire-meta-cards {
+        flex-direction: column;
+    }
+
+    .aspire-meta-card {
+        min-width: 100%;
+    }
+}

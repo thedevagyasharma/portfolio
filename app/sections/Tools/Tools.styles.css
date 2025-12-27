@@ -41,6 +41,21 @@
     gap: calc(var(--grid-spacing-1) / 4);
 }
 
+.tool-video {
+    width: 100%;
+    margin-top: calc(var(--grid-spacing-1) / 2);
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+}
+
+.tool-video video {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    border: var(--border-standard);
+}
+
 .tool-number {
     font-family: var(--font_face-mono);
     font-size: var(--font_body-large--size);

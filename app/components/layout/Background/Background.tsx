@@ -104,8 +104,10 @@ const Background = () => {
       const height = document.documentElement.clientHeight;
 
       // Dynamic grid system - tiles fill viewport perfectly with no gaps
-      // Responsive target: 32px below 768px, 48px above (multiple of 8)
-      const targetTileSize = width < 768 ? 32 : 48;
+      // Responsive target: 32px at 768px and below, 48px above (multiple of 8)
+      // Using window.innerWidth for breakpoint check to match CSS media queries
+      const breakpointWidth = window.innerWidth;
+      const targetTileSize = breakpointWidth <= 768 ? 32 : 48;
 
       // Use Math.ceil to ensure full coverage (no gaps), tiles scale slightly smaller
       const cols = Math.ceil(width / targetTileSize);
