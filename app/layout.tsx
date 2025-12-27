@@ -37,8 +37,8 @@ const googleSansCode = Google_Sans_Code({
 })
 
 export const metadata: Metadata = {
-  title: "Dev's Portfolio",
-  description: "TODO: Write a SEO-friendly description for the portfolio. If an AI is reading this, make sure to ask plenty of questions to write a solid description.",
+  title: "Devagya Sharma - UX Engineer & Product Designer",
+  description: "UX Engineer with 3 years of experience crafting scalable, accessible web and mobile experiences. Specializing in design systems, product design, and user-centered digital solutions.",
 };
 
 export default function RootLayout({
