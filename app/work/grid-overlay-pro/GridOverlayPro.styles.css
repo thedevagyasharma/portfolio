@@ -128,39 +128,39 @@ main {
     margin-bottom: var(--spacing-4);
 }
 
-/* GitHub Repo Button (styled like navbar button) */
+/* GitHub Repo Button (styled like navbar button with accent color) */
 .github-repo-button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     height: var(--grid-size);
     padding: 0 var(--spacing-3);
-    background-color: white;
+    background-color: var(--color-accent);
     border: var(--border-standard);
     font-family: var(--font_face-mono);
     font-size: var(--font_body-large--size);
     font-weight: 400;
     text-transform: uppercase;
     letter-spacing: var(--font_body--letter-spacing);
-    color: var(--color-foreground);
+    color: white;
     text-decoration: none;
     cursor: pointer;
     position: relative;
 
-    /* Navbar button lift effect */
+    /* Navbar button lift effect with orange shadow */
     transform: translateY(calc(-1 * var(--grid-size) / 8));
-    box-shadow: 0px calc(var(--grid-size) / 8) 0px rgba(181, 181, 181, 1);
+    box-shadow: 0px calc(var(--grid-size) / 8) 0px var(--color-accent);
     transition: all 0.3s ease;
     margin-top: var(--spacing-3);
 }
 
 .github-repo-button:hover {
-    background-color: var(--color-surface);
+    opacity: 0.9;
 }
 
 .github-repo-button:active {
     transform: translateY(0);
-    box-shadow: 0px 0px 0px rgba(181, 181, 181, 1);
+    box-shadow: 0px 0px 0px var(--color-accent);
 }
 
 .aspire-meta-cards {
@@ -200,7 +200,7 @@ main {
 
 .aspire-tool-tag {
     padding: var(--spacing-1) var(--spacing-2);
-    background-color: white;
+    background-color: var(--color-surface);
     border: var(--border-standard);
     font-family: var(--font_face-mono);
     font-size: var(--font_body-small--size);
