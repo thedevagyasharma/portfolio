@@ -23,7 +23,7 @@ export default function Hero() {
         <section className='hero'>
             <div className="content container">
                 <div ref={textRef} className="hero-text">
-                    <h1 className="font-mono"><span className="toHighlight">Design Engineer</span> crafting faster production pipelines with AI.</h1>
+                    <h1 className="font-mono"><span className="toHighlight">Design Engineer</span> building systems that help teams ship faster</h1>
                 </div>
                 <div className="pixelArt">
                     <PixelArtDisplay
