@@ -74,7 +74,7 @@ export default function GridOverlayPro() {
                             <p>Watch how the grid overlay adapts to different configurations in real-time:</p>
                             {/* Placeholder for your clip */}
                             <div className="grid-demo-placeholder">
-                                <p>Demo video coming soon</p>
+                                <p>Demo video coming soon. Meanwhile, <a href="https://chromewebstore.google.com/detail/grid-overlay-pro/your-extension-id" target="_blank" rel="noopener noreferrer">install the extension</a> or <a href="https://github.com/thedevagyasharma/grid-overlay-extension" target="_blank" rel="noopener noreferrer">view the source code</a>.</p>
                             </div>
 
 

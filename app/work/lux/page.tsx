@@ -74,7 +74,7 @@ export default function Lux() {
                             <p>Explore the interactive curve generation:</p>
                             {/* Placeholder for your clip */}
                             <div className="lux-demo-placeholder">
-                                <p>Demo video coming soon</p>
+                                <p>Demo video coming soon. Meanwhile, <a href="https://lux.devagyasharma.com" target="_blank" rel="noopener noreferrer">try the tool</a> or <a href="https://github.com/thedevagyasharma/lux" target="_blank" rel="noopener noreferrer">view the source code</a>.</p>
                             </div>
 
 
