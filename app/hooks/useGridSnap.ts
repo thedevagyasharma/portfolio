@@ -40,11 +40,12 @@ export interface GridSnapOptions {
  * ```
  *
  * How it works:
- * 1. Reads --grid-size from CSS variables
- * 2. Measures element's natural scrollHeight
- * 3. Rounds to nearest grid multiple (UP by default)
- * 4. Sets explicit height
- * 5. Only runs on mount (no resize handling)
+ * 1. Waits for --grid-size to be set by Background component
+ * 2. Reads --grid-size from CSS variables
+ * 3. Measures element's natural scrollHeight
+ * 4. Rounds to nearest grid multiple (UP by default)
+ * 5. Sets explicit height
+ * 6. Recalculates on window resize for responsive layouts
  */
 // Global registry to track element groups
 const elementGroups = new Map<string, Set<HTMLElement>>();
@@ -156,17 +157,57 @@ export function useGridSnap<T extends HTMLElement = HTMLDivElement>(
       }
     };
 
+    // Retry mechanism to wait for grid size to be set by Background component
+    const measureWithRetry = async () => {
+      const maxRetries = 10;
+      let retries = 0;
+
+      const checkAndMeasure = () => {
+        const gridSize = parseFloat(
+          getComputedStyle(document.documentElement)
+            .getPropertyValue('--grid-size')
+        );
+
+        // If grid size is valid (not NaN and not the default fallback), measure
+        if (gridSize && !isNaN(gridSize)) {
+          measure();
+          return true;
+        }
+
+        // If still invalid and we have retries left, try again
+        if (retries < maxRetries) {
+          retries++;
+          setTimeout(checkAndMeasure, 50);
+          return false;
+        }
+
+        // Out of retries, measure anyway (will use fallback)
+        measure();
+        return true;
+      };
+
+      checkAndMeasure();
+    };
+
     if (document.fonts && document.fonts.ready) {
       document.fonts.ready.then(() => {
-        measure();
+        measureWithRetry();
       });
     } else {
       // Fallback if fonts API not available
-      measure();
+      measureWithRetry();
     }
 
-    // Cleanup: remove element from group
+    // Handle window resize - recalculate grid snap
+    const handleResize = () => {
+      snapToGrid();
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    // Cleanup: remove element from group and resize listener
     return () => {
+      window.removeEventListener('resize', handleResize);
       if (groupId && elementGroups.has(groupId)) {
         elementGroups.get(groupId)!.delete(element);
         if (elementGroups.get(groupId)!.size === 0) {
