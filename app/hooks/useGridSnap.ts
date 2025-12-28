@@ -200,6 +200,22 @@ export function useGridSnap<T extends HTMLElement = HTMLDivElement>(
 
     // Handle window resize - recalculate grid snap
     const handleResize = () => {
+      // Reset height first to let content reflow naturally
+      if (groupId) {
+        const group = elementGroups.get(groupId);
+        if (group) {
+          group.forEach((el) => {
+            el.style.height = 'auto';
+          });
+        }
+      } else {
+        element.style.height = 'auto';
+      }
+
+      // Force reflow before measuring
+      void element.offsetHeight;
+
+      // Then recalculate and apply new snapped height
       snapToGrid();
     };
 
