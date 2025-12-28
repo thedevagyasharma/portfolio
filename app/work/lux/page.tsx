@@ -2,6 +2,7 @@
 import './Lux.styles.css';
 import Navbar from '@/app/components/layout/Navbar/Navbar';
 import NavLogo from '@/app/components/layout/Navbar/NavLogo';
+import { Breadcrumbs } from '@/app/components/common';
 import { useGridSnap } from '@/app/hooks/useGridSnap';
 
 export default function Lux() {
@@ -19,18 +20,7 @@ export default function Lux() {
             </header>
 
             <main>
-                {/* Breadcrumbs */}
-                <section>
-                    <div className="container">
-                        <div className="aspire-breadcrumbs">
-                            <a href="/" className="aspire-breadcrumb-link">Home</a>
-                            <span className="aspire-breadcrumb-separator">/</span>
-                            <a href="/work" className="aspire-breadcrumb-link">Work</a>
-                            <span className="aspire-breadcrumb-separator">/</span>
-                            <span className="aspire-breadcrumb-current">Lux</span>
-                        </div>
-                    </div>
-                </section>
+                <Breadcrumbs currentPage="Lux" />
 
                 {/* Main Content Box */}
                 <section className="aspire-content-section">

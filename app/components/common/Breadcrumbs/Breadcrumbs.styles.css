@@ -1,0 +1,30 @@
+/* Breadcrumbs */
+.aspire-breadcrumbs {
+    height: var(--grid-size);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2);
+    padding: 0 var(--spacing-4);
+    font-family: var(--font_face-mono);
+    font-size: var(--font_body-small--size);
+    background-color: white;
+    border: var(--border-standard);
+}
+
+.aspire-breadcrumb-link {
+    color: #ff4000;
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+
+.aspire-breadcrumb-link:hover {
+    opacity: 0.7;
+}
+
+.aspire-breadcrumb-separator {
+    color: var(--color-text-secondary);
+}
+
+.aspire-breadcrumb-current {
+    color: var(--color-foreground);
+}

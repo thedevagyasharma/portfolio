@@ -1,9 +1,12 @@
 .work-grid {
     display: flex;
     flex-direction: row;
-    /* Dynamic gap: 1 grid space if --grid-cols is odd, 2 grid spaces if even */
+    flex-wrap: wrap;
+    /* Dynamic column gap: 1 grid space if --grid-cols is odd, 2 grid spaces if even */
     --gap-multiplier: calc(2 - mod(var(--grid-cols), 2));
-    gap: calc(var(--grid-size) * var(--gap-multiplier));
+    column-gap: calc(var(--grid-size) * var(--gap-multiplier));
+    /* Fixed row gap: 1 grid space */
+    row-gap: var(--grid-size);
 }
 
 .project-tile {
