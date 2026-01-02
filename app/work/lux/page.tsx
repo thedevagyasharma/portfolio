@@ -2,7 +2,7 @@
 import './Lux.styles.css';
 import Navbar from '@/app/components/layout/Navbar/Navbar';
 import NavLogo from '@/app/components/layout/Navbar/NavLogo';
-import { Breadcrumbs } from '@/app/components/common';
+import { Breadcrumbs, VideoPlayer } from '@/app/components/common';
 import { useGridSnap } from '@/app/hooks/useGridSnap';
 
 export default function Lux() {
@@ -53,20 +53,43 @@ export default function Lux() {
 
                             <hr className="aspire-divider" />
 
+                            {/* Video Player */}
+                            <VideoPlayer
+                                src="/assets/projects/lux/lux-video.webm"
+                                autoplay={true}
+                                loop={true}
+                                className="lux-video-player"
+                                showMuteControl={false}
+                            />
+
                             {/* Overview */}
                             <h2>Overview</h2>
                             <p>Lux is a generative art tool that creates mesmerizing Lissajous curves with gradient effects. Users can customize parameters to generate unique parametric curves and export them as high-quality PNG images.</p>
 
                             <hr className="aspire-divider" />
 
-                            {/* Demo */}
-                            <h2>In Action</h2>
-                            <p>Explore the interactive curve generation:</p>
-                            {/* Placeholder for your clip */}
-                            <div className="lux-demo-placeholder">
-                                <p>Demo video coming soon. Meanwhile, <a href="https://lux.devagyasharma.com" target="_blank" rel="noopener noreferrer">try the tool</a> or <a href="https://github.com/thedevagyasharma/lux" target="_blank" rel="noopener noreferrer">view the source code</a>.</p>
-                            </div>
-
+                            {/* Process */}
+                            <h2>Process</h2>
+                            <ul>
+                                <li>
+                                    Arc browser's generative cards demonstrated the appeal of algorithmic beauty. I built my own version with deeper parameter control for more intentional outputs
+                                </li>
+                                <li>
+                                    Designed constrained parameter ranges instead of infinite values. Every combination guarantees visually appealing curves rather than random noise
+                                </li>
+                                <li>
+                                    Hand-crafted each gradient palette by studying color theory and digital art references. Experimented with neomorphic UI as a stylistic departure from my usual work
+                                </li>
+                                <li>
+                                    Solved Canvas API positioning and sizing challenges to achieve pixel-perfect curve rendering at any viewport size
+                                </li>
+                                <li>
+                                    Used GitHub Copilot to accelerate implementation while maintaining full control over UI design and user experience
+                                </li>
+                                <li>
+                                    Built with modular architecture to enable future feature expansion while maintaining real-time performance
+                                </li>
+                            </ul>
 
                         </div>
                     </div>

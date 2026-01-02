@@ -1,0 +1,130 @@
+/* ===== VIDEO PLAYER CONTAINER ===== */
+.video-player {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== VIDEO ELEMENT ===== */
+.video-player-video {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  display: block;
+  border: var(--border-standard);
+  margin-bottom: var(--spacing-3); /* 24px to controls */
+  background-color: var(--color-surface);
+  cursor: pointer;
+}
+
+/* ===== CONTROLS BAR ===== */
+.video-player-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3); /* 24px */
+  width: 100%;
+}
+
+.video-player-controls-left {
+  display: flex;
+  gap: var(--spacing-2); /* 16px between play and replay */
+  flex-shrink: 0;
+}
+
+.video-player-controls-right {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3); /* 24px between mute button and text */
+  flex-shrink: 0;
+}
+
+/* ===== CONTROL BUTTONS (navbar-style) ===== */
+.video-player-button {
+  color: var(--color-foreground);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: var(--grid-size); /* 48px square */
+  height: var(--grid-size); /* 48px */
+  background-color: white;
+  border: var(--border-standard);
+  cursor: pointer;
+  position: relative;
+
+  /* Lift effect - same as navbar buttons */
+  transform: translateY(calc(-1 * var(--grid-size) / 8));
+  box-shadow: 0px calc(var(--grid-size) / 8) 0px rgba(181, 181, 181, 1);
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.video-player-button:hover {
+  background-color: var(--color-surface);
+}
+
+.video-player-button:active {
+  transform: translateY(0);
+  box-shadow: 0px 0px 0px rgba(181, 181, 181, 1);
+}
+
+.video-player-button svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ===== SEEKBAR ===== */
+.video-player-seekbar {
+  flex-grow: 1;
+  height: var(--grid-size); /* 48px - clickable area */
+  background-color: var(--color-surface);
+  border: var(--border-standard);
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0 var(--spacing-2); /* 16px horizontal padding */
+  transition: background-color 0.3s ease;
+}
+
+.video-player-seekbar:hover {
+  background-color: #f0f0f0;
+}
+
+.video-player-seekbar-progress {
+  height: 8px;
+  background-color: var(--color-accent);
+  border-radius: 0; /* Sharp corners for consistency */
+  transition: width 0.1s linear;
+  pointer-events: none;
+}
+
+/* ===== WARNING TEXT ===== */
+.video-player-mute-warning {
+  font-family: var(--font_face-mono);
+  font-size: var(--font_body-small--size);
+  letter-spacing: var(--font_body--letter-spacing);
+  color: var(--color-text-secondary);
+  line-height: 1.4;
+  font-weight: 400;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .video-player-controls {
+    flex-wrap: wrap;
+  }
+
+  .video-player-controls-right {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-2);
+    width: 100%;
+  }
+
+  .video-player-seekbar {
+    order: -1; /* Move seekbar to top on mobile */
+    width: 100%;
+    margin-bottom: var(--spacing-2);
+  }
+}

@@ -186,6 +186,11 @@ main {
     border: none;
 }
 
+/* Video Player */
+.lux-video-player {
+    margin-bottom: var(--spacing-8); /* 64px - matches hero spacing */
+}
+
 /* Demo Placeholder */
 .lux-demo-placeholder {
     width: 100%;
