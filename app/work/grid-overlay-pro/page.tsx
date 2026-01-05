@@ -2,7 +2,7 @@
 import './GridOverlayPro.styles.css';
 import Navbar from '@/app/components/layout/Navbar/Navbar';
 import NavLogo from '@/app/components/layout/Navbar/NavLogo';
-import { Breadcrumbs } from '@/app/components/common';
+import { Breadcrumbs, VideoPlayer } from '@/app/components/common';
 import { useGridSnap } from '@/app/hooks/useGridSnap';
 
 export default function GridOverlayPro() {
@@ -26,13 +26,13 @@ export default function GridOverlayPro() {
                 <section className="aspire-content-section">
                     <div className="container">
                         <div ref={contentBoxRef} className="aspire-content-box">
-                            <a href="https://github.com/thedevagyasharma/grid-overlay-extension" target="_blank" rel="noopener noreferrer" className="github-repo-button">
-                                GitHub Repo
+                            <a href="https://github.com/thedevagyasharma/grid-overlay-extension?tab=readme-ov-file#-installation" target="_blank" rel="noopener noreferrer" className="github-repo-button">
+                                Install Extension
                             </a>
 
                             {/* Hero */}
                             <div className="aspire-hero">
-                                <h1 className="aspire-title">Grid Overlay Pro <span className="in-progress-badge">[IN PROGRESS]</span></h1>
+                                <h1 className="aspire-title">Grid Overlay Pro <a href="https://github.com/thedevagyasharma/grid-overlay-extension/releases" target="_blank" rel="noopener noreferrer" className="release-badge">View Latest Release</a></h1>
 
                                 <p className="large">An open source browser extension for designers and developers to visualize grid layouts directly on any webpage.</p>
 
@@ -53,19 +53,46 @@ export default function GridOverlayPro() {
 
                             <hr className="aspire-divider" />
 
+                            {/* Video Demo */}
+                            <VideoPlayer
+                                src="/assets/projects/grid-overlay-pro/video.webm"
+                                autoplay={false}
+                                loop={false}
+                                className="grid-overlay-video-player"
+                                showMuteControl={true}
+                            />
+
                             {/* Overview */}
                             <h2>Overview</h2>
-                            <p>Grid Overlay Pro is a browser extension that helps designers and developers ensure pixel-perfect alignment by overlaying customizable grid systems on any webpage. The tool provides real-time control over grid parameters like column count, gutter width, and margins.</p>
+                            <p>Grid Overlay Pro is a browser extension that helps designers and developers ensure pixel-perfect alignment by overlaying customizable grid systems on any webpage. Unlike static design tool overlays, it features responsive grid adaptation—automatically adjusting column widths and spacing when the viewport resizes, maintaining consistent proportions across any screen size.</p>
 
                             <hr className="aspire-divider" />
 
-                            {/* Demo */}
-                            <h2>In Action</h2>
-                            <p>Watch how the grid overlay adapts to different configurations in real-time:</p>
-                            {/* Placeholder for your clip */}
-                            <div className="grid-demo-placeholder">
-                                <p>Demo video coming soon. Meanwhile, <a href="https://github.com/thedevagyasharma/grid-overlay-extension" target="_blank" rel="noopener noreferrer">view the source code</a>.</p>
-                            </div>
+                            {/* Challenge */}
+                            <h2>Challenge</h2>
+                            <p>Designers rely on grid overlays in tools like Figma to ensure precise alignment and spacing. However, this capability doesn't translate to the browser during development. Developers are left eyeballing measurements or switching between design files and code, slowing down the implementation process and increasing the risk of visual inconsistencies.</p>
+
+                            <hr className="aspire-divider" />
+
+                            {/* Approach */}
+                            <h2>Approach</h2>
+                            <ul>
+                                <li>
+                                    Initially prototyped as a browser bookmarklet to quickly test the concept, but pivoted to a full browser extension to enable public distribution and persistent settings
+                                </li>
+                                <li>
+                                    Collaborated with Claude AI to iteratively build and refine features, testing different overlay rendering approaches and control mechanisms
+                                </li>
+                                <li>
+                                    Implemented responsive grid adaptation as a key differentiator—grids automatically recalculate and adjust when the window resizes, a feature not available in static design tools
+                                </li>
+                                <li>
+                                    Focused on developer ergonomics with persistent settings, keyboard shortcuts, and minimal UI that stays out of the way
+                                </li>
+                                <li>
+                                    Open-sourced the project to allow the community to contribute features and adapt the tool to their workflows
+                                </li>
+                            </ul>
 
 
                         </div>

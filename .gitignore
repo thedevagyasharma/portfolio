@@ -42,3 +42,5 @@ next-env.d.ts
 
 # migration files
 /app/TO_MIGRATE
+*.md
+*.bak

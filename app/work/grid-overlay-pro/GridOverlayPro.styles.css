@@ -93,6 +93,19 @@ main {
     font-weight: 400;
     color: var(--color-text-secondary);
 }
+.release-badge {
+    font-family: var(--font_face-mono);
+    font-size: var(--font_body-small--size);
+    font-weight: 400;
+    color: var(--color-accent);
+    text-decoration: none;
+    margin-left: var(--spacing-2);
+    transition: opacity 0.2s;
+}
+
+.release-badge:hover {
+    opacity: 0.7;
+}
 
 .aspire-hero > p {
     margin-bottom: var(--spacing-4);

@@ -21,9 +21,10 @@ export default function VideoPlayer({
   showMuteControl = true
 }: VideoPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(autoplay);
-  const [isMuted, setIsMuted] = useState(true);
+  const [isMuted, setIsMuted] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
+  const [hasEnded, setHasEnded] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   // Update current time as video plays
@@ -42,6 +43,7 @@ export default function VideoPlayer({
     const handleEnded = () => {
       if (!loop) {
         setIsPlaying(false);
+        setHasEnded(true);
       }
     };
 
@@ -69,6 +71,10 @@ export default function VideoPlayer({
       video.pause();
       setIsPlaying(false);
     } else {
+      if (hasEnded) {
+        video.currentTime = 0;
+        setHasEnded(false);
+      }
       video.play();
       setIsPlaying(true);
     }
@@ -79,6 +85,7 @@ export default function VideoPlayer({
     if (!video) return;
 
     video.currentTime = 0;
+    setHasEnded(false);
     video.play();
     setIsPlaying(true);
   };
@@ -110,20 +117,37 @@ export default function VideoPlayer({
 
   const progress = duration > 0 ? (currentTime / duration) * 100 : 0;
 
+  const formatTime = (seconds: number): string => {
+    if (isNaN(seconds) || seconds === 0) return '0:00';
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
+  };
+
   return (
     <div className={`video-player ${className}`}>
-      <video
-        ref={videoRef}
-        className="video-player-video"
-        autoPlay={autoplay}
-        loop={loop}
-        muted={isMuted}
-        playsInline
-        onClick={handlePlayPause}
-      >
-        <source src={src} type="video/webm" />
-        Your browser does not support the video tag.
-      </video>
+      <div className="video-player-video-container">
+        <video
+          ref={videoRef}
+          className="video-player-video"
+          autoPlay={autoplay}
+          loop={loop}
+          muted={isMuted}
+          playsInline
+          onClick={handlePlayPause}
+        >
+          <source src={src} type="video/webm" />
+          Your browser does not support the video tag.
+        </video>
+
+        {!isPlaying && (
+          <div className="video-player-paused-overlay" onClick={handlePlayPause}>
+            <div className="video-player-paused-icon">
+              {hasEnded ? <RotateCcw size={48} /> : <Play size={48} />}
+            </div>
+          </div>
+        )}
+      </div>
 
       <div className="video-player-controls">
         <div className="video-player-controls-left">
@@ -157,6 +181,12 @@ export default function VideoPlayer({
             className="video-player-seekbar-progress"
             style={{ width: `${progress}%` }}
           />
+        </div>
+
+        <div className="video-player-time-display">
+          <span className="video-player-time-elapsed">{formatTime(currentTime)}</span>
+          <span className="video-player-time-separator">/</span>
+          <span className="video-player-time-duration">{formatTime(duration)}</span>
         </div>
 
         {showMuteControl && (
