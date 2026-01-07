@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Playfair_Display, VT323, Press_Start_2P, Google_Sans_Code } from "next/font/google";
+import { GoogleAnalytics } from '@next/third-parties/google';
 import "./globals.css";
 import Background from "./components/layout/Background/Background";
 import GridSnapPoints from "./components/layout/GridSnapPoints/GridSnapPoints";
@@ -61,6 +62,9 @@ export default function RootLayout({
           </PageTransitionProvider>
           <Footer />
         </div>
+        {process.env.NEXT_PUBLIC_GA_ID && (
+          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+        )}
       </body>
     </html>
   );
