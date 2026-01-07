@@ -8,6 +8,7 @@ import Footer from "./components/layout/Footer/Footer";
 import ScrollRestoration from "./components/layout/ScrollRestoration";
 import MobileWarning from "./components/layout/MobileWarning/MobileWarning";
 import { PageTransitionProvider } from "@/app/components/providers";
+import StructuredData from "./components/seo/StructuredData";
 
 const playfairDisplay = Playfair_Display({
   subsets: ["latin"],
@@ -38,8 +39,52 @@ const googleSansCode = Google_Sans_Code({
 })
 
 export const metadata: Metadata = {
-  title: "Devagya Sharma - UX Engineer & Product Designer",
+  metadataBase: new URL('https://devagyasharma.com'),
+  title: {
+    default: "Devagya Sharma - UX Engineer & Product Designer",
+    template: "%s | Devagya Sharma"
+  },
   description: "UX Engineer with 3 years of experience crafting scalable, accessible web and mobile experiences. Specializing in design systems, product design, and user-centered digital solutions.",
+  keywords: ["UX Engineer", "Product Designer", "Design Systems", "Web Development", "UI/UX", "Frontend Development", "Devagya Sharma"],
+  authors: [{ name: "Devagya Sharma" }],
+  creator: "Devagya Sharma",
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://devagyasharma.com',
+    siteName: 'Devagya Sharma - Portfolio',
+    title: "Devagya Sharma - UX Engineer & Product Designer",
+    description: "UX Engineer with 3 years of experience crafting scalable, accessible web and mobile experiences. Specializing in design systems, product design, and user-centered digital solutions.",
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Devagya Sharma - UX Engineer & Product Designer',
+      }
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "Devagya Sharma - UX Engineer & Product Designer",
+    description: "UX Engineer with 3 years of experience crafting scalable, accessible web and mobile experiences.",
+    images: ['/og-image.jpg'],
+    creator: '@devagyasharma',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  verification: {
+    google: 'your-google-site-verification-code',
+  },
 };
 
 export default function RootLayout({
@@ -52,6 +97,7 @@ export default function RootLayout({
       <body
         className={`antialiased`}
       >
+        <StructuredData />
         <MobileWarning />
         <div className="desktop-content">
           <ScrollRestoration />
