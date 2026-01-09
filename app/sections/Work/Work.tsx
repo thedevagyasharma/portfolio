@@ -4,16 +4,34 @@ import { SectionTitle } from '@/app/components/common';
 import { useGridSnap } from '@/app/hooks/useGridSnap';
 
 export default function Work() {
-    const tile1Ref = useGridSnap<HTMLAnchorElement>({ groupId: 'work-tiles' });
-    const tile2Ref = useGridSnap<HTMLAnchorElement>({ groupId: 'work-tiles' });
-    const tile3Ref = useGridSnap<HTMLAnchorElement>({ groupId: 'work-tiles' });
+    const tile1Ref = useGridSnap<HTMLAnchorElement>({
+        groupId: 'work-tiles',
+        contentSelector: {
+            selector: '.project-tile-content',
+            paddingTiles: 2 // 1 tile top + 1 tile bottom
+        }
+    });
+    const tile2Ref = useGridSnap<HTMLAnchorElement>({
+        groupId: 'work-tiles',
+        contentSelector: {
+            selector: '.project-tile-content',
+            paddingTiles: 2
+        }
+    });
+    const tile3Ref = useGridSnap<HTMLAnchorElement>({
+        groupId: 'work-tiles',
+        contentSelector: {
+            selector: '.project-tile-content',
+            paddingTiles: 2
+        }
+    });
 
     return (
         <>
             <section>
                 <div className="container">
                     <SectionTitle text="Selected Works" gridSpaces={8} />
-                    <div className="work-grid">
+                    <div className="work-row">
                         <a ref={tile1Ref} href="/work/aspire-design-system" className="project-tile">
                             <div className="project-tile-content">
                                 <div className="project-number">01</div>
@@ -34,6 +52,8 @@ export default function Work() {
                                 </div>
                             </div>
                         </a>
+                    </div>
+                    <div className="work-row">
                         <a ref={tile3Ref} href="/work/nex" className="project-tile">
                             <div className="project-tile-content">
                                 <div className="project-number">03</div>

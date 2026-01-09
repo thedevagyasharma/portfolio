@@ -23,6 +23,17 @@ export interface GridSnapOptions {
    * @default undefined (each element snaps independently)
    */
   groupId?: string;
+
+  /**
+   * CSS selector for the inner content element to measure
+   * If provided, measures the content element and adds padding separately
+   * Format: { selector: '.content-class', paddingTiles: 2 }
+   * @default undefined (measures the element itself)
+   */
+  contentSelector?: {
+    selector: string;
+    paddingTiles: number;
+  };
 }
 
 /**
@@ -54,7 +65,7 @@ export function useGridSnap<T extends HTMLElement = HTMLDivElement>(
   options: GridSnapOptions = {}
 ) {
   const ref = useRef<T>(null);
-  const { direction = 'up', enabled = true, groupId } = options;
+  const { direction = 'up', enabled = true, groupId, contentSelector } = options;
 
   useEffect(() => {
     if (!enabled || !ref.current) return;
@@ -103,14 +114,28 @@ export function useGridSnap<T extends HTMLElement = HTMLDivElement>(
 
         let maxHeight = 0;
 
-        // Measure all elements - use scrollHeight for content-only measurement
+        // Measure all elements
         group.forEach((el) => {
           el.style.height = 'auto';
           void el.offsetHeight;
 
-          // scrollHeight gives us content height without the element's own padding/border
-          // offsetHeight would include padding/border which inflates the measurement
-          maxHeight = Math.max(maxHeight, el.scrollHeight);
+          let measuredHeight: number;
+
+          if (contentSelector) {
+            // Measure inner content element and add padding
+            const innerContent = el.querySelector(contentSelector.selector);
+            if (innerContent) {
+              measuredHeight = innerContent.scrollHeight + (contentSelector.paddingTiles * gridSize);
+            } else {
+              console.warn(`useGridSnap: Content selector "${contentSelector.selector}" not found, falling back to element measurement`);
+              measuredHeight = el.scrollHeight;
+            }
+          } else {
+            // Measure the element itself
+            measuredHeight = el.scrollHeight;
+          }
+
+          maxHeight = Math.max(maxHeight, measuredHeight);
         });
 
         // Calculate snapped height from max
@@ -130,14 +155,27 @@ export function useGridSnap<T extends HTMLElement = HTMLDivElement>(
         element.style.height = 'auto';
         void element.offsetHeight;
 
-        // Use scrollHeight for content-only measurement
-        const contentHeight = element.scrollHeight;
+        let measuredHeight: number;
+
+        if (contentSelector) {
+          // Measure inner content element and add padding
+          const innerContent = element.querySelector(contentSelector.selector);
+          if (innerContent) {
+            measuredHeight = innerContent.scrollHeight + (contentSelector.paddingTiles * gridSize);
+          } else {
+            console.warn(`useGridSnap: Content selector "${contentSelector.selector}" not found, falling back to element measurement`);
+            measuredHeight = element.scrollHeight;
+          }
+        } else {
+          // Measure the element itself
+          measuredHeight = element.scrollHeight;
+        }
 
         let snappedHeight: number;
         if (direction === 'up') {
-          snappedHeight = Math.ceil(contentHeight / gridSize) * gridSize;
+          snappedHeight = Math.ceil(measuredHeight / gridSize) * gridSize;
         } else {
-          snappedHeight = Math.round(contentHeight / gridSize) * gridSize;
+          snappedHeight = Math.round(measuredHeight / gridSize) * gridSize;
         }
 
         element.style.height = `${snappedHeight}px`;
@@ -231,7 +269,7 @@ export function useGridSnap<T extends HTMLElement = HTMLDivElement>(
         }
       }
     };
-  }, [direction, enabled, groupId]);
+  }, [direction, enabled, groupId, contentSelector]);
 
   return ref;
 }
