@@ -69,7 +69,7 @@ export const metadata: Metadata = {
     title: "Devagya Sharma - UX Engineer & Product Designer",
     description: "UX Engineer with 3 years of experience crafting scalable, accessible web and mobile experiences.",
     images: ['/og-image.jpg'],
-    creator: '@devagyasharma',
+    creator: '@n0tdevs',
   },
   robots: {
     index: true,
@@ -81,9 +81,6 @@ export const metadata: Metadata = {
       'max-image-preview': 'large',
       'max-snippet': -1,
     },
-  },
-  verification: {
-    google: 'your-google-site-verification-code',
   },
 };
 

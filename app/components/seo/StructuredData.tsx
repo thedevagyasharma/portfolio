@@ -9,7 +9,7 @@ export default function StructuredData() {
     "sameAs": [
       "https://github.com/thedevagyasharma",
       "https://linkedin.com/in/devagyasharma",
-      "https://twitter.com/devagyasharma"
+      "https://x.com/n0tdevs"
     ],
     "knowsAbout": [
       "UX Design",
@@ -23,12 +23,12 @@ export default function StructuredData() {
     ],
     "alumniOf": {
       "@type": "Organization",
-      "name": "Your University Name"
+      "name": "University of Michigan - Ann Arbor"
     },
-    "worksFor": {
-      "@type": "Organization",
-      "name": "Your Company Name"
-    }
+    // "worksFor": {
+    //   "@type": "Organization",
+    //   "name": "Your Company Name"
+    // }
   };
 
   return (
