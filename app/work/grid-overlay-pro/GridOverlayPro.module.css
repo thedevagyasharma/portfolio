@@ -1,0 +1,104 @@
+.releaseBadge {
+    font-family: var(--font_face-mono);
+    font-size: var(--font_body-small--size);
+    font-weight: 400;
+    color: var(--color-accent);
+    text-decoration: none;
+    margin-left: var(--spacing-2);
+    transition: opacity 0.2s;
+}
+
+.releaseBadge:hover {
+    opacity: 0.7;
+}
+
+/* GitHub Repo Button (light orange surface with bright orange text) */
+.githubRepoButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    height: var(--grid-size);
+    padding: 0 var(--spacing-3);
+    width: fit-content;
+    background-color: #ffe5d9;
+    border: 1px solid #ffb899;
+    font-family: var(--font_face-mono);
+    font-size: var(--font_body-small--size);
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: var(--font_body--letter-spacing);
+    color: var(--color-accent);
+    text-decoration: none;
+    cursor: pointer;
+    position: absolute;
+    top: var(--grid-size);
+    right: var(--grid-size);
+
+    /* Button lift effect with darker orange shadow */
+    transform: translateY(calc(-1 * var(--grid-size) / 8));
+    box-shadow: 0px calc(var(--grid-size) / 8) 0px #ffb899;
+    transition: all 0.3s ease;
+}
+
+.githubRepoButton::after {
+    content: '↗';
+    font-family: var(--font_face-mono);
+}
+
+.githubRepoButton:hover {
+    background-color: #ffd4c2;
+}
+
+.githubRepoButton:active {
+    transform: translateY(0);
+    box-shadow: 0px 0px 0px #ffb899;
+}
+
+/* Demo Placeholder */
+.demoPlaceholder {
+    width: 100%;
+    min-height: 400px;
+    background-color: var(--color-surface);
+    border: var(--border-standard);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--spacing-4);
+}
+
+.demoPlaceholder p {
+    color: var(--color-text-secondary);
+    margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .cardGroup {
+        grid-template-columns: 1fr;
+    }
+
+    /* Hide vertical dividers */
+    .card:not(:last-child)::after {
+        display: none;
+    }
+
+    /* Add horizontal dividers */
+    .card:not(:last-child)::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: calc(var(--grid-spacing-1) / 2);
+        right: calc(var(--grid-spacing-1) / 2);
+        height: 1px;
+        background-color: var(--color-divider);
+    }
+
+    .metaCards {
+        flex-direction: column;
+    }
+
+    .metaCard {
+        min-width: 100%;
+    }
+}

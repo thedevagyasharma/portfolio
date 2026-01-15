@@ -1,0 +1,50 @@
+.textUppercase {
+    text-transform: uppercase;
+}
+
+.tags {
+    display: flex;
+    flex-direction: row;
+    gap: var(--spacing-2);
+    flex-wrap: wrap;
+    margin-bottom: var(--spacing-2); /* Tight: tags to title */
+}
+
+.tag {
+    height: var(--grid-size);
+    padding: 0 var(--spacing-3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-accent);
+    color: white;
+    font-family: var(--font_face-mono);
+    font-size: var(--font_body--size);
+    font-weight: 500;
+    border: var(--border-standard);
+}
+
+/* Color Grid */
+.colorGrid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--spacing-2);
+    margin-bottom: var(--spacing-5);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .card:not(:last-child)::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: calc(var(--grid-spacing-1) / 2);
+        right: calc(var(--grid-spacing-1) / 2);
+        height: 1px;
+        background-color: var(--color-divider);
+    }
+
+    .colorGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

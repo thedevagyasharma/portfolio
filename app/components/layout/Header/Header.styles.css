@@ -1,0 +1,20 @@
+/* Header wrapper - fixed positioning */
+.header-wrapper {
+  position: fixed;
+  top: var(--grid-spacing-1);
+  left: 0;
+  right: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.header-wrapper .container {
+  pointer-events: auto;
+}
+
+/* Header content - flexbox layout for logo and nav */
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}

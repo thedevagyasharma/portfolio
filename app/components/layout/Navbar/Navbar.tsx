@@ -1,7 +1,7 @@
 'use client';
 
 import { Menu } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import './Navbar.styles.css';
 
@@ -44,7 +44,7 @@ export default function Navbar() {
         { name: 'Home', href: "/", external: false },
         // { name: 'Work', href: "#work", external: false }, // Hidden until work page is ready
         { name: 'About', href: "/about", external: false },
-        { name: 'Resume', href: "https://drive.google.com/file/d/1vWStQwBMnDTmQ1fTLuEt2Nxsjxbb3Xft/view", external: true },
+        { name: 'Resume', href: "https://github.com/thedevagyasharma/resume/blob/main/devagya_sharma_resume.pdf", external: true },
     ];
 
     const toggleMenu = () => {

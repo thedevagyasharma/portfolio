@@ -41,11 +41,11 @@ const googleSansCode = Google_Sans_Code({
 export const metadata: Metadata = {
   metadataBase: new URL('https://devagyasharma.com'),
   title: {
-    default: "Devagya Sharma - UX Engineer & Product Designer",
+    default: "Devagya Sharma - Design Engineer",
     template: "%s | Devagya Sharma"
   },
-  description: "UX Engineer with 3 years of experience crafting scalable, accessible web and mobile experiences. Specializing in design systems, product design, and user-centered digital solutions.",
-  keywords: ["UX Engineer", "Product Designer", "Design Systems", "Web Development", "UI/UX", "Frontend Development", "Devagya Sharma"],
+  description: "Design Engineer with 3 years of experience crafting scalable, accessible web and mobile experiences. Specializing in design systems, product design, and user-centered digital solutions.",
+  keywords: ["Design Engineer", "UX Engineer", "Product Designer", "Design Systems", "Web Development", "UI/UX", "Frontend Development", "Devagya Sharma"],
   authors: [{ name: "Devagya Sharma" }],
   creator: "Devagya Sharma",
   openGraph: {
@@ -53,21 +53,21 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://devagyasharma.com',
     siteName: 'Devagya Sharma - Portfolio',
-    title: "Devagya Sharma - UX Engineer & Product Designer",
-    description: "UX Engineer with 3 years of experience crafting scalable, accessible web and mobile experiences. Specializing in design systems, product design, and user-centered digital solutions.",
+    title: "Devagya Sharma - Design Engineer",
+    description: "Design Engineer with 3 years of experience crafting scalable, accessible web and mobile experiences. Specializing in design systems, product design, and user-centered digital solutions.",
     images: [
       {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Devagya Sharma - UX Engineer & Product Designer',
+        alt: 'Devagya Sharma - Design Engineer',
       }
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Devagya Sharma - UX Engineer & Product Designer",
-    description: "UX Engineer with 3 years of experience crafting scalable, accessible web and mobile experiences.",
+    title: "Devagya Sharma - Design Engineer",
+    description: "Design Engineer with 3 years of experience crafting scalable, accessible web and mobile experiences.",
     images: ['/og-image.jpg'],
     creator: '@n0tdevs',
   },

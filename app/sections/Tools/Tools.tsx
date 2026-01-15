@@ -23,7 +23,7 @@ export default function Tools() {
         <>
             <section>
                 <div className="container">
-                    <SectionTitle text="Personal Projects" gridSpaces={9} />
+                    <SectionTitle text="Shipped Products" gridSpaces={9} />
                     <div className="tools-grid">
                         <a ref={tile1Ref} href="/work/grid-overlay-pro" className="tool-tile">
                             <div className="tool-tile-content">

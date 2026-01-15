@@ -44,3 +44,4 @@ next-env.d.ts
 /app/TO_MIGRATE
 *.md
 *.bak
+/NEW_CASE_STUDIES

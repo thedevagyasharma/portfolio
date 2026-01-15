@@ -1,18 +1,10 @@
-import Navbar from "./components/layout/Navbar/Navbar";
-import NavLogo from "./components/layout/Navbar/NavLogo";
+import Header from './components/layout/Header/Header';
 import { Hero, Tools, Work } from './sections';
 
 export default function Home() {
   return (
     <>
-      <header className="header-wrapper">
-        <div className="container">
-          <div className="header-content">
-            <NavLogo />
-            <Navbar />
-          </div>
-        </div>
-      </header>
+      <Header/>
       <main>
         <Hero />
         <Tools />
