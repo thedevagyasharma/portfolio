@@ -168,25 +168,27 @@ export default function VideoPlayer({
           </button>
         </div>
 
-        <div
-          className="video-player-seekbar"
-          onClick={handleSeek}
-          role="slider"
-          aria-label="Video progress"
-          aria-valuemin={0}
-          aria-valuemax={duration}
-          aria-valuenow={currentTime}
-        >
+        <div className="video-player-controls-center">
           <div
-            className="video-player-seekbar-progress"
-            style={{ width: `${progress}%` }}
-          />
-        </div>
+            className="video-player-seekbar"
+            onClick={handleSeek}
+            role="slider"
+            aria-label="Video progress"
+            aria-valuemin={0}
+            aria-valuemax={duration}
+            aria-valuenow={currentTime}
+          >
+            <div
+              className="video-player-seekbar-progress"
+              style={{ width: `${progress}%` }}
+            />
+          </div>
 
-        <div className="video-player-time-display">
-          <span className="video-player-time-elapsed">{formatTime(currentTime)}</span>
-          <span className="video-player-time-separator">/</span>
-          <span className="video-player-time-duration">{formatTime(duration)}</span>
+          <div className="video-player-time-display">
+            <span className="video-player-time-elapsed">{formatTime(currentTime)}</span>
+            <span className="video-player-time-separator">/</span>
+            <span className="video-player-time-duration">{formatTime(duration)}</span>
+          </div>
         </div>
 
         {showMuteControl && (
