@@ -172,21 +172,20 @@
 }
 
 /* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
-  .video-player-controls {
-    flex-wrap: wrap;
+@media (max-width: 675px) {
+  .video-player-button {
+    width: calc(var(--grid-size) * 2); /* 96px - 2 grid tiles */
+    height: calc(var(--grid-size) * 2); /* 96px - 2 grid tiles */
+    transform: translateY(calc(-1 * var(--grid-size) / 4));
+    box-shadow: 0px calc(var(--grid-size) / 4) 0px rgba(181, 181, 181, 1);
   }
 
-  .video-player-controls-right {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--spacing-2);
-    width: 100%;
+  .video-player-paused-icon {
+    transform: translateY(calc(-1 * var(--grid-size) / 4));
+    box-shadow: 0px calc(var(--grid-size) / 4) 0px rgba(181, 181, 181, 1);
   }
 
   .video-player-seekbar {
-    order: -1; /* Move seekbar to top on mobile */
-    width: 100%;
-    margin-bottom: var(--spacing-2);
+    height: calc(var(--grid-size) * 2); /* 96px - 2 grid tiles */
   }
 }

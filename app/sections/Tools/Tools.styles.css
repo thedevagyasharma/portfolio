@@ -85,3 +85,34 @@
     font-weight: 400;
     color: var(--color-text-secondary);
 }
+
+/* ========================================
+   MOBILE OPTIMIZATION (≤ 767px)
+   ======================================== */
+@media (max-width: 767px) {
+    .tools-grid {
+        flex-direction: column;
+        gap: var(--grid-spacing-1);
+    }
+
+    .tool-tile {
+        width: 100%;
+    }
+
+    .tool-title {
+        font-size: 1.125rem;
+    }
+
+    .tool-number {
+        font-size: 0.875rem;
+    }
+
+    .tool-description {
+        font-size: 0.875rem;
+        line-height: 1.6;
+    }
+
+    .wip-badge {
+        font-size: 0.625rem;
+    }
+}

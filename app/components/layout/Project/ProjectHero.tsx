@@ -37,9 +37,9 @@ export function ProjectHero({ title, description, role, tags, footnote, cta }: P
                         </div>
                     </div>
                 </div>
-                {cta}
                 <small>{footnote}</small>
             </section>
+            {cta}
         </>
     )
 }

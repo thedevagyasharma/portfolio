@@ -13,6 +13,14 @@
     --navbar-text: black;
 }
 
+@media (max-width: 675px){
+    :root{
+        --navbar-button-lift: calc(-1 * var(--grid-size) / 4);
+        --navbar-button-shadow-y: calc(var(--grid-size) / 4);
+    }
+    
+}
+
 /* ===== KEYFRAME ANIMATIONS ===== */
 @keyframes slideIn {
     0% {
@@ -185,4 +193,43 @@
     transform: translateY(0);
     box-shadow: var(--navbar-button-shadow-flat);
     animation: none;
+}
+
+/* ===== RESPONSIVE STYLES ===== */
+@media (max-width: 675px) {
+    /* Toggle button: 2×2 tiles */
+    .navbar .menu-button {
+        width: calc(var(--grid-size) * 2);
+        height: calc(var(--grid-size) * 2);
+    }
+
+    /* Nav links: 3×2 tiles */
+    .navbar .link > a {
+        width: calc(3 * var(--grid-size));
+        height: calc(var(--grid-size) * 2);
+    }
+
+    /* Update slide animations for 3-tile width */
+    @keyframes slideIn {
+        0% {
+            transform: translateX(calc((4 - var(--stagger-index)) * 3 * var(--grid-size)));
+        }
+        100% {
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes slideOut {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(calc((4 - var(--stagger-index)) * 3 * var(--grid-size)));
+        }
+    }
+
+    /* Override slide-in transform for mobile */
+    .navbar .link.slide-in {
+        transform: translateX(calc((4 - var(--stagger-index)) * 3 * var(--grid-size)));
+    }
 }

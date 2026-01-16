@@ -1,7 +1,9 @@
 /* Nav Logo */
+
 .nav-logo {
     height: var(--grid-size);
     width: calc(var(--grid-size) * 4);
+
     flex-shrink: 0;
     background-color: white;
     display: flex;
@@ -18,4 +20,27 @@
 
 .nav-logo .toHighlight {
     color: var(--color-accent);
+}
+
+.logo-full {
+    display: block;
+}
+
+.logo-short {
+    display: none;
+}
+
+@media (max-width: 675px) {
+    .nav-logo {
+        height: calc(var(--grid-size) * 2);
+        width: calc(var(--grid-size) * 2);
+    }
+
+    .logo-full {
+        display: none;
+    }
+
+    .logo-short {
+        display: block;
+    }
 }

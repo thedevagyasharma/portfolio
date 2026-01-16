@@ -1,21 +1,13 @@
 'use client';
 
-import Navbar from "../components/layout/Navbar/Navbar";
-import NavLogo from "../components/layout/Navbar/NavLogo";
+import Header from '../components/layout/Header/Header';
 import { ProfileIntro, ByTheNumbers, CoreValues, MySetup } from './sections';
 import './About.styles.css';
 
 export default function About() {
     return (
         <>
-            <header className="header-wrapper">
-                <div className="container">
-                    <div className="header-content">
-                        <NavLogo />
-                        <Navbar />
-                    </div>
-                </div>
-            </header>
+            <Header/>
             <main>
                 <ProfileIntro />
                 <ByTheNumbers />

@@ -84,3 +84,31 @@
     object-fit: cover;
     border: var(--border-standard);
 }
+
+/* ========================================
+   MOBILE OPTIMIZATION (≤ 767px)
+   ======================================== */
+@media (max-width: 767px) {
+    .work-row {
+        flex-direction: column;
+        gap: var(--grid-spacing-1);
+        margin-bottom: var(--grid-spacing-1);
+    }
+
+    .project-tile {
+        width: 100%;
+    }
+
+    .project-title {
+        font-size: 1.125rem;
+    }
+
+    .project-number {
+        font-size: 0.875rem;
+    }
+
+    .project-description {
+        font-size: 0.875rem;
+        line-height: 1.6;
+    }
+}

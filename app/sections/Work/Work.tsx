@@ -30,7 +30,7 @@ export default function Work() {
         <>
             <section>
                 <div className="container">
-                    <SectionTitle text="Design Case Studies" gridSpaces={10} />
+                    <SectionTitle text="Case Studies" gridSpaces={7} mobileGridSpaces={9} />
                     <div className="work-row">
                         <a ref={tile1Ref} href="/work/aspire-design-system" className="project-tile">
                             <div className="project-tile-content">

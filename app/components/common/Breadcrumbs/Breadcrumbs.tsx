@@ -1,4 +1,4 @@
-import './Breadcrumbs.styles.css';
+import styles from './Breadcrumbs.module.css';
 
 type BreadcrumbsProps = {
     currentPage: string;
@@ -8,12 +8,13 @@ export default function Breadcrumbs({ currentPage }: BreadcrumbsProps) {
     return (
         <section>
             <div className="container">
-                <div className="aspire-breadcrumbs">
-                    <a href="/" className="aspire-breadcrumb-link">Home</a>
-                    <span className="aspire-breadcrumb-separator">/</span>
-                    <a href="/work" className="aspire-breadcrumb-link">Work</a>
-                    <span className="aspire-breadcrumb-separator">/</span>
-                    <span className="aspire-breadcrumb-current">{currentPage}</span>
+                <div className={styles.breadcrumbs}>
+                    <a href="/" className={styles.breadcrumbLink}>Home</a>
+                    <span className={styles.breadcrumbSeparator}>/</span>
+                    {/* <a href="/work" className={styles.breadcrumbLink}>Work</a> */}
+                    <span>Work</span>
+                    <span className={styles.breadcrumbSeparator}>/</span>
+                    <span className={styles.breadcrumbCurrent}>{currentPage}</span>
                 </div>
             </div>
         </section>

@@ -1,14 +1,30 @@
 .sectionTitle {
     display: flex;
     align-items: center;
-    padding-inline: var(--grid-size);
-    z-index: 0;
-    position: relative;
+
     height: calc(var(--grid-size) * 1);
+    width: calc(var(--grid-size) * var(--desktop-spaces));
+
+    position: relative;
+
     background-color: white;
-    font-family: var(--font_face-mono);
-    font-size: 1.75rem;
-    text-align: left;
     border: var(--border-standard);
+
+    font-family: var(--font_face-mono);
+    
     margin-bottom: var(--grid-spacing-1);
+    padding-inline: var(--grid-spacing-1);
+}
+
+.sectionTitle h2 {
+    margin: 0;
+}
+
+@media (max-width: 675px) {
+    .sectionTitle {
+        height: calc(var(--grid-size) * 2);
+        width: calc(var(--grid-size) * var(--mobile-spaces));
+
+        padding-inline: var(--grid-spacing-half);
+    }
 }

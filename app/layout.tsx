@@ -6,7 +6,6 @@ import Background from "./components/layout/Background/Background";
 import GridSnapPoints from "./components/layout/GridSnapPoints/GridSnapPoints";
 import Footer from "./components/layout/Footer/Footer";
 import ScrollRestoration from "./components/layout/ScrollRestoration";
-import MobileWarning from "./components/layout/MobileWarning/MobileWarning";
 import { PageTransitionProvider } from "@/app/components/providers";
 import StructuredData from "./components/seo/StructuredData";
 
@@ -95,16 +94,13 @@ export default function RootLayout({
         className={`antialiased`}
       >
         <StructuredData />
-        <MobileWarning />
-        <div className="desktop-content">
-          <ScrollRestoration />
-          <Background />
-          <GridSnapPoints />
-          <PageTransitionProvider>
-            {children}
-          </PageTransitionProvider>
-          <Footer />
-        </div>
+        <ScrollRestoration />
+        <Background />
+        <GridSnapPoints />
+        <PageTransitionProvider>
+          {children}
+        </PageTransitionProvider>
+        <Footer />
         {process.env.NEXT_PUBLIC_GA_ID && (
           <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
         )}

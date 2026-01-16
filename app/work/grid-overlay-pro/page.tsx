@@ -17,7 +17,7 @@ export default function GridOverlayPro() {
                 <ProjectContent ref={contentBoxRef}>
                     <ProjectHero
                         title={<>
-                            Grid Overlay Pro <a href="https://github.com/thedevagyasharma/grid-overlay-extension/releases" target="_blank" rel="noopener noreferrer" className={gridStyles.releaseBadge}>View Latest Release</a>
+                            Grid Overlay Pro <a href="https://github.com/thedevagyasharma/grid-overlay-extension/" target="_blank" rel="noopener noreferrer" className={gridStyles.releaseBadge}>View Source Code</a>
                         </>}
                         description="An open source browser extension for designers and developers to visualize grid layouts directly on any webpage."
                         role="Design Engineer"

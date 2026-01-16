@@ -61,3 +61,35 @@
     /* Grid-aligned height - 8px sub-grid (64px = 8 * 8px) */
     height: var(--spacing-8);
 }
+
+/* ========================================
+   MOBILE OPTIMIZATION (≤ 675px)
+   ======================================== */
+@media (max-width: 675px) {
+    .hero .content {
+        flex-direction: column-reverse;
+        gap: var(--grid-spacing-1);
+        align-items: flex-start;
+    }
+
+    .pixelArt {
+        width: calc(var(--grid-size) * 8);
+        flex-shrink: 0;
+    }
+
+    .pixelArt canvas {
+        width: calc(var(--grid-size) * 8);
+        height: calc(var(--grid-size) * 8);
+    }
+
+    .hero .hero-text {
+        width: 100%;
+        align-items: flex-start;
+        flex: none;
+    }
+
+    /* .hero .hero-text h1 {
+        font-size: 1.5rem;
+        line-height: 1.4;
+    } */
+}

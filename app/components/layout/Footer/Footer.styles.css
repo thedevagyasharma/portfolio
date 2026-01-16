@@ -63,3 +63,12 @@
     opacity: 0.5;
     margin: 0;
 }
+
+
+@media (max-width: 675px){
+    .footer-button {
+        height: var(--grid-spacing-2);
+        box-shadow: 0px calc(var(--grid-size) / 4) 0px rgba(181, 181, 181, 1);
+        transform: translateY(calc(-1 * var(--grid-size) / 4));
+    }
+}

@@ -18,3 +18,12 @@
   justify-content: space-between;
   align-items: flex-start;
 }
+
+/* ========================================
+   MOBILE OPTIMIZATION (≤ 767px)
+   ======================================== */
+@media (max-width: 767px) {
+  .header-wrapper {
+    top: var(--grid-spacing-1);
+  }
+}

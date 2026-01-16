@@ -23,13 +23,13 @@ export default function Tools() {
         <>
             <section>
                 <div className="container">
-                    <SectionTitle text="Shipped Products" gridSpaces={9} />
+                    <SectionTitle text="Shipped Products" gridSpaces={9} mobileGridSpaces={11}/>
                     <div className="tools-grid">
                         <a ref={tile1Ref} href="/work/grid-overlay-pro" className="tool-tile">
                             <div className="tool-tile-content">
                                 <div className="tool-number">01</div>
-                                <div className="tool-title">Grid Overlay Pro <span className="wip-badge">[WIP]</span></div>
-                                <div className="tool-description">Professional grid overlay system for precise design alignment.</div>
+                                <div className="tool-title">Grid Overlay Pro</div>
+                                <div className="tool-description">Professional grid overlay tool for precise design alignment.</div>
                                 <div className="tool-video">
                                     <video
                                         autoPlay

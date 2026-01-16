@@ -9,20 +9,19 @@ export default function Lux() {
 
     return (
         <>
-            <Header/>
+            <Header />
 
             <main>
                 <Breadcrumbs currentPage="Lux" />
                 <ProjectContent ref={contentBoxRef}>
-                    <a href="https://lux.devagyasharma.com" target="_blank" rel="noopener noreferrer" className={projectStyles.projectCtaButton}>
-                        Try Lux
-                    </a>
-
                     <ProjectHero
                         title="Lux"
                         description="Generate beautiful gradient Lissajous curve cards and download them as PNG."
                         role="Developer & Designer"
                         tags={["React", "Canvas API"]}
+                        cta={<a href="https://lux.devagyasharma.com" target="_blank" rel="noopener noreferrer" className={projectStyles.projectCtaButton}>
+                            Try Lux
+                        </a>}
                     />
 
                     <ProjectSection id="demo">
