@@ -24,6 +24,16 @@
     margin: var(--spacing-5) 0 var(--spacing-2) 0;
 }
 
+.projectContentBox h4 {
+    font-family: var(--font_face-mono);
+    font-weight: 400;
+    margin: var(--spacing-5) 0 var(--spacing-2) 0;
+}
+
+h4.projectCardGroupLabel {
+    margin: unset;
+}
+
 .projectContentBox p {
     font-family: var(--font_face-mono);
     font-weight: 400;
@@ -241,6 +251,23 @@
 .projectCtaButton:active {
     transform: translateY(0);
     box-shadow: 0px 0px 0px #ffb899;
+}
+
+/* Card Group Label */
+.projectCardGroupLabel {
+    grid-column: 1 / -1;
+    font-family: var(--font_face-mono);
+    font-size: var(--font_body-small--size);
+    font-weight: 400;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+    margin: 0;
+    padding: var(--grid-spacing-1) var(--grid-spacing-1) 0;
+}
+
+/* Cards with label - reduced top padding */
+.projectCardGroupLabel ~ .projectCard {
+    padding-top: calc(var(--grid-spacing-1) / 2);
 }
 
 /* Image */

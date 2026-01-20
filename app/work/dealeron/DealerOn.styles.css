@@ -1,0 +1,31 @@
+/* Highlight (for stars, icons, etc.) */
+.toHighlight {
+    color: var(--color-accent);
+}
+
+/* Big Stats */
+.bigStat {
+    margin: 0;
+}
+
+.bigStatValue {
+    font-family: var(--font_face-mono);
+    font-size: 4rem;
+    font-weight: 400;
+    line-height: 1;
+    color: var(--color-accent);
+    margin-bottom: var(--spacing-2);
+}
+
+.bigStat h3 {
+    text-transform: lowercase;
+    margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+
+    .bigStatValue {
+        font-size: 3rem;
+    }
+}
