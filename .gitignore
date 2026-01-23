@@ -45,3 +45,5 @@ next-env.d.ts
 *.md
 *.bak
 /NEW_CASE_STUDIES
+/app/design-system
+/plans

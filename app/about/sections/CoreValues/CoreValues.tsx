@@ -6,7 +6,7 @@ export default function CoreValues() {
     return (
         <section>
             <div className="container">
-                <SectionTitle text="Core Values" gridSpaces={8} />
+                <SectionTitle text="Core Values" gridSpaces={7} mobileGridSpaces={8} />
                 <div className="values-grid">
                     <ValueCard
                         value="honesty"
