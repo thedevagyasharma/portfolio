@@ -1,7 +1,7 @@
 'use client';
 import gridStyles from './GridOverlayPro.module.css';
 import Header from '@/app/components/layout/Header/Header';
-import { Breadcrumbs, VideoPlayer } from '@/app/components/common';
+import { Breadcrumbs, VideoPlayer, ImageSlideshow } from '@/app/components/common';
 import { ProjectContent, ProjectSection, ProjectHero, projectStyles } from '@/app/components/layout/Project';
 import { useGridSnap } from '@/app/hooks/useGridSnap';
 
@@ -27,6 +27,20 @@ export default function GridOverlayPro() {
                         </a>}
                     >
                     </ProjectHero>
+                    <ProjectSection id="screenshots">
+                        {/* Screenshots Slideshow */}
+                        <ImageSlideshow
+                            images={[
+                                '/assets/projects/grid-overlay-pro/Screenshot 1.webp',
+                                '/assets/projects/grid-overlay-pro/Screenshot 2.webp',
+                                '/assets/projects/grid-overlay-pro/Screenshot 3.webp',
+                                '/assets/projects/grid-overlay-pro/Screenshot 4.webp',
+                                '/assets/projects/grid-overlay-pro/Screenshot 5.webp'
+                            ]}
+                            autoplay={true}
+                            autoplayInterval={4000}
+                        />
+                    </ProjectSection>
                     <ProjectSection id="video">
                         {/* Video Demo */}
                         <VideoPlayer
