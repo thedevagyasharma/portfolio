@@ -25,14 +25,46 @@
     background-color: white;
     border: var(--border-standard);
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     padding: var(--grid-spacing-1);
-    align-items: center;
+    gap: var(--grid-spacing-half);
 }
 
 .hero .hero-text h1 {
     margin: 0;
     font-weight: 400;
     font-family: var(--font_face-8bit);
+}
+
+.hero-divider {
+    width: 100%;
+    height: 1px;
+    background-color: var(--color-divider);
+    border: none;
+    margin: 0;
+}
+
+.hero-badges {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    column-gap: var(--grid-spacing-1);
+    row-gap: var(--grid-spacing-half);
+}
+
+.hero-badge img {
+    display: block;
+    height: 54px;
+    width: auto;
+    max-width: 100%;
+}
+
+/* WoP SVG has a white background baked in — border so it reads against the box */
+.hero-badge:first-child img {
+    border: var(--border-standard);
+    border-radius: 4px;
 }
 
 .toHighlight {
@@ -84,12 +116,14 @@
 
     .hero .hero-text {
         width: 100%;
-        align-items: flex-start;
         flex: none;
     }
 
-    /* .hero .hero-text h1 {
-        font-size: 1.5rem;
-        line-height: 1.4;
-    } */
+    .hero-badges {
+        gap: var(--grid-spacing-half);
+    }
+
+    .hero-badge img {
+        height: auto;
+    }
 }

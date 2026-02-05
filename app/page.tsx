@@ -9,7 +9,6 @@ export default function Home() {
         <Hero />
         <Tools />
         <Work/>
-        {/* ADD WORK SECTION HERE*/}
       </main>
     </>
   );
