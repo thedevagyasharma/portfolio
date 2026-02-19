@@ -7,11 +7,12 @@ interface ProjectHeroProps {
     description: string | ReactNode;
     role: string | ReactNode;
     tags: string[];
+    tagsLabel?: string;
     footnote?: string | ReactNode;
     cta?: ReactNode;
 }
 
-export function ProjectHero({ title, description, role, tags, footnote, cta }: ProjectHeroProps) {
+export function ProjectHero({ title, description, role, tags, tagsLabel = 'Tools', footnote, cta }: ProjectHeroProps) {
     return (
         <>
             <section>
@@ -28,7 +29,7 @@ export function ProjectHero({ title, description, role, tags, footnote, cta }: P
                     </div>
                     <div className={styles.projectMetaCard}>
                         <div className={styles.projectMetaLabel}>
-                            Tools
+                            {tagsLabel}
                         </div>
                         <div className={styles.projectMetaValue}>
                             <div className={styles.projectTools}>

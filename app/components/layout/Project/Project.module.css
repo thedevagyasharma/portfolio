@@ -59,6 +59,10 @@ h4.projectCardGroupLabel {
     margin-bottom: var(--spacing-2);
 }
 
+.projectContentBox li:last-child {
+    margin-bottom: 0;
+}
+
 .projectContentBox li::marker {
     list-style-type: square;
 }
@@ -104,17 +108,19 @@ h4.projectCardGroupLabel {
 
 .projectMetaCards {
     display: flex;
-    flex-direction: row;
-    gap: var(--spacing-4);
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 0;
     margin-bottom: var(--spacing-2);
+    border: var(--border-standard);
+    background-color: var(--color-surface);
 }
 
 .projectMetaCard {
-    flex: 1;
     padding: var(--spacing-4);
-    background-color: var(--color-surface);
-    border: var(--border-standard);
+}
+
+.projectMetaCard:not(:last-child) {
+    border-bottom: var(--border-standard);
 }
 
 .projectMetaLabel {
@@ -128,7 +134,7 @@ h4.projectCardGroupLabel {
 
 .projectMetaValue {
     font-family: var(--font_face-mono);
-    font-size: var(--font_body-large--size);
+    font-size: var(--font_body--size);
     font-weight: 400;
 }
 
@@ -170,6 +176,10 @@ h4.projectCardGroupLabel {
     grid-template-columns: repeat(2, 1fr);
 }
 
+.projectCardGroup.projectCardGroup4x1 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
 .projectCard {
     position: relative;
     display: flex;
@@ -190,6 +200,7 @@ h4.projectCardGroupLabel {
     background-color: var(--color-divider);
 }
 
+.projectCardGroup4x1>.projectCard:not(:nth-last-child(-n + 2))::before,
 .projectCardGroup4>.projectCard:not(:nth-last-child(-n + 2))::before {
     content: '';
     position: absolute;
@@ -287,6 +298,10 @@ h4.projectCardGroupLabel {
         grid-template-columns: 1fr;
     }
 
+    .projectCardGroup.projectCardGroup4x1 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
     .projectCard:not(:last-child)::after {
         display: none;
     }
@@ -301,13 +316,6 @@ h4.projectCardGroupLabel {
         background-color: var(--color-divider);
     }
 
-    .projectMetaCards {
-        flex-direction: column;
-    }
-
-    .projectMetaCard {
-        min-width: 100%;
-    }
 }
 
 @media (max-width: 675px) {
