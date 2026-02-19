@@ -47,3 +47,5 @@ next-env.d.ts
 /NEW_CASE_STUDIES
 /app/design-system
 /plans
+
+/.playwright-mcp
