@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-    title: 'Work — Devagya Sharma',
+    title: 'Work',
     description: 'Case studies and projects by Devagya Sharma — product design, design engineering, and developer tooling.',
 };
 

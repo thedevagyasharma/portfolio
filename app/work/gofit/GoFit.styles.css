@@ -26,6 +26,7 @@
     border-bottom: var(--border-standard);
     line-height: 1.5;
     font-family: var(--font_face-mono);
+    font-size: var(--font_body--size);
 }
 
 .gofit-competitor-table tr:last-child td {
@@ -242,5 +243,51 @@
     .gofit-competitor-table th,
     .gofit-competitor-table td {
         padding: var(--spacing-2) var(--spacing-3);
+    }
+}
+
+@media (max-width: 768px) {
+    .gofit-competitor-table thead {
+        display: none;
+    }
+
+    .gofit-competitor-table,
+    .gofit-competitor-table tbody,
+    .gofit-competitor-table tr,
+    .gofit-competitor-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .gofit-competitor-table tr {
+        border-bottom: var(--border-standard);
+        padding: var(--spacing-3) 0;
+    }
+
+    .gofit-competitor-table tr:last-child {
+        border-bottom: none;
+    }
+
+    .gofit-competitor-table td {
+        border-bottom: none;
+        border-right: none;
+        padding: var(--spacing-1) var(--spacing-3);
+    }
+
+    .gofit-competitor-table td:not(:last-child) {
+        border-right: none;
+    }
+
+    .gofit-competitor-table td::before {
+        content: attr(data-label);
+        display: block;
+        font-size: var(--font_body-small--size);
+        text-transform: uppercase;
+        color: var(--color-text-secondary);
+        margin-bottom: var(--spacing-1);
+    }
+
+    .gofit-competitor-table td:first-child::before {
+        display: none;
     }
 }
