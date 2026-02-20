@@ -22,7 +22,6 @@ export default function GoFit() {
                         role={<>UX Designer<br />Visual Designer</>}
                         tags={["User Research", "Competitive Analysis", "Persona Development", "Storyboarding", "User Flows", "Wireframing", "Usability Testing", "Visual Design", "Prototyping"]}
                         tagsLabel="Skills"
-                        footnote="Academic project — team of 4 designers."
                     />
 
                     {/* ── Brief ─────────────────────────────────────── */}
