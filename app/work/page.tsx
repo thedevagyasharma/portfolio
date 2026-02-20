@@ -6,31 +6,31 @@ import { useGridSnap } from '@/app/hooks/useGridSnap';
 
 export default function WorkIndex() {
     const tile1Ref = useGridSnap<HTMLAnchorElement>({
-        groupId: 'work-tiles',
+        groupId: 'work-tiles1',
         contentSelector: { selector: '.project-tile-content', paddingTiles: 2 }
     });
     const tile2Ref = useGridSnap<HTMLAnchorElement>({
-        groupId: 'work-tiles',
+        groupId: 'work-tiles1',
         contentSelector: { selector: '.project-tile-content', paddingTiles: 2 }
     });
     const tile3Ref = useGridSnap<HTMLAnchorElement>({
-        groupId: 'work-tiles',
+        groupId: 'work-tiles2',
         contentSelector: { selector: '.project-tile-content', paddingTiles: 2 }
     });
     const tile4Ref = useGridSnap<HTMLAnchorElement>({
-        groupId: 'work-tiles',
+        groupId: 'work-tiles2',
         contentSelector: { selector: '.project-tile-content', paddingTiles: 2 }
     });
     const tile5Ref = useGridSnap<HTMLAnchorElement>({
-        groupId: 'work-tiles',
+        groupId: 'work-tiles3',
         contentSelector: { selector: '.project-tile-content', paddingTiles: 2 }
     });
     const tile6Ref = useGridSnap<HTMLAnchorElement>({
-        groupId: 'work-tiles',
+        groupId: 'work-tiles3',
         contentSelector: { selector: '.project-tile-content', paddingTiles: 2 }
     });
     const tile7Ref = useGridSnap<HTMLAnchorElement>({
-        groupId: 'work-tiles',
+        groupId: 'work-tiles4',
         contentSelector: { selector: '.project-tile-content', paddingTiles: 2 }
     });
 

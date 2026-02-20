@@ -11,8 +11,7 @@ export default function Breadcrumbs({ currentPage }: BreadcrumbsProps) {
                 <div className={styles.breadcrumbs}>
                     <a href="/" className={styles.breadcrumbLink}>Home</a>
                     <span className={styles.breadcrumbSeparator}>/</span>
-                    {/* <a href="/work" className={styles.breadcrumbLink}>Work</a> */}
-                    <span>Work</span>
+                    <a href="/work" className={styles.breadcrumbLink}>Work</a>
                     <span className={styles.breadcrumbSeparator}>/</span>
                     <span className={styles.breadcrumbCurrent}>{currentPage}</span>
                 </div>

@@ -4,10 +4,10 @@ import { Hero, Work, Testimonials } from './sections';
 export default function Home() {
   return (
     <>
-      <Header/>
+      <Header />
       <main>
         <Hero />
-<Work/>
+        <Work />
         <Testimonials />
       </main>
     </>

@@ -38,6 +38,11 @@ body {
   width: 100%;
 }
 
+body::selection {
+  color: #000;
+  background-color: #ff4000;
+}
+
 /* Initial page load cover - ensures page is covered before React hydrates */
 body::before {
   content: '';
