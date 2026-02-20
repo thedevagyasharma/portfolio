@@ -114,7 +114,7 @@
 }
 
 .see-all-link {
-    width: calc(var(--grid-size) * 4);
+    width: calc(var(--grid-size) * 5);
     flex-shrink: 0;
     text-transform: uppercase;
     justify-content: center;

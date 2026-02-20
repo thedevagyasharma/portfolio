@@ -89,9 +89,9 @@
 
 .stat-number {
     font-family: var(--font_face-8bit);
-    font-size: 2.5rem;
-    font-weight: 400;
-    line-height: 1;
+    font-size: var(--font_heading-1--size);
+    font-weight: var(--font_heading-1--weight);
+    line-height: var(--font_heading-1--line-height);
     color: var(--color-foreground);
 }
 
@@ -134,8 +134,8 @@
 
 /* Responsive Design */
 
-/* Under 1280px: Stack intro content (bio on top, photo below) */
-@media (max-width: 1280px) {
+/* Under 1000px: Stack intro content (bio on top, photo below) */
+@media (max-width: 1000px) {
     .about-intro-grid {
         flex-direction: column-reverse; /* Photo below text */
     }
@@ -176,10 +176,7 @@
         height: 1px;
         background-color: var(--color-divider);
     }
-}
 
-/* Below 1024px (minimum supported width) */
-@media (max-width: 1024px) {
     .stats-grid {
         grid-template-columns: 1fr;
     }

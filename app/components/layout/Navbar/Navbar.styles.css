@@ -13,8 +13,8 @@
     --navbar-text: black;
 }
 
-@media (max-width: 675px){
-    :root{
+@media (max-width: 675px) {
+    :root {
         --navbar-button-lift: calc(-1 * var(--grid-size) / 4);
         --navbar-button-shadow-y: calc(var(--grid-size) / 4);
     }
@@ -25,6 +25,7 @@
     0% {
         transform: translateX(var(--slide-distance));
     }
+
     100% {
         transform: translateX(0);
     }
@@ -34,6 +35,7 @@
     0% {
         transform: translateX(0);
     }
+
     100% {
         transform: translateX(var(--slide-distance));
     }
@@ -117,13 +119,13 @@
 /* ===== COMPONENT STYLES ===== */
 
 /* Link Buttons */
-.navbar .link > a {
+.navbar .link>a {
     flex-direction: row;
     width: calc(2 * var(--grid-size));
     text-transform: uppercase;
 }
 
-.navbar .link > a > .link-label {
+.navbar .link>a>.link-label {
     font-family: var(--font_face-mono);
     font-size: var(--font_body-large--size);
     line-height: 1;
@@ -148,13 +150,13 @@
     z-index: calc(var(--stagger-index));
 }
 
-.navbar .link.slide-in > a {
+.navbar .link.slide-in>a {
     transform: translateY(0);
     box-shadow: var(--navbar-button-shadow-flat);
     transition: transform 150ms ease-out, box-shadow 150ms ease-out;
 }
 
-.navbar .link.slide-in.add-shadow > a {
+.navbar .link.slide-in.add-shadow>a {
     transform: translateY(var(--navbar-button-lift));
     box-shadow: var(--navbar-button-shadow-lifted);
 }
@@ -166,7 +168,7 @@
     z-index: calc(var(--stagger-index));
 }
 
-.navbar .link.flatten > a {
+.navbar .link.flatten>a {
     transform: translateY(0);
     box-shadow: var(--navbar-button-shadow-flat);
     transition: transform 150ms ease-in, box-shadow 150ms ease-in;
@@ -175,15 +177,15 @@
 /* ===== INTERACTIVE STATES ===== */
 
 /* Active link state */
-.link.active > a {
+.link.active>a {
     transform: translateY(0);
     box-shadow: var(--navbar-button-shadow-flat);
 }
 
 /* Keep active state flat during animations */
-.navbar .link.slide-in.active > a,
-.navbar .link.slide-in.add-shadow.active > a,
-.navbar .link.flatten.active > a {
+.navbar .link.slide-in.active>a,
+.navbar .link.slide-in.add-shadow.active>a,
+.navbar .link.flatten.active>a {
     transform: translateY(0);
     box-shadow: var(--navbar-button-shadow-flat);
     animation: none;
@@ -191,6 +193,11 @@
 
 /* ===== RESPONSIVE STYLES ===== */
 @media (max-width: 675px) {
+
+    .navbar-button-base {
+        height: calc(var(--grid-size) * 2);
+    }
+
     .navbar .link.hide-on-mobile {
         display: none;
     }
@@ -198,13 +205,12 @@
     /* Toggle button: 2×2 tiles */
     .navbar .menu-button {
         width: calc(var(--grid-size) * 2);
-        height: calc(var(--grid-size) * 2);
+
     }
 
     /* Nav links: 3×2 tiles */
-    .navbar .link > a {
+    .navbar .link>a {
         width: calc(3 * var(--grid-size));
-        height: calc(var(--grid-size) * 2);
     }
 
 }
