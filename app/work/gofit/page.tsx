@@ -18,11 +18,10 @@ export default function GoFit() {
                     {/* ── Hero ──────────────────────────────────────── */}
                     <ProjectHero
                         title="GoFit"
-                        description="A fitness community app that helps people discover nearby events, connect with others who share their interests, and stay accountable together."
+                        description="Connecting fitness enthusiasts with nearby events and community, making it easier to stay active and accountable."
                         role={<>UX Designer<br />Visual Designer</>}
                         tags={["User Research", "Competitive Analysis", "Persona Development", "Storyboarding", "User Flows", "Wireframing", "Usability Testing", "Visual Design", "Prototyping"]}
                         tagsLabel="Skills"
-                        footnote="Academic project — team of 4 designers."
                     />
 
                     {/* ── Brief ─────────────────────────────────────── */}

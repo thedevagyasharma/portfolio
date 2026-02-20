@@ -18,13 +18,12 @@
         --navbar-button-lift: calc(-1 * var(--grid-size) / 4);
         --navbar-button-shadow-y: calc(var(--grid-size) / 4);
     }
-    
 }
 
 /* ===== KEYFRAME ANIMATIONS ===== */
 @keyframes slideIn {
     0% {
-        transform: translateX(calc((4 - var(--stagger-index)) * 2 * var(--grid-size)));
+        transform: translateX(var(--slide-distance));
     }
     100% {
         transform: translateX(0);
@@ -36,31 +35,10 @@
         transform: translateX(0);
     }
     100% {
-        transform: translateX(calc((4 - var(--stagger-index)) * 2 * var(--grid-size)));
+        transform: translateX(var(--slide-distance));
     }
 }
 
-@keyframes addShadow {
-    0% {
-        transform: translateY(0);
-        box-shadow: var(--navbar-button-shadow-flat);
-    }
-    100% {
-        transform: translateY(var(--navbar-button-lift));
-        box-shadow: var(--navbar-button-shadow-lifted);
-    }
-}
-
-@keyframes removeShadow {
-    0% {
-        transform: translateY(var(--navbar-button-lift));
-        box-shadow: var(--navbar-button-shadow-lifted);
-    }
-    100% {
-        transform: translateY(0);
-        box-shadow: var(--navbar-button-shadow-flat);
-    }
-}
 
 /* ===== BASE LAYOUT ===== */
 .navbar {
@@ -68,17 +46,29 @@
     display: flex;
     justify-content: flex-end;
     align-items: flex-start;
-    /* Total width: 9 grid spaces (4 links × 2 spaces + 1 menu button) */
+    /* Total width: 8 tiles (links) + 1 tile (toggle) */
     width: calc(var(--grid-size) * 9);
     flex-shrink: 0;
 }
 
 .navbar .links-container {
     display: flex;
+    /* Width = 4 links × 2 tiles each */
+    width: calc(var(--grid-size) * 8);
+    /* Clip horizontally but allow vertical overflow for the lifted shadow */
+    clip-path: inset(var(--navbar-button-lift) 0 0 0);
 }
 
-.navbar .links-container.animating {
-    overflow: hidden;
+@media (max-width: 675px) {
+    .navbar {
+        /* 3 links × 3 tiles + 2 tile toggle */
+        width: calc(var(--grid-size) * 11);
+    }
+
+    .navbar .links-container {
+        /* Width = 3 visible links × 3 tiles each */
+        width: calc(var(--grid-size) * 9);
+    }
 }
 
 .navbar .links {
@@ -154,17 +144,19 @@
 .navbar .link.slide-in {
     animation: slideIn 300ms ease-out forwards;
     animation-delay: calc((3 - var(--stagger-index)) * 100ms);
-    transform: translateX(calc((4 - var(--stagger-index)) * 2 * var(--grid-size)));
+    transform: translateX(var(--slide-distance));
     z-index: calc(var(--stagger-index));
 }
 
 .navbar .link.slide-in > a {
     transform: translateY(0);
     box-shadow: var(--navbar-button-shadow-flat);
+    transition: transform 150ms ease-out, box-shadow 150ms ease-out;
 }
 
 .navbar .link.slide-in.add-shadow > a {
-    animation: addShadow 50ms ease-in forwards;
+    transform: translateY(var(--navbar-button-lift));
+    box-shadow: var(--navbar-button-shadow-lifted);
 }
 
 /* Slide-out animation (closing) */
@@ -175,7 +167,9 @@
 }
 
 .navbar .link.flatten > a {
-    animation: removeShadow 50ms ease-in forwards;
+    transform: translateY(0);
+    box-shadow: var(--navbar-button-shadow-flat);
+    transition: transform 150ms ease-in, box-shadow 150ms ease-in;
 }
 
 /* ===== INTERACTIVE STATES ===== */
@@ -197,6 +191,10 @@
 
 /* ===== RESPONSIVE STYLES ===== */
 @media (max-width: 675px) {
+    .navbar .link.hide-on-mobile {
+        display: none;
+    }
+
     /* Toggle button: 2×2 tiles */
     .navbar .menu-button {
         width: calc(var(--grid-size) * 2);
@@ -209,27 +207,4 @@
         height: calc(var(--grid-size) * 2);
     }
 
-    /* Update slide animations for 3-tile width */
-    @keyframes slideIn {
-        0% {
-            transform: translateX(calc((4 - var(--stagger-index)) * 3 * var(--grid-size)));
-        }
-        100% {
-            transform: translateX(0);
-        }
-    }
-
-    @keyframes slideOut {
-        0% {
-            transform: translateX(0);
-        }
-        100% {
-            transform: translateX(calc((4 - var(--stagger-index)) * 3 * var(--grid-size)));
-        }
-    }
-
-    /* Override slide-in transform for mobile */
-    .navbar .link.slide-in {
-        transform: translateX(calc((4 - var(--stagger-index)) * 3 * var(--grid-size)));
-    }
 }

@@ -10,16 +10,13 @@ const ANIMATION_TIMING = {
     FLATTEN_DURATION: 50,
     SLIDE_DURATION: 300,
     STAGGER_DELAY: 100,
-    SHADOW_DURATION: 50,
 } as const;
 
 // Animation state type
 type AnimationState = {
     isCollapsed: boolean;
     direction: 'opening' | 'closing' | null;
-    shouldClip: boolean;
     shouldFlatten: boolean;
-    shouldAddShadow: boolean;
 };
 
 // Helper function to check if route is active
@@ -30,24 +27,36 @@ const isRouteActive = (pathname: string, href: string): boolean => {
     return pathname.startsWith(href);
 };
 
+const GRID_SIZE_PX = 64; // must match --grid-size CSS var
+const MOBILE_BREAKPOINT = 675;
+
+function getSlideDistance(staggerIndex: number): number {
+    const isMobile = window.innerWidth <= MOBILE_BREAKPOINT;
+    const tileWidth = isMobile ? 3 : 2;
+    const toggleWidth = isMobile ? 2 : 1;
+    return ((4 - staggerIndex) * tileWidth + toggleWidth) * GRID_SIZE_PX;
+}
+
 export default function Navbar() {
     const pathname = usePathname();
     const [animState, setAnimState] = useState<AnimationState>({
         isCollapsed: false,
         direction: null,
-        shouldClip: false,
         shouldFlatten: false,
-        shouldAddShadow: false,
     });
+    const [slideDistances, setSlideDistances] = useState<number[]>([]);
 
     const navLinks = [
-        { name: 'Home', href: "/", external: false },
-        // { name: 'Work', href: "#work", external: false }, // Hidden until work page is ready
+        { name: 'Home', href: "/", external: false, hideOnMobile: true },
+        { name: 'Work', href: "/work", external: false },
         { name: 'About', href: "/about", external: false },
         { name: 'Resume', href: "https://github.com/thedevagyasharma/resume/blob/main/devagya_sharma_resume.pdf", external: true },
     ];
 
     const toggleMenu = () => {
+        const distances = navLinks.map((_, i) => getSlideDistance(i));
+        setSlideDistances(distances);
+
         if (!animState.isCollapsed) {
             // Closing sequence: Flatten → Clip → Slide out
             setAnimState(prev => ({ ...prev, shouldFlatten: true }));
@@ -55,7 +64,6 @@ export default function Navbar() {
             setTimeout(() => {
                 setAnimState(prev => ({
                     ...prev,
-                    shouldClip: true,
                     direction: 'closing'
                 }));
             }, ANIMATION_TIMING.FLATTEN_DURATION);
@@ -69,19 +77,15 @@ export default function Navbar() {
                 setAnimState({
                     isCollapsed: true,
                     direction: null,
-                    shouldClip: false,
                     shouldFlatten: false,
-                    shouldAddShadow: false,
                 });
             }, totalCloseDuration);
         } else {
-            // Opening sequence: Slide in → Unclip → Add shadow
+            // Opening sequence: Slide in → Add shadow via CSS transition
             setAnimState({
                 isCollapsed: false,
                 direction: 'opening',
-                shouldClip: true,
                 shouldFlatten: false,
-                shouldAddShadow: false,
             });
 
             const totalSlideDuration =
@@ -91,24 +95,15 @@ export default function Navbar() {
             setTimeout(() => {
                 setAnimState(prev => ({
                     ...prev,
-                    shouldClip: false,
-                    shouldAddShadow: true
+                    direction: null,
                 }));
             }, totalSlideDuration);
-
-            setTimeout(() => {
-                setAnimState(prev => ({
-                    ...prev,
-                    direction: null,
-                    shouldAddShadow: false
-                }));
-            }, totalSlideDuration + ANIMATION_TIMING.SHADOW_DURATION);
         }
     };
 
     return (
         <nav className="navbar">
-            <div className={`links-container ${animState.shouldClip ? 'animating' : ''}`}>
+            <div className="links-container">
                 <ul className="links">
                     {!animState.isCollapsed && navLinks.map((link, index) => {
                         const isActive = !link.external && isRouteActive(pathname, link.href);
@@ -119,7 +114,7 @@ export default function Navbar() {
                             animState.shouldFlatten && 'flatten',
                             animState.direction === 'opening' && 'slide-in',
                             animState.direction === 'closing' && 'slide-out',
-                            animState.shouldAddShadow && 'add-shadow',
+                            link.hideOnMobile && 'hide-on-mobile',
                         ].filter(Boolean).join(' ');
 
                         return (
@@ -128,6 +123,7 @@ export default function Navbar() {
                                 className={linkClasses}
                                 style={{
                                     '--stagger-index': index,
+                                    '--slide-distance': slideDistances[index] ? `${slideDistances[index]}px` : undefined,
                                 } as React.CSSProperties}
                             >
                                 <a
