@@ -19,7 +19,7 @@ export default function GridOverlayPro() {
                         title={<>
                             Grid Overlay Pro <a href="https://github.com/thedevagyasharma/grid-overlay-extension/" target="_blank" rel="noopener noreferrer" className={gridStyles.releaseBadge}>View Source Code</a>
                         </>}
-                        description="An open source browser extension for designers and developers to visualize grid layouts directly on any webpage."
+                        description="Bringing Figma-style grid overlays to any live webpage, making pixel-perfect alignment a browser-native part of the design process."
                         role="Design Engineer"
                         tags={["HTML", "CSS", "JavaScript", "Figma", "Chrome APIs"]}
                         cta={<a href="https://chromewebstore.google.com/detail/grid-overlay-pro/dffjjhlaagddjjjdjgihgjnhcmpbpcjl" target="_blank" rel="noopener noreferrer" className={projectStyles.projectCtaButton}>
