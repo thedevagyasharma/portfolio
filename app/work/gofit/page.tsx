@@ -64,31 +64,31 @@ export default function GoFit() {
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>
+                                    <td data-label="App">
                                         <span className="gofit-competitor-type">Partial Competitor</span>
                                         <span className="gofit-competitor-name">TeamSnap</span>
                                     </td>
-                                    <td>Sports team management</td>
-                                    <td>Robust scheduling, private media sharing, instant team comms</td>
-                                    <td>Locked to existing teams — no discovery of new people or events</td>
+                                    <td data-label="Type">Sports team management</td>
+                                    <td data-label="What it does well">Robust scheduling, private media sharing, instant team comms</td>
+                                    <td data-label="What's missing">Locked to existing teams — no discovery of new people or events</td>
                                 </tr>
                                 <tr>
-                                    <td>
+                                    <td data-label="App">
                                         <span className="gofit-competitor-type">Indirect Competitor</span>
                                         <span className="gofit-competitor-name">Squaddy</span>
                                     </td>
-                                    <td>Group fitness coordination</td>
-                                    <td>Community building, progress tracking, shared interests</td>
-                                    <td>Weak social layer — browsing local activity or meeting strangers is an afterthought</td>
+                                    <td data-label="Type">Group fitness coordination</td>
+                                    <td data-label="What it does well">Community building, progress tracking, shared interests</td>
+                                    <td data-label="What's missing">Weak social layer — browsing local activity or meeting strangers is an afterthought</td>
                                 </tr>
                                 <tr>
-                                    <td>
+                                    <td data-label="App">
                                         <span className="gofit-competitor-type">Analogous Competitor</span>
                                         <span className="gofit-competitor-name">Citizen</span>
                                     </td>
-                                    <td>Local event/safety feed</td>
-                                    <td>Real-time local updates, community engagement</td>
-                                    <td>1.5mi radius cap, no fitness context, no coordination features</td>
+                                    <td data-label="Type">Local event/safety feed</td>
+                                    <td data-label="What it does well">Real-time local updates, community engagement</td>
+                                    <td data-label="What's missing">1.5mi radius cap, no fitness context, no coordination features</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -134,7 +134,7 @@ export default function GoFit() {
                                 <div className="gofit-persona-header">
                                     <p className="gofit-persona-name">Jonathan, 23</p>
                                     <p className="gofit-persona-meta">Software Developer · USA</p>
-                                    <p className="gofit-persona-quote">"I want to play volleyball but I never know if anyone will actually show up."</p>
+                                    <p className="gofit-persona-quote">"I want to play volleyball but I haven't found people to play with ever since I moved."</p>
                                 </div>
                                 <div className="gofit-persona-body">
                                     <div className="gofit-persona-section">
