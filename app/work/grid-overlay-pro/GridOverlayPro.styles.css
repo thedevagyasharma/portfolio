@@ -1,0 +1,127 @@
+/* ─── Competitor Table ─────────────────────────────────────────── */
+.gop-competitor-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--font_face-mono);
+    font-size: var(--font_body--size);
+    border: var(--border-standard);
+    background-color: var(--color-surface);
+    margin-bottom: var(--spacing-2);
+}
+
+.gop-competitor-table th {
+    text-align: left;
+    padding: var(--spacing-3) var(--spacing-4);
+    font-size: var(--font_body-small--size);
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+    border-bottom: var(--border-standard);
+    font-weight: 400;
+    font-family: var(--font_face-mono);
+}
+
+.gop-competitor-table th:not(:first-child) {
+    text-align: center;
+}
+
+.gop-competitor-table td {
+    padding: var(--spacing-4);
+    vertical-align: middle;
+    border-bottom: var(--border-standard);
+    font-family: var(--font_face-mono);
+    font-size: var(--font_body--size);
+}
+
+.gop-competitor-table tr:last-child td {
+    border-bottom: none;
+}
+
+.gop-competitor-table td:not(:last-child),
+.gop-competitor-table th:not(:last-child) {
+    border-right: var(--border-standard);
+}
+
+.gop-competitor-table td:not(:first-child) {
+    text-align: center;
+}
+
+/* ─── Highlight ────────────────────────────────────────────────── */
+.toHighlight {
+    color: var(--color-accent);
+}
+
+/* ─── Indicators ───────────────────────────────────────────────── */
+.gop-indicator-yes {
+    font-family: var(--font_face-mono);
+    font-size: var(--font_body--size);
+    color: #009952;
+}
+
+.gop-indicator-no {
+    font-family: var(--font_face-mono);
+    font-size: var(--font_body--size);
+    color: var(--color-accent);
+}
+
+.gop-indicator-partial {
+    font-family: var(--font_face-mono);
+    font-size: var(--font_body-small--size);
+    color: var(--color-text-secondary);
+}
+
+/* ─── Responsive ───────────────────────────────────────────────── */
+@media (max-width: 1000px) {
+    .gop-competitor-table th,
+    .gop-competitor-table td {
+        padding: var(--spacing-2) var(--spacing-3);
+        font-size: var(--font_body-small--size);
+    }
+}
+
+@media (max-width: 768px) {
+    .gop-competitor-table thead {
+        display: none;
+    }
+
+    .gop-competitor-table,
+    .gop-competitor-table tbody,
+    .gop-competitor-table tr,
+    .gop-competitor-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .gop-competitor-table tr {
+        border-bottom: var(--border-standard);
+        padding: var(--spacing-3) 0;
+    }
+
+    .gop-competitor-table tr:last-child {
+        border-bottom: none;
+    }
+
+    .gop-competitor-table td {
+        border-bottom: none;
+        border-right: none;
+        padding: var(--spacing-1) var(--spacing-3);
+        text-align: left;
+    }
+
+    .gop-competitor-table td:not(:last-child) {
+        border-right: none;
+    }
+
+    .gop-competitor-table td::before {
+        content: attr(data-label);
+        display: block;
+        font-size: var(--font_body-small--size);
+        text-transform: uppercase;
+        color: var(--color-text-secondary);
+        margin-bottom: var(--spacing-1);
+    }
+
+    .gop-competitor-table td:first-child::before {
+        display: none;
+    }
+
+}
