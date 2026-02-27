@@ -19,7 +19,7 @@ export default function Explorations() {
     return (
         <section id="explorations">
             <div className="container">
-                <SectionTitle text="Interactive Explorations" gridSpaces={11} mobileGridSpaces={16} />
+                <SectionTitle text="Interactive Explorations" gridSpaces={12} mobileGridSpaces={16} />
 
                 {/* Row 1: Syntropy + Tactus */}
                 <div className="work-row">
