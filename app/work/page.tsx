@@ -29,10 +29,6 @@ export default function WorkIndex() {
         groupId: 'work-tiles3',
         contentSelector: { selector: '.project-tile-content', paddingTiles: 2 }
     });
-    const tile7Ref = useGridSnap<HTMLAnchorElement>({
-        groupId: 'work-tiles4',
-        contentSelector: { selector: '.project-tile-content', paddingTiles: 2 }
-    });
 
     return (
         <>
@@ -92,21 +88,9 @@ export default function WorkIndex() {
                             </a>
                         </div>
                         <div className="work-row">
-                            <a ref={tile5Ref} href="/work/lux" className="project-tile">
+                            <a ref={tile5Ref} href="/work/multisig-transaction-flow" className="project-tile">
                                 <div className="project-tile-content">
                                     <div className="project-number">05</div>
-                                    <div className="project-title">Lux</div>
-                                    <div className="project-description">Generate beautiful gradient Lissajous curve cards and download them as PNG.</div>
-                                    <div className="project-video">
-                                        <video autoPlay loop muted playsInline>
-                                            <source src="/assets/projects/lux/cover.webm" type="video/webm" />
-                                        </video>
-                                    </div>
-                                </div>
-                            </a>
-                            <a ref={tile6Ref} href="/work/multisig-transaction-flow" className="project-tile">
-                                <div className="project-tile-content">
-                                    <div className="project-number">06</div>
                                     <div className="project-title">Multi-Signature Transaction Flow</div>
                                     <div className="project-description">A scalable transaction flow designed for institutional crypto wallets, handling multi-chain complexity with clarity and precision.</div>
                                     <div className="project-image">
@@ -114,11 +98,9 @@ export default function WorkIndex() {
                                     </div>
                                 </div>
                             </a>
-                        </div>
-                        <div className="work-row">
-                            <a ref={tile7Ref} href="/work/nex" className="project-tile">
+                            <a ref={tile6Ref} href="/work/nex" className="project-tile">
                                 <div className="project-tile-content">
-                                    <div className="project-number">07</div>
+                                    <div className="project-number">06</div>
                                     <div className="project-title">NEX</div>
                                     <div className="project-description">Brand identity exploring generative pattern systems, inspired by John Maeda's philosophy of balancing simplicity and complexity.</div>
                                     <div className="project-image">
