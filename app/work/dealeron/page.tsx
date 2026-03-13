@@ -139,6 +139,8 @@ export default function DealerOn() {
                         On pages with 4-5 sections on average (up to 12 sections), this saves significant development time.</p>
                         <video
                             src="/assets/projects/dealeron/skeletons.webm"
+                            width={1600}
+                            height={900}
                             autoPlay
                             loop
                             muted
@@ -151,6 +153,8 @@ export default function DealerOn() {
                         <p>Using default CSS classes resulted in inconsistent card heights, misaligned buttons, and images requiring manual resizing.</p>
                         <video
                             src="/assets/projects/dealeron/before.webm"
+                            width={2500}
+                            height={1006}
                             autoPlay
                             loop
                             muted
@@ -162,6 +166,8 @@ export default function DealerOn() {
                         <p>CSS utility automatically handles equal-height cards, auto-resizes images regardless of original dimensions, and aligns buttons at the bottom for a polished, cohesive layout.</p>
                         <video
                             src="/assets/projects/dealeron/after.webm"
+                            width={2500}
+                            height={952}
                             autoPlay
                             loop
                             muted
@@ -173,6 +179,8 @@ export default function DealerOn() {
                         <p>9 documented variants of the tabs component, ready to copy and use across any DealerOn website. Other complex components were designed and documented with similar comprehensive variations.</p>
                         <video
                             src="/assets/projects/dealeron/tabs.webm"
+                            width={1600}
+                            height={900}
                             autoPlay
                             loop
                             muted
@@ -186,6 +194,8 @@ export default function DealerOn() {
                         With tool: 15 seconds to copy-paste 3 links with automatic template selection and proper ordering.</p>
                         <video
                             src="/assets/projects/dealeron/links.webm"
+                            width={1600}
+                            height={900}
                             autoPlay
                             loop
                             muted
